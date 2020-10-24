@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import oc from 'open-color';
 import logo from 'src/assets/img/logo.png';
+import search from 'src/assets/svg/search.svg';
 
 const Header = () => {
   return (
@@ -43,7 +44,9 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <div className="search">search</div>
+        <div className="search">
+          <img src={search} alt="" />
+        </div>
         <div className="login">
           <button>Login</button>
         </div>
@@ -57,12 +60,13 @@ const HeaderWrap = styled.div`
   display: flex;
   max-width: 1440px;
   width: 100%;
+  height: 80px;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
 `;
 const LogoWrap = styled.div`
-  width: 200px;
+  width: 125px;
 `;
 const MenuWrap = styled.div`
   display: flex;
@@ -70,6 +74,7 @@ const MenuWrap = styled.div`
   align-items: center;
   max-width: 800px;
   width: 100%;
+  margin-top: 10px;
   .main-menu {
     width: 100%;
     justify-content: space-between;
@@ -78,10 +83,26 @@ const MenuWrap = styled.div`
   .search,
   .login {
     margin-left: 30px;
+    cursor: pointer;
+  }
+  .search {
+    height: 30px;
+    width: 30px;
+  }
+  .login button {
+    cursor: pointer;
+    height: 40px;
+    width: 75px;
+    background: ${oc.blue[5]};
+    border: 0;
+    color: white;
   }
   .menu {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
   }
   .menu > li {
     position: relative;
@@ -91,30 +112,36 @@ const MenuWrap = styled.div`
   }
   .menu li a {
     display: block;
+    color: black;
     width: 100%;
     height: 100%;
   }
-  .menu > li:hover {
-    background: ${oc.blue[3]};
+  .menu > li a:hover {
+    color: ${oc.blue[5]};
   }
   .menu > li:hover .sub-menu {
-    display: block;
+    top: 60px;
+    visibility: visible;
+    opacity: 1;
   }
   .sub-menu {
     width: 100%;
+    background: white;
     padding: 0;
     position: absolute;
-    border: 1px solid gray;
-    display: none;
+    top: 100px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.4s;
   }
   .sub-menu li {
     line-height: 50px;
   }
-  .sub-menu li:hover {
-    background: red;
+  .sub-menu li a:hover {
+    color: ${oc.blue[5]};
   }
-  button {
-    height: 50px !important;
+  .sub-menu li {
+    border-top: 1px solid ${oc.gray[3]};
   }
 `;
 
