@@ -1,12 +1,14 @@
 import React from 'react';
 import Header from 'src/components/common/Header';
-import Banner from 'src/components/main/Banner';
+import Contents from 'src/components/main/Contents';
+import Footer from 'src/components/common/Footer';
 
 const Main = () => {
   return (
     <>
       <Header />
-      <Banner />
+      <Contents />
+      <Footer />
     </>
   );
 };
