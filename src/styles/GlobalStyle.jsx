@@ -4218,12 +4218,14 @@ form .create-account input[type='checkbox'] {
   color: #fff;
   opacity: 0.7;
 }
-.site-footer .footer-copyright a.back-top span {
+.site-footer .footer-copyright a.back-top i {
   margin-left: 10px;
-  font-size: 18px;
+  width: 10px;
+  height: 10px;
+  margin-bottom: 5px;
   vertical-align: middle;
   line-height: normal;
-  color: #00a6eb;
+  
   opacity: 1;
 }
 .site-footer .footer-copyright a.back-top:hover {

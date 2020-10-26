@@ -7,8 +7,13 @@ const Footer = () => {
       <div className="footer-copyright">
         <div className="container">
           <p className="copyright">2020 by K-RONA All Rights Reserved.</p>
-          <Link to="/" className="back-top">
-            Back to top<span className="ion-android-arrow-up"></span>
+          <Link
+            to="/"
+            className="back-top"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
+            Back to top
+            <i className="fa fa-arrow-up" aria-hidden="true" />
           </Link>
         </div>
       </div>
