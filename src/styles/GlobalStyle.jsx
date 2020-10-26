@@ -1070,8 +1070,8 @@ ul.socials-top li:hover i {
   -webkit-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
 }
-.campaign-item a.overlay span,
-.post a.overlay span {
+.campaign-item a.overlay i,
+.post a.overlay i {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1088,8 +1088,8 @@ ul.socials-top li:hover i {
   color: #00a6eb;
   text-align: center;
 }
-.campaign-item a.overlay:hover span,
-.post a.overlay:hover span {
+.campaign-item a.overlay:hover i,
+.post a.overlay:hover i {
   -webkit-transform: translate(-50%, -50%) scale(1);
   transform: translate(-50%, -50%) scale(1);
   transition: all 300ms 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);

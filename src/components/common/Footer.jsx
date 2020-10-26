@@ -8,7 +8,6 @@ const Footer = () => {
         <div className="container">
           <p className="copyright">2020 by K-RONA All Rights Reserved.</p>
           <Link
-            to="/"
             className="back-top"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >

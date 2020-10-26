@@ -202,9 +202,9 @@ const Contents = () => {
               {funds.map(fund => (
                 <div key={fund.id} className="col-lg-4 col-sm-6">
                   <div className="campaign-item">
-                    <Link className="overlay" to="/">
+                    <Link className="overlay" to="/fund/detail">
                       <img src={require('src/images/placeholder/370x240.png')} alt="" />
-                      <span className="ion-ios-search-strong" />
+                      <i class="fa fa-search" aria-hidden="true" />
                     </Link>
                     <div className="campaign-box">
                       <Link to="/" className="category">
@@ -246,7 +246,7 @@ const Contents = () => {
             </div>
           </div>
           <div className="latest-button">
-            <Link to="/" className="btn-primary">
+            <Link to="/fund/list" className="btn-primary">
               View all Campaigns
             </Link>
           </div>
