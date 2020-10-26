@@ -141,7 +141,7 @@ const Contents = () => {
             </div>
             <div className="process wow fadeInUp" data-scroll-nav="1">
               <div className="raised">
-                <span></span>
+                <span />
               </div>
               <div className="process-info">
                 <div className="process-funded">
@@ -178,7 +178,7 @@ const Contents = () => {
           <div className="explore-content">
             <div className="row">
               {categorys.map(category => (
-                <div className="col-lg-3 col-md-4 col-sm-6 col-6">
+                <div key={category.id} className="col-lg-3 col-md-4 col-sm-6 col-6">
                   <div className="explore-item">
                     <Link className="explore-overlay" to="/">
                       <img src={require('src/images/placeholder/270x180.png')} alt="" />
@@ -200,11 +200,11 @@ const Contents = () => {
           <div className="campaign-content">
             <div className="row">
               {funds.map(fund => (
-                <div className="col-lg-4 col-sm-6">
+                <div key={fund.id} className="col-lg-4 col-sm-6">
                   <div className="campaign-item">
                     <Link className="overlay" to="/">
                       <img src={require('src/images/placeholder/370x240.png')} alt="" />
-                      <span className="ion-ios-search-strong"></span>
+                      <span className="ion-ios-search-strong" />
                     </Link>
                     <div className="campaign-box">
                       <Link to="/" className="category">
@@ -225,7 +225,7 @@ const Contents = () => {
                       </div>
                       <div className="process">
                         <div className="raised">
-                          <span></span>
+                          <span />
                         </div>
                         <div className="process-info">
                           <div className="process-pledged">

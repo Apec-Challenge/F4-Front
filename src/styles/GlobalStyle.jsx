@@ -835,6 +835,9 @@ ul.socials-top li:hover i {
 .home .site-main {
   padding-bottom: 0px;
 }
+.site-main {
+  padding-bottom: 120px;
+}
 .site-main .sideshow {
   position: relative;
   height: 674px;
@@ -2354,10 +2357,9 @@ select,
   position: relative;
 }
 .field-select:after {
-  content: '\f3d0';
-  font-family: 'Ionicons';
+  content: '\\02C5';
   position: absolute;
-  top: 0;
+  top: 6px;
   right: 0;
   line-height: 46px;
   padding: 0 18px;
@@ -4289,6 +4291,7 @@ form .create-account input[type='checkbox'] {
 }
 .process-model li span img {
   width: auto;
+  height: auto;
 }
 .process-model li:nth-child(1).active span,
 .process-model li:nth-child(1).visited span {
@@ -5796,5 +5799,8 @@ form .create-account input[type='checkbox'] {
 	.campaign-content .campaign-box .process .process-info span{
 		margin-right: 40px !important;
 	}
+}
+.preview-btn {
+  margin-top: 20px;
 }
 `;
