@@ -140,7 +140,7 @@ const List = () => {
           <div className="breadcrumbs">
             <ul>
               <li>
-                <a href="index.html">Home</a>
+                <Link to="/">Home</Link>
                 <span>/</span>
               </li>
               <li>Layout</li>
@@ -191,15 +191,15 @@ const List = () => {
             <div className="row">
               <div className="col-lg-12">
                 <div className="campaign-big-item clearfix">
-                  <a href="campaign_detail.html" className="campaign-big-image">
+                  <Link to="/fund/detail" className="campaign-big-image">
                     <img src={require('src/images/placeholder/570x350.png')} alt="" />
-                  </a>
+                  </Link>
                   <div className="campaign-big-box">
                     <Link to="/fund/detail" className="category">
                       {recentFund.category}
                     </Link>
                     <h3>
-                      <a href="campaign_detail.html">{recentFund.title}</a>
+                      <Link to="/fund/detail">{recentFund.title}</Link>
                     </h3>
                     <div className="campaign-description">{recentFund.contents}</div>
                     <div className="staff-picks-author">
@@ -247,11 +247,11 @@ const List = () => {
                       <span className="ion-ios-search-strong" />
                     </Link>
                     <div className="campaign-box">
-                      <Link to="/" className="category">
+                      <Link to="/fund/detail" className="category">
                         {funds.category}
                       </Link>
                       <h3>
-                        <Link to="/">{fund.title}</Link>
+                        <Link to="/fund/detail">{fund.title}</Link>
                       </h3>
                       <div className="campaign-description">{fund.contents}</div>
                       <div className="campaign-author">
