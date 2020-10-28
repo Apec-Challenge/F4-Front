@@ -9,7 +9,8 @@
     "uThumb": "src/images/placeholder/35x35.png",
     "pledged": 630,
     "funded": 26,
-    "deadline": 2
+    "deadline": 2,
+    "backers": 12
   }, {
     "id": 2,
     "category": "Book",

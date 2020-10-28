@@ -1,40 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useReadFund from 'src/hook/fund/useReadFund';
+import useReadPlace from 'src/hook/place/useReadPlace';
 
-const categorys = [
-  {
-    id: 1,
-    name: 'Design & Art',
-  },
-  {
-    id: 2,
-    name: 'Film Video',
-  },
-  {
-    id: 3,
-    name: 'Book',
-  },
-  {
-    id: 4,
-    name: 'Performances',
-  },
-  {
-    id: 5,
-    name: 'Crafts',
-  },
-  {
-    id: 6,
-    name: 'Technology',
-  },
-  {
-    id: 7,
-    name: 'Food',
-  },
-  {
-    id: 8,
-    name: 'Game',
-  },
-];
 const funds = [
   {
     id: 1,
@@ -112,142 +80,148 @@ const funds = [
     deadline: 33,
   },
 ];
-const banner = {
-  category: 'Design & Art',
-  title: 'Bring new ideas to life, anywhere',
-  contents:
-    'Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu teus.',
-  owner: 'Samino',
-  thumb: `src/images/placeholder/370x240.png`,
-  uThumb: `src/images/placeholder/35x35.png`,
-  pledged: 46.0,
-  funded: 46,
-  deadline: 21,
-  backers: 32,
-};
 
 const Contents = () => {
+  const fetchFund = useReadFund();
+  const fetchPlace = useReadPlace();
   return (
     <main id="main" className="site-main">
       <div className="sideshow">
         <img src={require('src/images/placeholder/1920x680.png')} alt="" />
         <div className="container">
-          <div className="sideshow-content">
-            <h1 className="wow fadeInUp" data-wow-delay=".2s">
-              {banner.title}
-            </h1>
-            <div className="sideshow-description wow fadeInUp" data-wow-delay=".1s">
-              {banner.contents}
-            </div>
-            <div className="process wow fadeInUp" data-scroll-nav="1">
-              <div className="raised">
-                <span />
+          {fetchFund.funds && !fetchFund.loading && (
+            <div className="sideshow-content">
+              <h1 className="wow fadeInUp" data-wow-delay=".2s">
+                {fetchFund.funds[0].title}
+              </h1>
+              <div className="sideshow-description wow fadeInUp" data-wow-delay=".1s">
+                {fetchFund.funds[0].contents}
               </div>
-              <div className="process-info">
-                <div className="process-funded">
-                  <span>{banner.funded}%</span>funded
+              <div className="process wow fadeInUp" data-scroll-nav="1">
+                <div className="raised">
+                  <span />
                 </div>
-                <div className="process-pledged">
-                  <span>${banner.pledged}</span>pledged
-                </div>
-                <div className="process-backers">
-                  <span>{banner.backers}</span>backers
-                </div>
-                <div className="process-time">
-                  <span>{banner.deadline}</span>days ago
+                <div className="process-info">
+                  <div className="process-funded">
+                    <span>{fetchFund.funds[0].funded}%</span>funded
+                  </div>
+                  <div className="process-pledged">
+                    <span>${fetchFund.funds[0].pledged}</span>pledged
+                  </div>
+                  <div className="process-backers">
+                    <span>{fetchFund.funds[0].backers}</span>backers
+                  </div>
+                  <div className="process-time">
+                    <span>{fetchFund.funds[0].deadline}</span>days ago
+                  </div>
                 </div>
               </div>
+              <div className="button wow fadeInUp" data-wow-delay="0.3s">
+                <Link to="/" className="btn-secondary">
+                  See Campaign
+                </Link>
+                <Link to="/" className="btn-primary">
+                  Buy Now
+                </Link>
+              </div>
             </div>
-            <div className="button wow fadeInUp" data-wow-delay="0.3s">
-              <Link to="/" className="btn-secondary">
-                See Campaign
-              </Link>
-              <Link to="/" className="btn-primary">
-                Buy Now
-              </Link>
-            </div>
-          </div>
+          )}
         </div>
       </div>
-      <div className="explore">
+      <div className="latest places">
         <div className="container">
-          <h2 className="title">Explore Ideas</h2>
+          <h2 className="title">Latest Places</h2>
           <div className="description">
             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
           </div>
-          <div className="explore-content">
+          {!fetchPlace.loading && fetchPlace.places && (
             <div className="row">
-              {categorys.map(category => (
-                <div key={category.id} className="col-lg-3 col-md-4 col-sm-6 col-6">
-                  <div className="explore-item">
-                    <Link className="explore-overlay" to="/">
-                      <img src={require('src/images/placeholder/270x180.png')} alt="" />
-                      <span>{category.name}</span>
-                    </Link>
-                  </div>
+              <div className="col-lg-12 main-content">
+                <div className="grid-product">
+                  {fetchPlace.places.map(place => (
+                    <div key={place.id} className="product">
+                      <Link to="/place/detail">
+                        <img src={require('src/images/placeholder/270x180.png')} alt="" />
+                      </Link>
+                      <div className="product-info">
+                        <h3 className="product-title">
+                          <Link to="/place/detail">{place.title}</Link>
+                        </h3>
+                        <p className="product-price">{place.description}</p>
+                        <p className="product-price">{place.business_hour}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
+          )}
+        </div>
+        <div className="latest-button">
+          <Link to="/fund/list" className="btn-primary">
+            View all Places
+          </Link>
         </div>
       </div>
       <div className="latest campaign">
         <div className="container">
-          <h2 className="title">Latest Campaigns</h2>
+          <h2 className="title">Latest Fundings</h2>
           <div className="description">
             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
           </div>
           <div className="campaign-content">
-            <div className="row">
-              {funds.map(fund => (
-                <div key={fund.id} className="col-lg-4 col-sm-6">
-                  <div className="campaign-item">
-                    <Link className="overlay" to="/fund/detail">
-                      <img src={require('src/images/placeholder/370x240.png')} alt="" />
-                      <i class="fa fa-search" aria-hidden="true" />
-                    </Link>
-                    <div className="campaign-box">
-                      <Link to="/" className="category">
-                        {funds.category}
+            {fetchFund.funds && !fetchFund.loading && (
+              <div className="row">
+                {fetchFund.funds.map(fund => (
+                  <div key={fund.id} className="col-lg-4 col-sm-6">
+                    <div className="campaign-item">
+                      <Link className="overlay" to="/fund/detail">
+                        <img src={require('src/images/placeholder/370x240.png')} alt="" />
+                        <i className="fa fa-search" aria-hidden="true" />
                       </Link>
-                      <h3>
-                        <Link to="/">{fund.title}</Link>
-                      </h3>
-                      <div className="campaign-description">{fund.contents}</div>
-                      <div className="campaign-author">
-                        <Link className="author-icon" to="/">
-                          <img src={require('src/images/placeholder/35x35.png')} alt="" />
+                      <div className="campaign-box">
+                        <Link to="/" className="category">
+                          {funds.category}
                         </Link>
-                        by{' '}
-                        <Link className="author-name" to="/">
-                          {fund.owner}
-                        </Link>
-                      </div>
-                      <div className="process">
-                        <div className="raised">
-                          <span />
+                        <h3>
+                          <Link to="/">{fund.title}</Link>
+                        </h3>
+                        <div className="campaign-description">{fund.contents}</div>
+                        <div className="campaign-author">
+                          <Link className="author-icon" to="/">
+                            <img src={require('src/images/placeholder/35x35.png')} alt="" />
+                          </Link>
+                          by{' '}
+                          <Link className="author-name" to="/">
+                            {fund.owner}
+                          </Link>
                         </div>
-                        <div className="process-info">
-                          <div className="process-pledged">
-                            <span>${fund.pledged}</span>pledged
+                        <div className="process">
+                          <div className="raised">
+                            <span />
                           </div>
-                          <div className="process-funded">
-                            <span>{fund.funded}%</span>funded
-                          </div>
-                          <div className="process-time">
-                            <span>{fund.deadline}</span>days ago
+                          <div className="process-info">
+                            <div className="process-pledged">
+                              <span>${fund.pledged}</span>pledged
+                            </div>
+                            <div className="process-funded">
+                              <span>{fund.funded}%</span>funded
+                            </div>
+                            <div className="process-time">
+                              <span>{fund.deadline}</span>days ago
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="latest-button">
             <Link to="/fund/list" className="btn-primary">
-              View all Campaigns
+              View all Fundings
             </Link>
           </div>
         </div>

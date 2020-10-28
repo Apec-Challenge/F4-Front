@@ -1514,6 +1514,10 @@ ul.menu-category li.active:after {
 .latest {
   margin-bottom: 120px;
 }
+.places {
+  padding-top: 120px;
+  margin-bottom: 0!important;
+}
 .partners {
   background-color: #f5f6f6;
   padding: 60px 0;
