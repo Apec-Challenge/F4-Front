@@ -70,8 +70,8 @@ const Header = () => {
             </form>
           </div>
           <div className="login login-button">
-            <Link to="/sign" className="btn-primary">
-              Sign In
+            <Link to="/auth" className="btn-primary">
+              Login
             </Link>
           </div>
         </div>

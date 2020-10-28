@@ -82,9 +82,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <div className="maps">
-        <div id="map" />
-      </div>
     </main>
   );
 };

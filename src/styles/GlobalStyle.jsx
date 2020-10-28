@@ -2359,7 +2359,7 @@ select,
 .field-select:after {
   content: '\\02C5';
   position: absolute;
-  top: 6px;
+  top: 3px;
   right: 0;
   line-height: 46px;
   padding: 0 18px;
@@ -2602,7 +2602,7 @@ form .create-account input[type='checkbox'] {
 3.9. Shop / #shop
 -------------------------------------------------------------------*/
 .shop-details .shop-details-content {
-  background-color: #f5f6f6;
+  background-color: #f5f6f6!important;
   padding: 36px 30px;
 }
 .shop-details .shop-details-content span {

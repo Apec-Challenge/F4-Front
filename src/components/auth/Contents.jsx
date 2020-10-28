@@ -1,21 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Signin = ({ sign, setSign }) => {
+const Contents = ({ type, setType }) => {
   return (
     <>
-      {!sign ? (
+      {!type ? (
         <main id="main" className="site-main">
           <div className="page-title background-page">
             <div className="container">
-              <h1>Sign In</h1>
+              <h1>Login</h1>
               <div className="breadcrumbs">
                 <ul>
                   <li>
                     <Link to="/">Home</Link>
                     <span>/</span>
                   </li>
-                  <li>Sign In</li>
+                  <li>Login</li>
                 </ul>
               </div>
             </div>
@@ -23,7 +23,7 @@ const Signin = ({ sign, setSign }) => {
           <div className="container">
             <div className="main-content">
               <div className="form-login">
-                <h2>Sign in with your account</h2>
+                <h2>Login with your account</h2>
                 <form id="loginForm" className="clearfix">
                   <div className="field">
                     <input type="email" value="" name="s" placeholder="E-mail Address" />
@@ -33,10 +33,10 @@ const Signin = ({ sign, setSign }) => {
                   </div>
                   <div className="inline clearfix">
                     <button type="submit" value="Send Messager" className="btn-primary">
-                      Sign In
+                      Login
                     </button>
                     <p>
-                      Not a member yet? <Link onClick={() => setSign(true)}>Sign Up</Link>
+                      Not a member yet? <Link onClick={() => setType(true)}>Register now</Link>
                     </p>
                   </div>
                 </form>
@@ -48,14 +48,14 @@ const Signin = ({ sign, setSign }) => {
         <main id="main" className="site-main">
           <div className="page-title background-page">
             <div className="container">
-              <h1>Sign Up</h1>
+              <h1>Register</h1>
               <div className="breadcrumbs">
                 <ul>
                   <li>
                     <Link to="/">Home</Link>
                     <span>/</span>
                   </li>
-                  <li>Sign Up</li>
+                  <li>Register</li>
                 </ul>
               </div>
             </div>
@@ -63,7 +63,7 @@ const Signin = ({ sign, setSign }) => {
           <div className="container">
             <div className="main-content">
               <div className="form-login form-register">
-                <h2>Sign up for Free</h2>
+                <h2>Register for Free</h2>
                 <form id="registerForm" className="clearfix">
                   <div className="field">
                     <input type="text" value="" name="s" placeholder="First Name" />
@@ -79,10 +79,10 @@ const Signin = ({ sign, setSign }) => {
                   </div>
                   <div className="inline clearfix">
                     <button type="submit" value="Send Messager" className="btn-primary">
-                      Sign Up
+                      Register
                     </button>
                     <p>
-                      Not a member yet? <Link onClick={() => setSign(false)}>Sign In</Link>
+                      Not a member yet? <Link onClick={() => setType(false)}>Login now</Link>
                     </p>
                   </div>
                 </form>
@@ -95,4 +95,4 @@ const Signin = ({ sign, setSign }) => {
   );
 };
 
-export default Signin;
+export default Contents;
