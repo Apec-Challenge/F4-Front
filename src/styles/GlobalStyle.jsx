@@ -8,6 +8,10 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
   }
+  .logo {
+    width: 70px;
+    height: auto;
+  }
   /*------------------------------------------------------------------
 Project:    IdeaPress
 Version:    1.3
@@ -2971,7 +2975,7 @@ form .create-account input[type='checkbox'] {
   margin-bottom: 6px;
 }
 .campaign-detail .process .process-info {
-  margin-bottom: 35px;
+  margin-bottom: 10px;
 }
 .campaign-detail .process .process-info div {
   font-size: 14px !important;

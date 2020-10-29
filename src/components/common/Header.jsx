@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from 'src/images/assets/logo.png';
+import Logo from 'src/images/logo_color.png';
 
 const Header = () => {
   return (
@@ -8,7 +8,7 @@ const Header = () => {
       <div className="container">
         <div className="site-brand">
           <Link to="/">
-            <img src={Logo} alt="" />
+            <img className="logo" src={Logo} alt="" />
           </Link>
         </div>
         <div className="right-header">

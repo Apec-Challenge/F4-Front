@@ -138,7 +138,7 @@ const Contents = () => {
             <div className="row">
               <div className="col-lg-12 main-content">
                 <div className="grid-product">
-                  {fetchPlace.places.map(place => (
+                  {fetchPlace.places.slice(0, 4).map(place => (
                     <div key={place.id} className="product">
                       <Link to="/place/detail">
                         <img src={require('src/images/placeholder/270x180.png')} alt="" />
@@ -158,7 +158,7 @@ const Contents = () => {
           )}
         </div>
         <div className="latest-button">
-          <Link to="/fund/list" className="btn-primary">
+          <Link to="/place/list" className="btn-primary">
             View all Places
           </Link>
         </div>
@@ -172,7 +172,7 @@ const Contents = () => {
           <div className="campaign-content">
             {fetchFund.funds && !fetchFund.loading && (
               <div className="row">
-                {fetchFund.funds.map(fund => (
+                {fetchFund.funds.slice(0, 6).map(fund => (
                   <div key={fund.id} className="col-lg-4 col-sm-6">
                     <div className="campaign-item">
                       <Link className="overlay" to="/fund/detail">
