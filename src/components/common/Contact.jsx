@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Contact = () => {
+  const [state, setState] = useState();
+  const onChange = e => {
+    setState({ name: e.target.value });
+  };
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">
@@ -29,14 +33,32 @@ const Contact = () => {
                       <form action="s" method="POST" id="contactForm" className="clearfix">
                         <div className="clearfix">
                           <div className="field align-left">
-                            <input type="text" value="" name="s" placeholder="Your Name" />
+                            <input
+                              type="text"
+                              value=""
+                              name="s"
+                              placeholder="Your Name"
+                              onChange={onChange}
+                            />
                           </div>
                           <div className="field align-right">
-                            <input type="text" value="" name="s" placeholder="Your Email" />
+                            <input
+                              type="text"
+                              value=""
+                              name="s"
+                              placeholder="Your Email"
+                              onChange={onChange}
+                            />
                           </div>
                         </div>
                         <div className="field">
-                          <input type="text" value="" name="s" placeholder="Subject" />
+                          <input
+                            type="text"
+                            value=""
+                            name="s"
+                            placeholder="Subject"
+                            onChange={onChange}
+                          />
                         </div>
                         <div className="field-textarea">
                           <textarea rows="8" placeholder="Message" />

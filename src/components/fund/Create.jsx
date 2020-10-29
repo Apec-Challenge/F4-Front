@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Create = () => {
+  const [state, setState] = useState();
+  const onChange = e => {
+    setState({ name: e.target.value });
+  };
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
@@ -23,26 +27,33 @@ const Create = () => {
           <form action="#">
             <h4>Start a campaign</h4>
             <div className="field">
-              <label for="title">Campaign Title *</label>
+              <label htmlFor="title">Campaign Title *</label>
               <span className="label-desc">What is the title of your campaign?</span>
-              <input type="text" value="" id="title" name="title" placeholder="The Oreous Pillow" />
+              <input
+                type="text"
+                value=""
+                id="title"
+                name="title"
+                placeholder="The Oreous Pillow"
+                onChange={onChange}
+              />
             </div>
             <div className="field">
-              <label for="campaigndesc">Campaign Description *</label>
+              <label htmlFor="campaigndesc">Campaign Description *</label>
               <span className="label-desc">
                 Provide a short description that best describes your campaign to your audience.
               </span>
               <textarea rows="4" id="campaigndesc" placeholder="Enter a few tagline" />
             </div>
             <div className="field">
-              <label for="capaignstory">Campaign Story *</label>
+              <label htmlFor="capaignstory">Campaign Story *</label>
               <span className="label-desc">
                 Introduce yourself, your campaign and why it’s important to you.
               </span>
               <textarea rows="4" id="capaignstory" placeholder="Enter a few tagline" />
             </div>
             <div className="field">
-              <label for="uploadfile">Campaign Image *</label>
+              <label htmlFor="uploadfile">Campaign Image *</label>
               <span className="label-desc">
                 Upload a square image that represents your campaign. 570 x 350 recommended
                 resolution.
@@ -51,12 +62,7 @@ const Create = () => {
                 <div className="file-upload">
                   <div className="upload-bg">
                     <div id="myfileupload">
-                      <input
-                        type="file"
-                        id="uploadfile"
-                        name="ImageUpload"
-                        onchange="readURL(this);"
-                      />
+                      <input type="file" id="uploadfile" name="ImageUpload" onChange={onChange} />
                     </div>
                     <div id="thumbbox">
                       <img
@@ -66,10 +72,10 @@ const Create = () => {
                         alt="Thumb"
                         id="thumbimage"
                       />
-                      <Link className="removeimg" to="javascript:" />
+                      <Link className="removeimg" to="/" />
                     </div>
                     <div id="boxchoice">
-                      <Link to="javascript:" className="choicefile">
+                      <Link to="/" className="choicefile">
                         <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
                       </Link>
                       <p></p>
@@ -80,12 +86,7 @@ const Create = () => {
                 <div className="file-upload">
                   <div className="upload-bg">
                     <div id="myfileupload1">
-                      <input
-                        type="file"
-                        id="uploadfile1"
-                        name="ImageUpload"
-                        onchange="readURL1(this);"
-                      />
+                      <input type="file" id="uploadfile1" name="ImageUpload" onChange={onChange} />
                     </div>
                     <div id="thumbbox1">
                       <img
@@ -95,10 +96,10 @@ const Create = () => {
                         alt="Thumb"
                         id="thumbimage1"
                       />
-                      <Link className="removeimg1" to="javascript:"></Link>
+                      <Link className="removeimg1" to="/"></Link>
                     </div>
                     <div id="boxchoice1">
-                      <Link to="javascript:" className="choicefile1">
+                      <Link to="/" className="choicefile1">
                         <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
                       </Link>
                       <p></p>
@@ -109,12 +110,7 @@ const Create = () => {
                 <div className="file-upload">
                   <div className="upload-bg">
                     <div id="myfileupload2">
-                      <input
-                        type="file"
-                        id="uploadfile2"
-                        name="ImageUpload"
-                        onchange="readURL2(this);"
-                      />
+                      <input type="file" id="uploadfile2" name="ImageUpload" onChange={onChange} />
                     </div>
                     <div id="thumbbox2">
                       <img
@@ -124,26 +120,26 @@ const Create = () => {
                         alt="Thumb"
                         id="thumbimage2"
                       />
-                      <Link className="removeimg2" to="javascript:"></Link>
+                      <Link className="removeimg2" to="/" />
                     </div>
                     <div id="boxchoice2">
-                      <Link to="javascript:" className="choicefile2">
+                      <Link to="/" className="choicefile2">
                         <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
                       </Link>
                       <p></p>
                     </div>
-                    <label className="filename2"></label>
+                    <label className="filename2" />
                   </div>
                 </div>
               </div>
             </div>
             <div className="field clearfix">
-              <label for="clocation">Campaign Location *</label>
+              <label htmlFor="clocation">Campaign Location *</label>
               <span className="label-desc">
                 Choose the location where you are running the campaign.
               </span>
               <div className="field align-left">
-                <input type="text" value="" id="clocation" placeholder="City" />
+                <input type="text" value="" id="clocation" placeholder="City" onChange={onChange} />
               </div>
               <div className="field align-right">
                 <div className="field-select">
@@ -156,7 +152,7 @@ const Create = () => {
               </div>
             </div>
             <div className="field">
-              <label for="ccat">Campaign Category *</label>
+              <label htmlFor="ccat">Campaign Category *</label>
               <span className="label-desc">
                 To help backers find your campaign, select a category that best represents your
                 project.
@@ -171,7 +167,7 @@ const Create = () => {
               </div>
             </div>
             <div className="field">
-              <label for="tag">Tags *</label>
+              <label htmlFor="tag">Tags *</label>
               <span className="label-desc">
                 Enter up to five keywords that best describe your campaign.
               </span>
@@ -181,17 +177,25 @@ const Create = () => {
                 value=""
                 name="title"
                 placeholder="Enter a few tags for your campaign"
+                onChange={onChange}
               />
             </div>
             <div className="field">
-              <label for="cduration">Campaign Duration *</label>
+              <label htmlFor="cduration">Campaign Duration *</label>
               <span className="label-desc">
                 You can run a campaign for any number of days, with a 60 day duration maximum.
               </span>
-              <input type="text" id="cduration" value="" name="title" placeholder="60 days" />
+              <input
+                type="text"
+                id="cduration"
+                value=""
+                name="title"
+                placeholder="60 days"
+                onChange={onChange}
+              />
             </div>
             <button type="submit" value="Save & Launch" className="btn-primary">
-              Save &amp; Launch
+              Save & Launch
             </button>
           </form>
         </div>

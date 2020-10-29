@@ -3,6 +3,17 @@ import { Link } from 'react-router-dom';
 import Logo from 'src/images/logo_color.png';
 
 const Header = () => {
+  const onShow = () => {
+    document.querySelector('.form-search').style.display = 'block';
+    document.querySelector('#searchForm').style.display = 'block';
+  };
+  const onHide = () => {
+    document.querySelector('.form-search').style.display = 'none';
+    document.querySelector('#searchForm').style.display = 'none';
+  };
+  const onChange = e => {
+    console.log(e.target.value);
+  };
   return (
     <header id="header" className="site-header">
       <div className="container">
@@ -60,12 +71,23 @@ const Header = () => {
             </ul>
           </nav>
           <div className="search-icon">
-            <Link to="/" className="ion-ios-search-strong" />
-            <div className="form-search" />
+            <div
+              className="fa fa-search"
+              aria-hidden="true"
+              onClick={onShow}
+              style={{ cursor: 'pointer' }}
+            />
+            <div className="form-search" onClick={onHide} />
             <form id="searchForm">
-              <input type="text" value="" name="search" placeholder="Search..." />
+              <input
+                type="text"
+                value=""
+                name="search"
+                placeholder="Search..."
+                onChange={onChange}
+              />
               <button type="submit" value="">
-                <span className="iconify" data-icon="ion-ios-search-strong" data-inline="false" />
+                <i className="fa fa-search" aria-hidden="true" />
               </button>
             </form>
           </div>

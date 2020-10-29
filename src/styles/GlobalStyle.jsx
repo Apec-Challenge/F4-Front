@@ -21,20 +21,20 @@ Primary use:    ThemeDunk
 -------------------------------------------------------------------*/
 
 @import url('https://fonts.googleapis.com/css?family=Rubik:400,500,700&amp;subset=latin-ext');
-@import url("../src/libs/wow/css/animate.css");
-@import url("../src/libs/font-awesome/css/font-awesome.min.css");
-@import url("../src/libs/bootstrap/css/bootstrap.min.css");
-@import url("../src/libs/ionicons/css/ionicons.min.css");
-@import url("../src/libs/owl-carousel/assets/owl.carousel.css");
-@import url("../src/libs/owl-carousel/assets/owl.theme.default.css");
-@import url("../src/libs/owl-carousel/assets/owl.theme.min.css");
-@import url("../src/libs/owl-carousel/assets/owl.transitions.min.css");
-@import url("../src/libs/owl-carousel/assets/carousel.min.css");
-@import url("../src/libs/bxslider/jquery.bxslider.min.css");
-@import url("../src/libs/magicsuggest/magicsuggest-min.css");
-@import url("../src/libs/quilljs/css/quill.bubble.css");
-@import url("../src/libs/quilljs/css/quill.core.css");
-@import url("../src/libs/quilljs/css/quill.snow.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.0/css/ionicons.min.css");
+/* @import url("https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.transitions.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/magicsuggest/2.1.4/magicsuggest-min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.4/quill.bubble.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.4/quill.core.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.4/quill.snow.css"); */
 
 /*------------------------------------------------------------------
 [Table of contents]
@@ -735,7 +735,7 @@ ul.socials-top li:hover i {
   display: inline-block;
 }
 .site-header .search-icon a {
-  font-size: 22px;
+  font-size: 18px;
   line-height: normal;
   display: inline-block;
   vertical-align: middle;
@@ -786,7 +786,8 @@ ul.socials-top li:hover i {
   overflow: hidden;
 }
 .search-icon form button span {
-  font-size: 24px;
+  height: 24px;
+  width: 24px;
   vertical-align: -6px;
 }
 .main-menu ul {
@@ -845,7 +846,7 @@ ul.socials-top li:hover i {
 .site-main .sideshow {
   position: relative;
   height: 674px;
-  background-image: url(../images/placeholder/1920x680.png);
+  background-image: url('src/images/placeholder/1920x680.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;

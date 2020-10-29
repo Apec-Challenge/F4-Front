@@ -14,9 +14,11 @@ const About = () => {
       </section>
       <div className="container">
         <div className="video">
+          {/*
           <div className="video-wrapper">
-            <iframe height="315" src="https://www.youtube.com/embed/bEusrD8g-dM" allowfullscreen />
+            <iframe height="315" src="https://www.youtube.com/embed/bEusrD8g-dM" allowFullScreen />
           </div>
+          */}
         </div>
         <section className="statics section">
           <h2 className="title">We are changing the way of making things possible.</h2>

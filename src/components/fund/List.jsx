@@ -116,9 +116,9 @@ const List = () => {
                 {funds.map(fund => (
                   <div key={fund.id} className="col-lg-4 col-sm-6">
                     <div className="campaign-item">
-                      <Link className="overlay" to="/">
+                      <Link className="overlay" to="/fund/detail">
                         <img src={require('src/images/placeholder/370x240.png')} alt="" />
-                        <span className="ion-ios-search-strong" />
+                        <i className="fa fa-search" aria-hidden="true" />
                       </Link>
                       <div className="campaign-box">
                         <Link to="/fund/detail" className="category">
