@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useContact from 'src/hook/common/useContact';
 
 const Contact = () => {
-  const [state, setState] = useState();
-  const onChange = e => {
-    setState({ name: e.target.value });
-  };
+  const { onChangeField, name, email, subject, message } = useContact();
+  const onChangeName = e => onChangeField({ key: 'name', value: e.target.value });
+  const onChangeEmail = e => onChangeField({ key: 'email', value: e.target.value });
+  const onChangeSubject = e => onChangeField({ key: 'subject', value: e.target.value });
+  const onChangeMessage = e => onChangeField({ key: 'message', value: e.target.value });
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">
@@ -35,33 +37,38 @@ const Contact = () => {
                           <div className="field align-left">
                             <input
                               type="text"
-                              value=""
+                              value={name}
                               name="s"
                               placeholder="Your Name"
-                              onChange={onChange}
+                              onChange={onChangeName}
                             />
                           </div>
                           <div className="field align-right">
                             <input
-                              type="text"
-                              value=""
+                              type="email"
+                              value={email}
                               name="s"
                               placeholder="Your Email"
-                              onChange={onChange}
+                              onChange={onChangeEmail}
                             />
                           </div>
                         </div>
                         <div className="field">
                           <input
                             type="text"
-                            value=""
+                            value={subject}
                             name="s"
                             placeholder="Subject"
-                            onChange={onChange}
+                            onChange={onChangeSubject}
                           />
                         </div>
                         <div className="field-textarea">
-                          <textarea rows="8" placeholder="Message" />
+                          <textarea
+                            rows="8"
+                            placeholder="Message"
+                            value={message}
+                            onChange={onChangeMessage}
+                          />
                         </div>
                         <button type="submit" value="Send Messager" className="btn-primary">
                           Submit Message

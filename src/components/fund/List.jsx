@@ -44,15 +44,6 @@ const List = () => {
                   <option value="">Completed</option>
                 </select>
               </div>
-              <div className="field-select">
-                <select name="s">
-                  <option value="">All Category</option>
-                  <option value="">Design & Art</option>
-                  <option value="">Book</option>
-                  <option value="">Perfomances</option>
-                  <option value="">Technology</option>
-                </select>
-              </div>
             </form>
           </div>
         </div>
@@ -69,9 +60,6 @@ const List = () => {
                       <img src={require('src/images/placeholder/570x350.png')} alt="" />
                     </Link>
                     <div className="campaign-big-box">
-                      <Link to="/fund/detail" className="category">
-                        {funds[0].category}
-                      </Link>
                       <h3>
                         <Link to="/fund/detail">{funds[0].title}</Link>
                       </h3>
@@ -121,9 +109,6 @@ const List = () => {
                         <i className="fa fa-search" aria-hidden="true" />
                       </Link>
                       <div className="campaign-box">
-                        <Link to="/fund/detail" className="category">
-                          {fund.category}
-                        </Link>
                         <h3>
                           <Link to="/fund/detail">{fund.title}</Link>
                         </h3>

@@ -12,6 +12,10 @@ export const GlobalStyle = createGlobalStyle`
     width: 70px;
     height: auto;
   }
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
   /*------------------------------------------------------------------
 Project:    IdeaPress
 Version:    1.3
@@ -1459,7 +1463,7 @@ ul.menu-category li.active:after {
   max-height: 130px;
 }
 .campaign-big-box .campaign-description {
-  max-height: 60px;
+  height: 85px;
   overflow: hidden;
   margin-bottom: 30px;
 }

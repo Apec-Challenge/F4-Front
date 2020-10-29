@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import useAuth from 'src/hook/auth/useAuth';
 
-const Contents = ({ type, setType }) => {
+const Contents = ({ isLogin, setIsLogin }) => {
+  const dispatch = useDispatch();
+  const { initialize, onChangeField, email, nickname, password1, password2 } = useAuth();
+  const onChangeEmail = e => onChangeField({ key: 'email', value: e.target.value });
+  const onChangeNick = e => onChangeField({ key: 'nickname', value: e.target.value });
+  const onChangePw = e => onChangeField({ key: 'password1', value: e.target.value });
+  const onChangePwConfirm = e => onChangeField({ key: 'password2', value: e.target.value });
+  useEffect(() => {
+    dispatch(initialize());
+  }, [isLogin]);
   return (
     <>
-      {!type ? (
+      {isLogin === 'login' ? (
         <main id="main" className="site-main">
           <div className="page-title background-page">
             <div className="container">
@@ -26,17 +37,32 @@ const Contents = ({ type, setType }) => {
                 <h2>Login with your account</h2>
                 <form id="loginForm" className="clearfix">
                   <div className="field">
-                    <input type="email" value="" name="s" placeholder="E-mail Address" />
+                    <input
+                      type="email"
+                      value={email}
+                      name="email"
+                      placeholder="E-mail Address"
+                      onChange={onChangeEmail}
+                    />
                   </div>
                   <div className="field">
-                    <input type="text" value="" name="s" placeholder="Password" />
+                    <input
+                      type="password"
+                      value={password1}
+                      name="password"
+                      placeholder="Password"
+                      onChange={onChangePw}
+                    />
                   </div>
                   <div className="inline clearfix">
                     <button type="submit" value="Send Messager" className="btn-primary">
                       Login
                     </button>
                     <p>
-                      Not a member yet? <Link onClick={() => setType(true)}>Register now</Link>
+                      Not a member yet?{' '}
+                      <Link onClick={() => setIsLogin('register')} style={{ cursor: 'pointer' }}>
+                        Register now
+                      </Link>
                     </p>
                   </div>
                 </form>
@@ -66,23 +92,50 @@ const Contents = ({ type, setType }) => {
                 <h2>Register for Free</h2>
                 <form id="registerForm" className="clearfix">
                   <div className="field">
-                    <input type="text" value="" name="s" placeholder="First Name" />
+                    <input
+                      type="email"
+                      value={email}
+                      name="email"
+                      placeholder="E-mail Address"
+                      onChange={onChangeEmail}
+                    />
                   </div>
                   <div className="field">
-                    <input type="text" value="" name="s" placeholder="Last Name" />
+                    <input
+                      type="text"
+                      value={nickname}
+                      name="nickname"
+                      placeholder="Nickname"
+                      onChange={onChangeNick}
+                    />
                   </div>
                   <div className="field">
-                    <input type="email" value="" name="s" placeholder="E-mail Address" />
+                    <input
+                      type="password"
+                      value={password1}
+                      name="password"
+                      placeholder="Password"
+                      onChange={onChangePw}
+                    />
                   </div>
                   <div className="field">
-                    <input type="text" value="" name="s" placeholder="Password" />
+                    <input
+                      type="text"
+                      value={password2}
+                      name="passwordConfirm"
+                      placeholder="Password Confirm"
+                      onChange={onChangePwConfirm}
+                    />
                   </div>
                   <div className="inline clearfix">
                     <button type="submit" value="Send Messager" className="btn-primary">
                       Register
                     </button>
                     <p>
-                      Not a member yet? <Link onClick={() => setType(false)}>Login now</Link>
+                      Not a member yet?{' '}
+                      <Link onClick={() => setIsLogin('login')} style={{ cursor: 'pointer' }}>
+                        Login now
+                      </Link>
                     </p>
                   </div>
                 </form>

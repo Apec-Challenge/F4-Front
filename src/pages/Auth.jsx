@@ -4,11 +4,11 @@ import Contents from 'src/components/auth/Contents';
 import Footer from 'src/components/common/Footer';
 
 const Sign = () => {
-  const [type, setType] = useState(false);
+  const [isLogin, setIsLogin] = useState('login');
   return (
     <>
       <Header />
-      <Contents type={type} setType={setType} />
+      <Contents isLogin={isLogin} setIsLogin={setIsLogin} />
       <Footer />
     </>
   );

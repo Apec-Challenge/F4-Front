@@ -29,9 +29,6 @@ const Detail = () => {
                   </div>
                 </div>
                 <div className="campaign-box">
-                  <Link to="/" className="category">
-                    Crafts
-                  </Link>
                   <h3>The Oreous Pillow</h3>
                   <div className="campaign-description">
                     <p>

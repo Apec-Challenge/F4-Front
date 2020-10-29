@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import useCreate from 'src/hook/fund/useCreate';
 
 const Create = () => {
-  const [state, setState] = useState();
-  const onChange = e => {
-    setState({ name: e.target.value });
-  };
+  const { onChangeField, title, description, location, duration } = useCreate();
+  const onChangeTitle = e => onChangeField({ key: 'title', value: e.target.value });
+  const onChangeDesc = e => onChangeField({ key: 'description', value: e.target.value });
+  const onChangeLocate = e => onChangeField({ key: 'location', value: e.target.value });
+  const onChangeDuration = e => onChangeField({ key: 'duration', value: e.target.value });
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
@@ -31,11 +33,11 @@ const Create = () => {
               <span className="label-desc">What is the title of your campaign?</span>
               <input
                 type="text"
-                value=""
+                value={title}
                 id="title"
                 name="title"
-                placeholder="The Oreous Pillow"
-                onChange={onChange}
+                placeholder="Title"
+                onChange={onChangeTitle}
               />
             </div>
             <div className="field">
@@ -43,14 +45,13 @@ const Create = () => {
               <span className="label-desc">
                 Provide a short description that best describes your campaign to your audience.
               </span>
-              <textarea rows="4" id="campaigndesc" placeholder="Enter a few tagline" />
-            </div>
-            <div className="field">
-              <label htmlFor="capaignstory">Campaign Story *</label>
-              <span className="label-desc">
-                Introduce yourself, your campaign and why it’s important to you.
-              </span>
-              <textarea rows="4" id="capaignstory" placeholder="Enter a few tagline" />
+              <textarea
+                rows="4"
+                id="campaigndesc"
+                placeholder="Description"
+                value={description}
+                onChange={onChangeDesc}
+              />
             </div>
             <div className="field">
               <label htmlFor="uploadfile">Campaign Image *</label>
@@ -62,7 +63,7 @@ const Create = () => {
                 <div className="file-upload">
                   <div className="upload-bg">
                     <div id="myfileupload">
-                      <input type="file" id="uploadfile" name="ImageUpload" onChange={onChange} />
+                      <input type="file" id="uploadfile" name="ImageUpload" onChange={null} />
                     </div>
                     <div id="thumbbox">
                       <img
@@ -86,7 +87,7 @@ const Create = () => {
                 <div className="file-upload">
                   <div className="upload-bg">
                     <div id="myfileupload1">
-                      <input type="file" id="uploadfile1" name="ImageUpload" onChange={onChange} />
+                      <input type="file" id="uploadfile1" name="ImageUpload" onChange={null} />
                     </div>
                     <div id="thumbbox1">
                       <img
@@ -110,7 +111,7 @@ const Create = () => {
                 <div className="file-upload">
                   <div className="upload-bg">
                     <div id="myfileupload2">
-                      <input type="file" id="uploadfile2" name="ImageUpload" onChange={onChange} />
+                      <input type="file" id="uploadfile2" name="ImageUpload" onChange={null} />
                     </div>
                     <div id="thumbbox2">
                       <img
@@ -139,7 +140,13 @@ const Create = () => {
                 Choose the location where you are running the campaign.
               </span>
               <div className="field align-left">
-                <input type="text" value="" id="clocation" placeholder="City" onChange={onChange} />
+                <input
+                  type="text"
+                  value={location}
+                  id="clocation"
+                  placeholder="City"
+                  onChange={onChangeLocate}
+                />
               </div>
               <div className="field align-right">
                 <div className="field-select">
@@ -152,46 +159,17 @@ const Create = () => {
               </div>
             </div>
             <div className="field">
-              <label htmlFor="ccat">Campaign Category *</label>
-              <span className="label-desc">
-                To help backers find your campaign, select a category that best represents your
-                project.
-              </span>
-              <div className="field-select">
-                <select name="s" id="ccat">
-                  <option value="">Select a Category</option>
-                  <option value="">Crafts</option>
-                  <option value="">Book</option>
-                  <option value="">Perfomances</option>
-                </select>
-              </div>
-            </div>
-            <div className="field">
-              <label htmlFor="tag">Tags *</label>
-              <span className="label-desc">
-                Enter up to five keywords that best describe your campaign.
-              </span>
-              <input
-                type="text"
-                id="tag"
-                value=""
-                name="title"
-                placeholder="Enter a few tags for your campaign"
-                onChange={onChange}
-              />
-            </div>
-            <div className="field">
               <label htmlFor="cduration">Campaign Duration *</label>
               <span className="label-desc">
                 You can run a campaign for any number of days, with a 60 day duration maximum.
               </span>
               <input
-                type="text"
+                type="number"
                 id="cduration"
-                value=""
+                value={duration}
                 name="title"
                 placeholder="60 days"
-                onChange={onChange}
+                onChange={onChangeDuration}
               />
             </div>
             <button type="submit" value="Save & Launch" className="btn-primary">
