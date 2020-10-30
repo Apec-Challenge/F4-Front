@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import useCreate from 'src/hook/fund/useCreate';
 
 const Create = () => {
-  const { onChangeField, title, description, location, duration } = useCreate();
+  const { onChangeField, title, description, contents, location, duration, goal } = useCreate();
   const onChangeTitle = e => onChangeField({ key: 'title', value: e.target.value });
   const onChangeDesc = e => onChangeField({ key: 'description', value: e.target.value });
+  const onChangeContents = e => onChangeField({ key: 'contents', value: e.target.value });
   const onChangeLocate = e => onChangeField({ key: 'location', value: e.target.value });
   const onChangeDuration = e => onChangeField({ key: 'duration', value: e.target.value });
+  const onChangeGoal = e => onChangeField({ key: 'goal', value: e.target.value });
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
@@ -51,6 +53,17 @@ const Create = () => {
                 placeholder="Description"
                 value={description}
                 onChange={onChangeDesc}
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="campaigncont">Campaign Contents *</label>
+              <span className="label-desc">Detail Description.</span>
+              <textarea
+                rows="4"
+                id="contents"
+                placeholder="Contents"
+                value={contents}
+                onChange={onChangeContents}
               />
             </div>
             <div className="field">
@@ -167,9 +180,21 @@ const Create = () => {
                 type="number"
                 id="cduration"
                 value={duration}
-                name="title"
+                name="duration"
                 placeholder="60 days"
                 onChange={onChangeDuration}
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="cduration">Campaign Funding Goal *</label>
+              <span className="label-desc">Funding Goal</span>
+              <input
+                type="number"
+                id="cduration"
+                value={goal}
+                name="contents"
+                placeholder="$250"
+                onChange={onChangeGoal}
               />
             </div>
             <button type="submit" value="Save & Launch" className="btn-primary">

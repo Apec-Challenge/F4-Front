@@ -25,8 +25,10 @@ const initialState = {
   fundError: null,
   title: '',
   description: '',
+  contents: '',
   location: '',
   duration: '',
+  goal: '',
 };
 
 export default handleActions(
