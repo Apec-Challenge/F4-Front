@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { readFund } from 'src/modules/fund';
+import { readFundList } from 'src/modules/fund';
 
 const useReadFund = () => {
   const { funds, error, loading } = useSelector(({ fund, loading }) => ({
@@ -10,7 +10,7 @@ const useReadFund = () => {
   }));
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(readFund());
+    dispatch(readFundList());
   }, []);
   return { funds, error, loading };
 };

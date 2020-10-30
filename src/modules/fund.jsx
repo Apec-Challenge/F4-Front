@@ -3,21 +3,21 @@ import { takeLatest } from 'redux-saga/effects';
 import * as api from 'src/api/api';
 import createRequestSaga, { createRequestActionTypes } from 'src/api/createRequestSaga';
 
-const [READ_FUND, READ_FUND_SUCCESS, READ_FUND_FAILURE] = createRequestActionTypes(
-  'fund/READ_FUND'
+const [READ_FUNDLIST, READ_FUNDLIST_SUCCESS, READ_FUNDLIST_FAILURE] = createRequestActionTypes(
+  'fund/READ_FUNDLIST'
 );
 const CHANGE_FUND = 'fund/CHANGE_FUND';
 
-export const readFund = createAction(READ_FUND);
+export const readFundList = createAction(READ_FUNDLIST);
 export const changeField = createAction(CHANGE_FUND, ({ key, value }) => ({
   key,
   value,
 }));
 
-const readFundSaga = createRequestSaga(READ_FUND, api.readFund);
+const readFundSaga = createRequestSaga(READ_FUNDLIST, api.readFundList);
 
 export function* fundSaga() {
-  yield takeLatest(READ_FUND, readFundSaga);
+  yield takeLatest(READ_FUNDLIST, readFundSaga);
 }
 
 const initialState = {
@@ -33,11 +33,11 @@ const initialState = {
 
 export default handleActions(
   {
-    [READ_FUND_SUCCESS]: (state, { payload: fund }) => ({
+    [READ_FUNDLIST_SUCCESS]: (state, { payload: fund }) => ({
       ...state,
       fund,
     }),
-    [READ_FUND_FAILURE]: (state, { payload: fundError }) => ({
+    [READ_FUNDLIST_FAILURE]: (state, { payload: fundError }) => ({
       ...state,
       fundError,
     }),

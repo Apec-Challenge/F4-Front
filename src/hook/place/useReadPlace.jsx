@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { readPlace } from 'src/modules/place';
+import { readPlaceList } from 'src/modules/place';
 
 const useReadPlace = () => {
   const { places, error, loading } = useSelector(({ place, loading }) => ({
@@ -10,7 +10,7 @@ const useReadPlace = () => {
   }));
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(readPlace());
+    dispatch(readPlaceList());
   }, []);
   return { places, error, loading };
 };

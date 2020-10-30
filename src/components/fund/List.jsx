@@ -85,16 +85,22 @@ const List = () => {
                         </div>
                         <div className="process-info">
                           <div className="process-pledged">
-                            <span>${funds[0].pledged}</span>pledged
+                            <span>${funds[0].funding_goal_amount}</span>pledged
                           </div>
                           <div className="process-funded">
-                            <span>{funds[0].funded}%</span>funded
+                            <span>
+                              {funds[0].funding_amount === 0
+                                ? (funds[0].funding_amount / funds[0].funding_goal_amount) * 100
+                                : 0}
+                              %
+                            </span>
+                            funded
                           </div>
                           <div className="process-time">
                             <span>{funds[0].backers}</span>backers
                           </div>
                           <div className="process-time">
-                            <span>{funds[0].deadline}</span>days ago
+                            <span>{funds[0].ended_at - funds[0].created_at}</span>days ago
                           </div>
                         </div>
                       </div>

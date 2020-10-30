@@ -3,16 +3,16 @@ import { takeLatest } from 'redux-saga/effects';
 import * as api from 'src/api/api';
 import createRequestSaga, { createRequestActionTypes } from 'src/api/createRequestSaga';
 
-const [READ_PLACE, READ_PLACE_SUCCESS, READ_PLACE_FAILURE] = createRequestActionTypes(
-  'place/READ_PLACE'
+const [READ_PLACELIST, READ_PLACELIST_SUCCESS, READ_PLACELIST_FAILURE] = createRequestActionTypes(
+  'place/READ_PLACELIST'
 );
 
-export const readPlace = createAction(READ_PLACE);
+export const readPlaceList = createAction(READ_PLACELIST);
 
-const readPlaceSaga = createRequestSaga(READ_PLACE, api.readPlace);
+const readPlaceSaga = createRequestSaga(READ_PLACELIST, api.readPlaceList);
 
 export function* placeSaga() {
-  yield takeLatest(READ_PLACE, readPlaceSaga);
+  yield takeLatest(READ_PLACELIST, readPlaceSaga);
 }
 
 const initialState = {
@@ -22,11 +22,11 @@ const initialState = {
 
 export default handleActions(
   {
-    [READ_PLACE_SUCCESS]: (state, { payload: place }) => ({
+    [READ_PLACELIST_SUCCESS]: (state, { payload: place }) => ({
       ...state,
       place,
     }),
-    [READ_PLACE_FAILURE]: (state, { payload: placeError }) => ({
+    [READ_PLACELIST_FAILURE]: (state, { payload: placeError }) => ({
       ...state,
       placeError,
     }),
