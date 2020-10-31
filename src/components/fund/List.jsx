@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import useReadFund from 'src/hook/fund/useReadFund';
 
 const List = () => {
   const { funds, error, loading } = useReadFund();
+  if (funds) {
+    console.log(!!funds.splice(0, 1));
+  }
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">
@@ -50,7 +54,7 @@ const List = () => {
       </div>
       <div className="campaigns">
         {loading && '로딩중..'}
-        {!loading && funds && (
+        {!loading && funds && !funds.splice(0, 1) ? (
           <div className="container">
             <div className="campaign-content">
               <div className="row">
@@ -61,9 +65,9 @@ const List = () => {
                     </Link>
                     <div className="campaign-big-box">
                       <h3>
-                        <Link to="/fund/detail">{funds[0].title}</Link>
+                        <Link to="/fund/detail">{funds.splice(0, 1).title}</Link>
                       </h3>
-                      <div className="campaign-description">{funds[0].contents}</div>
+                      <div className="campaign-description">{funds.splice(0, 1).content}</div>
                       <div className="staff-picks-author">
                         <div className="author-profile">
                           <Link className="author-avatar" to="/">
@@ -71,12 +75,12 @@ const List = () => {
                           </Link>
                           by{' '}
                           <Link className="author-name" to="/">
-                            {funds[0].owner}
+                            {funds.splice(0, 1).user}
                           </Link>
                         </div>
                         <div className="author-address">
                           <span className="ion-location" />
-                          {funds[0].country}
+                          {funds.splice(0, 1).place}
                         </div>
                       </div>
                       <div className="process">
@@ -85,22 +89,25 @@ const List = () => {
                         </div>
                         <div className="process-info">
                           <div className="process-pledged">
-                            <span>${funds[0].funding_goal_amount}</span>pledged
+                            <span>${funds.splice(0, 1).funding_goal_amount}</span>pledged
                           </div>
                           <div className="process-funded">
                             <span>
-                              {funds[0].funding_amount === 0
-                                ? (funds[0].funding_amount / funds[0].funding_goal_amount) * 100
+                              {funds.splice(0, 1).funding_amount === 0
+                                ? (funds.splice(0, 1).funding_amount /
+                                    funds.splice(0, 1).funding_goal_amount) *
+                                  100
                                 : 0}
                               %
                             </span>
                             funded
                           </div>
                           <div className="process-time">
-                            <span>{funds[0].backers}</span>backers
+                            <span>{funds.splice(0, 1).backers}</span>backers
                           </div>
                           <div className="process-time">
-                            <span>{funds[0].ended_at - funds[0].created_at}</span>days ago
+                            <span>asdf</span>
+                            days ago
                           </div>
                         </div>
                       </div>
@@ -118,14 +125,14 @@ const List = () => {
                         <h3>
                           <Link to="/fund/detail">{fund.title}</Link>
                         </h3>
-                        <div className="campaign-description">{fund.contents}</div>
+                        <div className="campaign-description">{fund.content}</div>
                         <div className="campaign-author">
                           <Link className="author-icon" to="/">
                             <img src={require('src/images/placeholder/35x35.png')} alt="" />
                           </Link>
                           by{' '}
                           <Link className="author-name" to="/">
-                            {fund.owner}
+                            {fund.user}
                           </Link>
                         </div>
                         <div className="process">
@@ -134,13 +141,19 @@ const List = () => {
                           </div>
                           <div className="process-info">
                             <div className="process-pledged">
-                              <span>${fund.pledged}</span>pledged
+                              <span>${fund.funding_goal_amount}</span>pledged
                             </div>
                             <div className="process-funded">
-                              <span>{fund.funded}%</span>funded
+                              <span>
+                                {fund.funding_amount === 0
+                                  ? (fund.funding_amount / fund.funding_goal_amount) * 100
+                                  : 0}
+                                %
+                              </span>
+                              funded
                             </div>
                             <div className="process-time">
-                              <span>{fund.deadline}</span>days ago
+                              <span>{fund.ended_at}</span>days ago
                             </div>
                           </div>
                         </div>
@@ -156,6 +169,8 @@ const List = () => {
               </Link>
             </div>
           </div>
+        ) : (
+          <div>No Data</div>
         )}
       </div>
     </main>

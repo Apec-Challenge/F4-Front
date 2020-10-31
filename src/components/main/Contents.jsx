@@ -13,7 +13,7 @@ const Contents = () => {
         <div className="sideshow">
           <img src={require('src/images/placeholder/1920x680.png')} alt="" />
           <div className="container">
-            {fetchFund.funds && !fetchFund.loading && (
+            {!fetchFund.funds && !fetchFund.loading ? (
               <div className="sideshow-content">
                 <h1 className="wow fadeInUp" data-wow-delay=".2s">
                   {fetchFund.funds[0].title}
@@ -49,6 +49,8 @@ const Contents = () => {
                   </Link>
                 </div>
               </div>
+            ) : (
+              <div></div>
             )}
           </div>
         </div>
