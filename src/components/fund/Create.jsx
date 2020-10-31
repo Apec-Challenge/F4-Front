@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
+import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 import useCreate from 'src/hook/fund/useCreate';
 import useReadPlace from 'src/hook/place/useReadPlace';
 
@@ -18,6 +19,9 @@ const Create = () => {
   } = useCreate();
   const { places, error, loading } = useReadPlace();
   const [endDate, setEndDate] = useState();
+  const [show, setShow] = useState(false);
+  const [active, setActive] = useState();
+  const [state, setState] = useState();
   const onChangeTitle = e => onChangeField({ key: 'title', value: e.target.value });
   const onChangeDesc = e => onChangeField({ key: 'description', value: e.target.value });
   const onChangeThumb = e => onChangeField({ key: 'thumbnail_image', value: e.target.files[0] });
@@ -25,6 +29,13 @@ const Create = () => {
   const onChangeGoal = e => onChangeField({ key: 'funding_goal_amount', value: e.target.value });
   const onChangePlace = e => onChangeField({ key: 'place', value: e.target.value });
   const onChangeDuration = date => onChangeField({ key: 'ended_at', value: date });
+  const onMarkerClick = (props, marker, e) => {
+    setShow(true);
+    setActive(marker);
+    setState(props);
+    console.log(props);
+    console.log(marker);
+  };
   useEffect(() => {
     onChangeDuration(endDate);
   }, [endDate]);
@@ -141,6 +152,36 @@ const Create = () => {
               <span className="label-desc">
                 Choose the location where you are running the campaign.
               </span>
+              <div style={{ height: '300px', width: '600px' }}>
+                <Map
+                  google={window.google}
+                  style={{ height: '300px', width: '600px' }}
+                  zoom={15}
+                  initialCenter={{ lat: 37.5, lng: 127 }}
+                >
+                  {/* {places.map(place => (
+                      <Marker
+                        key={place.place_id}
+                        position={{ lng: place.lng, lat: place.lat }}
+                        name={place.address}
+                        onClick={onMarkerClick}
+                      >
+                        <InfoWindow key={place.place_id} visible={true} marker={active}>
+                          <div>
+                            <h1>asdfasdf</h1>
+                          </div>
+                        </InfoWindow>
+                      </Marker>
+                    ))} */}
+                  <Marker position={{ lat: 37.5, lng: 127 }}>
+                    <InfoWindow>
+                      <div>
+                        <h1>adsf</h1>
+                      </div>
+                    </InfoWindow>
+                  </Marker>
+                </Map>
+              </div>
               <div className="field-select">
                 {!loading && places && (
                   <select name="s" onChange={onChangePlace}>
@@ -148,7 +189,9 @@ const Create = () => {
                       select
                     </option>
                     {places.map(place => (
-                      <option value={place.place_id}>{place.place_id}</option>
+                      <option key={place.place_id} value={place.place_id}>
+                        {place.place_id}
+                      </option>
                     ))}
                   </select>
                 )}
@@ -183,4 +226,6 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyCxpmfP0AdumaoSQgrXgdO7bM_f2g63v1A',
+})(Create);
