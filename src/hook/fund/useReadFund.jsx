@@ -6,7 +6,7 @@ const useReadFund = () => {
   const { funds, error, loading } = useSelector(({ fund, loading }) => ({
     funds: fund.fund,
     error: fund.fundError,
-    loading: loading['fund/READ_FUND'],
+    loading: loading['fund/READ_FUNDLIST'],
   }));
   const dispatch = useDispatch();
   useEffect(() => {

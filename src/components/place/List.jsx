@@ -12,7 +12,7 @@ const List = () => {
           <div className="breadcrumbs">
             <ul>
               <li>
-                <a href="index.html">Place</a>
+                <Link to="/place/list">Place</Link>
                 <span>/</span>
               </li>
               <li>List</li>
@@ -22,19 +22,19 @@ const List = () => {
       </div>
       <div className="campaigns">
         <div className="container">
-          {loading && '로딩중..'}
-          {!loading && places && (
-            <div className="row" style={{ justifyContent: 'center' }}>
-              <div className="col-lg-12 main-content">
-                <div className="shop-grid-fillter clearfix">
-                  <p>Showing 1–12 of {places.length} results</p>
-                  <div className="field-select">
-                    <select name="s">
-                      <option value="">Default sorting</option>
-                      <option value="">Name</option>
-                    </select>
-                  </div>
+          <div className="row" style={{ justifyContent: 'center' }}>
+            <div className="col-lg-12 main-content">
+              <div className="shop-grid-fillter clearfix">
+                <p>Showing 1–12 of {!loading && places && places.length} results</p>
+                <div className="field-select">
+                  <select name="s">
+                    <option value="">Default sorting</option>
+                    <option value="">Name</option>
+                  </select>
                 </div>
+              </div>
+              {loading && '로딩중..'}
+              {!loading && places && (
                 <div className="grid-product">
                   {places.map(place => (
                     <div key={place.id} className="product">
@@ -51,14 +51,14 @@ const List = () => {
                     </div>
                   ))}
                 </div>
-              </div>
-              <div className="latest-button">
-                <Link to="/" className="btn-primary">
-                  Load more
-                </Link>
-              </div>
+              )}
             </div>
-          )}
+            <div className="latest-button">
+              <Link to="/" className="btn-primary">
+                Load more
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </main>

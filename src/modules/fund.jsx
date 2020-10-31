@@ -21,7 +21,7 @@ export function* fundSaga() {
 }
 
 const initialState = {
-  fund: null,
+  fund: [],
   fundError: null,
   title: '',
   description: '',

@@ -9,17 +9,17 @@ const Contents = () => {
   return (
     <main id="main" className="site-main">
       {fetchFund.loading && '로딩중...'}
-      {!fetchFund.loading && fetchFund.funds && (
-        <div className="sideshow">
-          <img src={require('src/images/placeholder/1920x680.png')} alt="" />
-          <div className="container">
-            {!fetchFund.funds && !fetchFund.loading ? (
+      {!fetchFund.loading &&
+        fetchFund.funds.splice(0, 1).map(fund => (
+          <div key={fund.id} className="sideshow">
+            <img src={require('src/images/placeholder/1920x680.png')} alt="" />
+            <div className="container">
               <div className="sideshow-content">
                 <h1 className="wow fadeInUp" data-wow-delay=".2s">
-                  {fetchFund.funds.splice(0, 1).title}
+                  {fund.title}
                 </h1>
                 <div className="sideshow-description wow fadeInUp" data-wow-delay=".1s">
-                  {fetchFund.funds.splice(0, 1).contents}
+                  {fund.content}
                 </div>
                 <div className="process wow fadeInUp" data-scroll-nav="1">
                   <div className="raised">
@@ -29,23 +29,21 @@ const Contents = () => {
                     <div className="process-funded">
                       <span>
                         {' '}
-                        {fetchFund.funds.splice(0, 1).funding_amount === 0
-                          ? (fetchFund.funds.splice(0, 1).funding_amount /
-                              fetchFund.funds.splice(0, 1).funding_goal_amount) *
-                            100
+                        {fund.funding_amount === 0
+                          ? (fund.funding_amount / fund.funding_goal_amount) * 100
                           : 0}
                         %
                       </span>
                       funded
                     </div>
                     <div className="process-pledged">
-                      <span>${fetchFund.funds.splice(0, 1).funding_goal_amount}</span>pledged
+                      <span>${fund.funding_goal_amount}</span>pledged
                     </div>
                     <div className="process-backers">
-                      <span>{fetchFund.funds.splice(0, 1).backers}</span>backers
+                      <span>{fund.backers}</span>backers
                     </div>
                     <div className="process-time">
-                      <span>{fetchFund.funds.splice(0, 1).ended_at}</span>days ago
+                      <span>{fund.ended_at}</span>days ago
                     </div>
                   </div>
                 </div>
@@ -58,12 +56,9 @@ const Contents = () => {
                   </Link>
                 </div>
               </div>
-            ) : (
-              <div></div>
-            )}
+            </div>
           </div>
-        </div>
-      )}
+        ))}
       <div className="latest places">
         <div className="container">
           <h2 className="title">Latest Places</h2>
@@ -118,20 +113,17 @@ const Contents = () => {
                         <i className="fa fa-search" aria-hidden="true" />
                       </Link>
                       <div className="campaign-box">
-                        <Link to="/" className="category">
-                          {fund.category}
-                        </Link>
                         <h3>
                           <Link to="/">{fund.title}</Link>
                         </h3>
-                        <div className="campaign-description">{fund.contents}</div>
+                        <div className="campaign-description">{fund.content}</div>
                         <div className="campaign-author">
                           <Link className="author-icon" to="/">
                             <img src={require('src/images/placeholder/35x35.png')} alt="" />
                           </Link>
                           by{' '}
                           <Link className="author-name" to="/">
-                            {fund.owner}
+                            {fund.user}
                           </Link>
                         </div>
                         <div className="process">
@@ -140,13 +132,18 @@ const Contents = () => {
                           </div>
                           <div className="process-info">
                             <div className="process-pledged">
-                              <span>${fund.pledged}</span>pledged
+                              <span>${fund.funding_goal_amount}</span>pledged
                             </div>
                             <div className="process-funded">
-                              <span>{fund.funded}%</span>funded
+                              <span>
+                                {fund.funding_amount === 0
+                                  ? (fund.funding_amount / fund.funding_goal_amount) * 100
+                                  : 0}
+                                %
+                              </span>
                             </div>
                             <div className="process-time">
-                              <span>{fund.deadline}</span>days ago
+                              <span>{fund.ended_at}</span>days ago
                             </div>
                           </div>
                         </div>

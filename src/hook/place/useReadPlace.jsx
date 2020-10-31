@@ -6,7 +6,7 @@ const useReadPlace = () => {
   const { places, error, loading } = useSelector(({ place, loading }) => ({
     places: place.place,
     error: place.placeError,
-    loading: loading['fund/READ_FUND'],
+    loading: loading['place/READ_PLACELIST'],
   }));
   const dispatch = useDispatch();
   useEffect(() => {

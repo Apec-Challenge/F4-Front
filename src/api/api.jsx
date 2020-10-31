@@ -12,12 +12,12 @@ export const register = ({ email, password1, password2, nickname }) =>
 
 /* Fund API */
 export const createFund = ({ title, content, fundingPrice, endedAt, place, user }) =>
-  API.post(`/api/funding`, { title, content, fundingPrice, endedAt, place, user });
-export const readFund = id => API.get(`/api/funding/${id}`, id);
-export const readFundList = () => API.get(`/api/funding`);
+  API.post(`/api/funding/`, { title, content, fundingPrice, endedAt, place, user });
+export const readFund = id => API.get(`/api/funding/${id}/`, id);
+export const readFundList = () => API.get(`/api/funding/`);
 export const updateFund = ({ id, title, content, fundingPrice, endedAt, place, user }) =>
-  API.put(`/api/funding/${id}/edit`, { id, title, content, fundingPrice, endedAt, place, user });
-export const deleteFund = id => API.delete(`/api/funding/${id}/delete`, { id });
+  API.put(`/api/funding/${id}/edit/`, { id, title, content, fundingPrice, endedAt, place, user });
+export const deleteFund = id => API.delete(`/api/funding/${id}/delete/`, { id });
 
 /* Place API */
 export const createPlace = ({
@@ -31,7 +31,7 @@ export const createPlace = ({
   handSnitizer,
   disposableGloves,
 }) =>
-  API.post(`/places`, {
+  API.post(`/places/`, {
     title,
     img,
     description,
@@ -42,8 +42,8 @@ export const createPlace = ({
     handSnitizer,
     disposableGloves,
   });
-export const readPlace = id => API.get(`/api/place/${id}`, id);
-export const readPlaceList = () => API.get(`/api/place`);
+export const readPlace = id => API.get(`/api/place/${id}/`, id);
+export const readPlaceList = () => API.get(`/api/place/`);
 export const updatePlace = ({
   title,
   img,
@@ -55,8 +55,18 @@ export const updatePlace = ({
   types,
   PPE,
 }) =>
-  API.put(`/api/place`, { title, img, description, businessHours, location, lng, lat, types, PPE });
-export const deletePlace = id => API.delete(`/api/place`, id);
+  API.put(`/api/place/`, {
+    title,
+    img,
+    description,
+    businessHours,
+    location,
+    lng,
+    lat,
+    types,
+    PPE,
+  });
+export const deletePlace = id => API.delete(`/api/place/`, id);
 
 /* Review */
 export const createReview = () => API.post(`/review`);
