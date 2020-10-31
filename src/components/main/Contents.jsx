@@ -16,10 +16,10 @@ const Contents = () => {
             {!fetchFund.funds && !fetchFund.loading ? (
               <div className="sideshow-content">
                 <h1 className="wow fadeInUp" data-wow-delay=".2s">
-                  {fetchFund.funds[0].title}
+                  {fetchFund.funds.splice(0, 1).title}
                 </h1>
                 <div className="sideshow-description wow fadeInUp" data-wow-delay=".1s">
-                  {fetchFund.funds[0].contents}
+                  {fetchFund.funds.splice(0, 1).contents}
                 </div>
                 <div className="process wow fadeInUp" data-scroll-nav="1">
                   <div className="raised">
@@ -27,16 +27,25 @@ const Contents = () => {
                   </div>
                   <div className="process-info">
                     <div className="process-funded">
-                      <span>{fetchFund.funds[0].funded}%</span>funded
+                      <span>
+                        {' '}
+                        {fetchFund.funds.splice(0, 1).funding_amount === 0
+                          ? (fetchFund.funds.splice(0, 1).funding_amount /
+                              fetchFund.funds.splice(0, 1).funding_goal_amount) *
+                            100
+                          : 0}
+                        %
+                      </span>
+                      funded
                     </div>
                     <div className="process-pledged">
-                      <span>${fetchFund.funds[0].pledged}</span>pledged
+                      <span>${fetchFund.funds.splice(0, 1).funding_goal_amount}</span>pledged
                     </div>
                     <div className="process-backers">
-                      <span>{fetchFund.funds[0].backers}</span>backers
+                      <span>{fetchFund.funds.splice(0, 1).backers}</span>backers
                     </div>
                     <div className="process-time">
-                      <span>{fetchFund.funds[0].deadline}</span>days ago
+                      <span>{fetchFund.funds.splice(0, 1).ended_at}</span>days ago
                     </div>
                   </div>
                 </div>

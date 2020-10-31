@@ -5,9 +5,6 @@ import useReadFund from 'src/hook/fund/useReadFund';
 
 const List = () => {
   const { funds, error, loading } = useReadFund();
-  if (funds) {
-    console.log(!!funds.splice(0, 1));
-  }
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">
