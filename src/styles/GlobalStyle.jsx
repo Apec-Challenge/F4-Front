@@ -177,6 +177,7 @@ img {
   max-width: 100%;
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 a {
   color: #222222;
@@ -1066,6 +1067,8 @@ ul.socials-top li:hover i {
 }
 .campaign-item a.overlay,
 .post a.overlay {
+  height: 240px;
+  width: 370px;
   position: relative;
   overflow: hidden;
   transition: all 0.35s ease-in-out;
@@ -1372,6 +1375,8 @@ ul.menu-category li.active:after {
 .project-love-item a.project-love-image,
 .campaign-big-item a.campaign-big-image {
   float: left;
+  width: 570px;
+  height: 350px;
 }
 .staff-picks-item .staff-picks-item-content h3,
 .project-love-item .project-love-item-content h3,
@@ -5170,7 +5175,7 @@ form .create-account input[type='checkbox'] {
     float: none;
   }
 	.campaign-big-item a.campaign-big-image img{
-		width: 100%;
+    width: 100%;
 	}
 	.campaign-big-item .campaign-big-box{
 		padding: 20px;

@@ -60,7 +60,7 @@ const List = () => {
                   {funds.splice(0, 1).map(fund => (
                     <div key={fund.id} className="campaign-big-item clearfix">
                       <Link to={`/fund/detail/${fund.id}`} className="campaign-big-image">
-                        <img src={require('src/images/placeholder/570x350.png')} alt="" />
+                        <img src={fund.thumbnail_image} alt="" />
                       </Link>
                       <div className="campaign-big-box">
                         <h3>
@@ -116,7 +116,7 @@ const List = () => {
                   {funds.map(fund => (
                     <div key={fund.id} className="campaign-item">
                       <Link className="overlay" to={`/fund/detail/${fund.id}`}>
-                        <img src={require('src/images/placeholder/370x240.png')} alt="" />
+                        <img src={fund.thumbnail_image} alt="" />
                         <i className="fa fa-search" aria-hidden="true" />
                       </Link>
                       <div className="campaign-box">
