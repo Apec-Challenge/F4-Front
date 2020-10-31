@@ -4,7 +4,7 @@ import { readPlaceList } from 'src/modules/place';
 
 const useReadPlace = () => {
   const { places, error, loading } = useSelector(({ place, loading }) => ({
-    places: place.place,
+    places: place.places,
     error: place.placeError,
     loading: loading['place/READ_PLACELIST'],
   }));

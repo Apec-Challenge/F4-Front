@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useReadDetailFund from 'src/hook/fund/useReadDetailFund';
 
 const Detail = () => {
+  const { fund, error, loading } = useReadDetailFund();
+  if (fund && !loading) console.log(fund);
   return (
     <div className="campaign-detail">
       <main id="main" className="site-main">

@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useCreate from 'src/hook/place/useCreate';
 
 const Create = () => {
-  const [state, setState] = useState();
-  const onChange = e => {
-    setState({ name: e.target.value });
-  };
+  const {
+    onChangeField,
+    title,
+    place_image,
+    description,
+    address,
+    location,
+    counts,
+    PPE,
+  } = useCreate();
+  const onChangeTitle = e => onChangeField({ key: 'title', value: e.target.value });
+  const onChangeDesc = e => onChangeField({ key: 'description', value: e.target.value });
+  const onChangeAddress = e => onChangeField({ key: 'address', value: e.target.value });
+  const onChangeImage = e => onChangeField({ key: 'place_image', value: e.target.value });
+  const onChangePPE = e => onChangeField({ key: 'PPE', value: e.target.value });
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
@@ -31,11 +43,11 @@ const Create = () => {
               <span className="label-desc">What is the title of your campaign?</span>
               <input
                 type="text"
-                value=""
+                value={title}
                 id="title"
                 name="title"
                 placeholder="The Oreous Pillow"
-                onChange={onChange}
+                onChange={onChangeTitle}
               />
             </div>
             <div className="field">
@@ -43,14 +55,24 @@ const Create = () => {
               <span className="label-desc">
                 Provide a short description that best describes your campaign to your audience.
               </span>
-              <textarea rows="4" id="campaigndesc" placeholder="Enter a few tagline" />
+              <textarea
+                rows="4"
+                id="campaigndesc"
+                placeholder="Enter a few tagline"
+                onChange={onChangeDesc}
+              />
             </div>
             <div className="field">
               <label htmlFor="capaignstory">Campaign Address *</label>
               <span className="label-desc">
                 Introduce yourself, your campaign and why it’s important to you.
               </span>
-              <textarea rows="4" id="capaignstory" placeholder="Enter a few tagline" />
+              <textarea
+                rows="4"
+                id="capaignstory"
+                placeholder="Enter a few tagline"
+                onChange={onChangeAddress}
+              />
             </div>
             <div className="field">
               <label htmlFor="uploadfile">Campaign Image *</label>
@@ -58,11 +80,15 @@ const Create = () => {
                 Upload a square image that represents your campaign. 570 x 350 recommended
                 resolution.
               </span>
-
               <div className="file-upload">
                 <div className="upload-bg">
                   <div id="myfileupload">
-                    <input type="file" id="uploadfile" name="ImageUpload" onChange={onChange} />
+                    <input
+                      type="file"
+                      id="uploadfile"
+                      name="ImageUpload"
+                      onChange={onChangeImage}
+                    />
                   </div>
                   <div id="thumbbox">
                     <img
@@ -85,7 +111,7 @@ const Create = () => {
               </div>
             </div>
             <div className="field">
-              <label htmlFor="PPE">Campaign Duration *</label>
+              <label htmlFor="PPE">Campaign PPE *</label>
               <span className="label-desc">
                 You can run a campaign for any number of days, with a 60 day duration maximum.
               </span>
@@ -95,7 +121,7 @@ const Create = () => {
                 value=""
                 name="title"
                 placeholder="60 days"
-                onChange={onChange}
+                onChange={onChangePPE}
               />
             </div>
             <button type="submit" value="Save & Launch" className="btn-primary">

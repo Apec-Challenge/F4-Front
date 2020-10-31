@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import useReadFund from 'src/hook/fund/useReadFund';
 import useReadPlace from 'src/hook/place/useReadPlace';
 
 const Contents = () => {
   const fetchFund = useReadFund();
   const fetchPlace = useReadPlace();
+  const currentDate = moment().toISOString();
   return (
     <main id="main" className="site-main">
       {fetchFund.loading && '로딩중...'}
@@ -43,7 +45,7 @@ const Contents = () => {
                       <span>{fund.backers}</span>backers
                     </div>
                     <div className="process-time">
-                      <span>{fund.ended_at}</span>days ago
+                      <span>{moment(fund.ended_at).diff(currentDate, 'days')}</span>days ago
                     </div>
                   </div>
                 </div>
@@ -143,7 +145,7 @@ const Contents = () => {
                               </span>
                             </div>
                             <div className="process-time">
-                              <span>{fund.ended_at}</span>days ago
+                              <span>{moment(fund.ended_at).diff(currentDate, 'days')}</span>days ago
                             </div>
                           </div>
                         </div>

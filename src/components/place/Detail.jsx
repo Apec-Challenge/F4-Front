@@ -1,22 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useReadDetailPlace from 'src/hook/place/useReadDetailPlace';
 
-const Detail = () => {
+const Detail = ({ place_id }) => {
+  const { place, error, loading } = useReadDetailPlace({ place_id });
   return (
     <main id="main" className="site-main">
       <div className="page-title background-cart">
         <div className="container">
-          <h1>Live Work by MSDS Studio</h1>
+          <h1>{place.title}</h1>
           <div className="breadcrumbs">
             <ul>
               <li>
-                <a href="index.html">Home</a>
+                <a href="index.html">Place</a>
                 <span>/</span>
               </li>
               <li>
-                Shop<span>/</span>
+                Detail<span>/</span>
               </li>
-              <li>Live Work by MSDS Studio</li>
+              <li>{place.title}</li>
             </ul>
           </div>
         </div>
@@ -28,28 +30,12 @@ const Detail = () => {
               <div className="shop-details-content">
                 <article className="post">
                   <span>Creative Furniture</span>
-                  <h2>Live Work by MSDS Studio</h2>
+                  <h2>{place.title}</h2>
                   <div className="shop-detail-img">
                     <img src={require('src/images/placeholder/710x460.png')} alt="" />
                   </div>
                   <h3>Descriptions</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, ut! Tenetur
-                    explicabo laudantium fugit pariatur sunt odio maxime, sint cum, doloribus
-                    libero.
-                  </p>
-                  <p>
-                    Laboriosam dolor quaerat autem hic atque quia omnis minus, eum delectus, vitae
-                    optio asperiores nulla dolorem quo impedit doloribus ullam dignissimos commodi
-                    sint perferendis molestias totam recusandae itaque eius.
-                  </p>
-                  <p>
-                    Tenetur enim aut rerum quis nihil, voluptatem quo officia sint molestiae sequi.
-                    Illum repellat nam reprehenderit iusto. Cupiditate neque natus voluptatibus
-                    recusandae veniam animi illo beatae explicabo accusamus, perspiciatis totam
-                    numquam unde dolor quos, laboriosam minus qui in, quasi nam distinctio voluptas
-                    omnis sed eligendi autem nulla!
-                  </p>
+                  <p>{place.description}</p>
                   <div className="reviews">
                     <h3>Reviews (0)</h3>
                     <form action="#" method="POST" id="shopdetailsForm" className="clearfix">

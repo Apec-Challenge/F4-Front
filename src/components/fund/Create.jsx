@@ -3,13 +3,22 @@ import { Link } from 'react-router-dom';
 import useCreate from 'src/hook/fund/useCreate';
 
 const Create = () => {
-  const { onChangeField, title, description, contents, location, duration, goal } = useCreate();
+  const {
+    onChangeField,
+    title,
+    description,
+    thumbnail_image,
+    contents_image,
+    funding_goal_amount,
+    deadline,
+  } = useCreate();
   const onChangeTitle = e => onChangeField({ key: 'title', value: e.target.value });
   const onChangeDesc = e => onChangeField({ key: 'description', value: e.target.value });
-  const onChangeContents = e => onChangeField({ key: 'contents', value: e.target.value });
+  const onChangeThumb = e => onChangeField({ key: 'thumbnail_image', value: e.target.value });
+  const onChangeImage = e => onChangeField({ key: 'content_image', value: e.target.value });
+  const onChangeGoal = e => onChangeField({ key: 'funding_goal_amount', value: e.target.value });
   const onChangeLocate = e => onChangeField({ key: 'location', value: e.target.value });
-  const onChangeDuration = e => onChangeField({ key: 'duration', value: e.target.value });
-  const onChangeGoal = e => onChangeField({ key: 'goal', value: e.target.value });
+  const onChangeDuration = e => onChangeField({ key: 'deadline', value: e.target.value });
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
@@ -56,17 +65,6 @@ const Create = () => {
               />
             </div>
             <div className="field">
-              <label htmlFor="campaigncont">Campaign Contents *</label>
-              <span className="label-desc">Detail Description.</span>
-              <textarea
-                rows="4"
-                id="contents"
-                placeholder="Contents"
-                value={contents}
-                onChange={onChangeContents}
-              />
-            </div>
-            <div className="field">
               <label htmlFor="uploadfile">Campaign Image *</label>
               <span className="label-desc">
                 Upload a square image that represents your campaign. 570 x 350 recommended
@@ -76,7 +74,12 @@ const Create = () => {
                 <div className="file-upload">
                   <div className="upload-bg">
                     <div id="myfileupload">
-                      <input type="file" id="uploadfile" name="ImageUpload" onChange={null} />
+                      <input
+                        type="file"
+                        id="uploadfile"
+                        name="ImageUpload"
+                        onChange={onChangeThumb}
+                      />
                     </div>
                     <div id="thumbbox">
                       <img
@@ -99,50 +102,31 @@ const Create = () => {
                 </div>
                 <div className="file-upload">
                   <div className="upload-bg">
-                    <div id="myfileupload1">
-                      <input type="file" id="uploadfile1" name="ImageUpload" onChange={null} />
+                    <div id="myfileupload">
+                      <input
+                        type="file"
+                        id="uploadfile"
+                        name="ImageUpload"
+                        onChange={onChangeThumb}
+                      />
                     </div>
-                    <div id="thumbbox1">
+                    <div id="thumbbox">
                       <img
                         src="images/assets/logo.png"
                         height="100"
                         width="100"
                         alt="Thumb"
-                        id="thumbimage1"
+                        id="thumbimage"
                       />
-                      <Link className="removeimg1" to="/"></Link>
+                      <Link className="removeimg" to="/" />
                     </div>
-                    <div id="boxchoice1">
-                      <Link to="/" className="choicefile1">
-                        <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
+                    <div id="boxchoice">
+                      <Link to="/" className="choicefile">
+                        <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Thumbnail
                       </Link>
                       <p></p>
                     </div>
-                    <label className="filename1"></label>
-                  </div>
-                </div>
-                <div className="file-upload">
-                  <div className="upload-bg">
-                    <div id="myfileupload2">
-                      <input type="file" id="uploadfile2" name="ImageUpload" onChange={null} />
-                    </div>
-                    <div id="thumbbox2">
-                      <img
-                        src="images/assets/logo.png"
-                        height="100"
-                        width="100"
-                        alt="Thumb"
-                        id="thumbimage2"
-                      />
-                      <Link className="removeimg2" to="/" />
-                    </div>
-                    <div id="boxchoice2">
-                      <Link to="/" className="choicefile2">
-                        <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
-                      </Link>
-                      <p></p>
-                    </div>
-                    <label className="filename2" />
+                    <label className="filename"></label>
                   </div>
                 </div>
               </div>
@@ -153,13 +137,7 @@ const Create = () => {
                 Choose the location where you are running the campaign.
               </span>
               <div className="field align-left">
-                <input
-                  type="text"
-                  value={location}
-                  id="clocation"
-                  placeholder="City"
-                  onChange={onChangeLocate}
-                />
+                <input type="text" value="" id="clocation" placeholder="City" onChange={null} />
               </div>
               <div className="field align-right">
                 <div className="field-select">
@@ -179,20 +157,20 @@ const Create = () => {
               <input
                 type="number"
                 id="cduration"
-                value={duration}
+                value={deadline}
                 name="duration"
                 placeholder="60 days"
                 onChange={onChangeDuration}
               />
             </div>
             <div className="field">
-              <label htmlFor="cduration">Campaign Funding Goal *</label>
+              <label htmlFor="goal">Campaign Funding Goal *</label>
               <span className="label-desc">Funding Goal</span>
               <input
                 type="number"
-                id="cduration"
-                value={goal}
-                name="contents"
+                id="goal"
+                value={funding_goal_amount}
+                name="goal"
                 placeholder="$250"
                 onChange={onChangeGoal}
               />

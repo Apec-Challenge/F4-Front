@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import useReadFund from 'src/hook/fund/useReadFund';
 
 const List = () => {
   const { funds, error, loading } = useReadFund();
+  const currentDate = moment().toISOString();
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">
@@ -57,12 +59,12 @@ const List = () => {
                 <div className="col-lg-12">
                   {funds.splice(0, 1).map(fund => (
                     <div key={fund.id} className="campaign-big-item clearfix">
-                      <Link to="/fund/detail" className="campaign-big-image">
+                      <Link to={`/fund/detail/${fund.id}`} className="campaign-big-image">
                         <img src={require('src/images/placeholder/570x350.png')} alt="" />
                       </Link>
                       <div className="campaign-big-box">
                         <h3>
-                          <Link to="/fund/detail">{fund.title}</Link>
+                          <Link to={`/fund/detail/${fund.id}`}>{fund.title}</Link>
                         </h3>
                         <div className="campaign-description">{fund.contents}</div>
                         <div className="staff-picks-author">
@@ -101,7 +103,7 @@ const List = () => {
                               <span>{fund.backers}</span>backers
                             </div>
                             <div className="process-time">
-                              <span>asdf</span>
+                              <span>{moment(fund.ended_at).diff(currentDate, 'days')}</span>
                               days ago
                             </div>
                           </div>
@@ -113,13 +115,13 @@ const List = () => {
                 <div className="col-lg-4 col-sm-6">
                   {funds.map(fund => (
                     <div key={fund.id} className="campaign-item">
-                      <Link className="overlay" to="/fund/detail">
+                      <Link className="overlay" to={`/fund/detail/${fund.id}`}>
                         <img src={require('src/images/placeholder/370x240.png')} alt="" />
                         <i className="fa fa-search" aria-hidden="true" />
                       </Link>
                       <div className="campaign-box">
                         <h3>
-                          <Link to="/fund/detail">{fund.title}</Link>
+                          <Link to={`/fund/detail/${fund.id}`}>{fund.title}</Link>
                         </h3>
                         <div className="campaign-description">{fund.content}</div>
                         <div className="campaign-author">
@@ -149,7 +151,7 @@ const List = () => {
                               funded
                             </div>
                             <div className="process-time">
-                              <span>{fund.ended_at}</span>days ago
+                              <span>{moment(fund.ended_at).diff(currentDate, 'days')}</span>days ago
                             </div>
                           </div>
                         </div>

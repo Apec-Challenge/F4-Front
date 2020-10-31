@@ -38,12 +38,12 @@ const List = () => {
                 <div className="grid-product">
                   {places.map(place => (
                     <div key={place.id} className="product">
-                      <Link to="/place/detail">
+                      <Link to={`/place/detail/${place.place_id}`}>
                         <img src={require('src/images/placeholder/270x180.png')} alt="" />
                       </Link>
                       <div className="product-info">
                         <h3 className="product-title">
-                          <Link to="/place/detail">{place.title}</Link>
+                          <Link to={`/place/detail/${place.place_id}`}>{place.title}</Link>
                         </h3>
                         <p className="product-price">{place.description}</p>
                         <p className="product-price">{place.business_hour}</p>

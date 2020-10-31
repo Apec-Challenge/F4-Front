@@ -4,7 +4,7 @@ import { readFundList } from 'src/modules/fund';
 
 const useReadFund = () => {
   const { funds, error, loading } = useSelector(({ fund, loading }) => ({
-    funds: fund.fund,
+    funds: fund.funds,
     error: fund.fundError,
     loading: loading['fund/READ_FUNDLIST'],
   }));

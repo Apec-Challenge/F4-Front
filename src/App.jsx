@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Main, Auth, AboutUs, Contacts, Fund, Place } from './pages';
+import { Main, Auth, AboutUs, Contacts, List, Create, Detail } from './pages';
 
 const App = () => {
   return (
@@ -9,8 +9,9 @@ const App = () => {
       <Route exact path="/auth" component={Auth} />
       <Route exact path="/about" component={AboutUs} />
       <Route exact path="/contact" component={Contacts} />
-      <Route exact path="/fund/:menu" component={Fund} />
-      <Route exact path="/place/:menu" component={Place} />
+      <Route exact path="/:menu/list" component={List} />
+      <Route exact path="/:menu/create" component={Create} />
+      <Route exact path="/:menu/detail/:id" component={Detail} />
     </>
   );
 };

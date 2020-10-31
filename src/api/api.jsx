@@ -13,7 +13,7 @@ export const register = ({ email, password1, password2, nickname }) =>
 /* Fund API */
 export const createFund = ({ title, content, fundingPrice, endedAt, place, user }) =>
   API.post(`/api/funding/`, { title, content, fundingPrice, endedAt, place, user });
-export const readFund = id => API.get(`/api/funding/${id}/`, id);
+export const readFund = id => API.get(`/api/funding/${id}/`, { id });
 export const readFundList = () => API.get(`/api/funding/`);
 export const updateFund = ({ id, title, content, fundingPrice, endedAt, place, user }) =>
   API.put(`/api/funding/${id}/edit/`, { id, title, content, fundingPrice, endedAt, place, user });
@@ -42,9 +42,10 @@ export const createPlace = ({
     handSnitizer,
     disposableGloves,
   });
-export const readPlace = id => API.get(`/api/place/${id}/`, id);
+export const readPlace = place_id => API.get(`/api/place/${place_id}/`, { place_id });
 export const readPlaceList = () => API.get(`/api/place/`);
 export const updatePlace = ({
+  place_id,
   title,
   img,
   description,
@@ -55,7 +56,8 @@ export const updatePlace = ({
   types,
   PPE,
 }) =>
-  API.put(`/api/place/`, {
+  API.put(`/api/${place_id}/place/`, {
+    place_id,
     title,
     img,
     description,
@@ -66,7 +68,7 @@ export const updatePlace = ({
     types,
     PPE,
   });
-export const deletePlace = id => API.delete(`/api/place/`, id);
+export const deletePlace = place_id => API.delete(`/api/${place_id}/place/`, { place_id });
 
 /* Review */
 export const createReview = () => API.post(`/review`);
