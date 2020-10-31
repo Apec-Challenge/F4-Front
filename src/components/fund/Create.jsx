@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
 import useCreate from 'src/hook/fund/useCreate';
+import useReadPlace from 'src/hook/place/useReadPlace';
 
 const Create = () => {
   const {
+    onSubmit,
     onChangeField,
     title,
     description,
     thumbnail_image,
-    contents_image,
+    content_image,
+    place,
     funding_goal_amount,
-    deadline,
+    ended_at,
   } = useCreate();
+  const { places, error, loading } = useReadPlace();
+  const [endDate, setEndDate] = useState();
   const onChangeTitle = e => onChangeField({ key: 'title', value: e.target.value });
   const onChangeDesc = e => onChangeField({ key: 'description', value: e.target.value });
-  const onChangeThumb = e => onChangeField({ key: 'thumbnail_image', value: e.target.value });
-  const onChangeImage = e => onChangeField({ key: 'content_image', value: e.target.value });
+  const onChangeThumb = e => onChangeField({ key: 'thumbnail_image', value: e.target.files[0] });
+  const onChangeImage = e => onChangeField({ key: 'content_image', value: e.target.files[0] });
   const onChangeGoal = e => onChangeField({ key: 'funding_goal_amount', value: e.target.value });
-  const onChangeLocate = e => onChangeField({ key: 'location', value: e.target.value });
-  const onChangeDuration = e => onChangeField({ key: 'deadline', value: e.target.value });
+  const onChangePlace = e => onChangeField({ key: 'place', value: e.target.value });
+  const onChangeDuration = date => onChangeField({ key: 'ended_at', value: date });
+  useEffect(() => {
+    onChangeDuration(endDate);
+  }, [endDate]);
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
@@ -37,7 +46,7 @@ const Create = () => {
       </div>
       <div className="campaign-form form-update">
         <div className="container">
-          <form action="#">
+          <form onSubmit={onSubmit}>
             <h4>Start a campaign</h4>
             <div className="field">
               <label htmlFor="title">Campaign Title *</label>
@@ -92,9 +101,7 @@ const Create = () => {
                       <Link className="removeimg" to="/" />
                     </div>
                     <div id="boxchoice">
-                      <Link to="/" className="choicefile">
-                        <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
-                      </Link>
+                      <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Thumbnail
                       <p></p>
                     </div>
                     <label className="filename"></label>
@@ -107,7 +114,7 @@ const Create = () => {
                         type="file"
                         id="uploadfile"
                         name="ImageUpload"
-                        onChange={onChangeThumb}
+                        onChange={onChangeImage}
                       />
                     </div>
                     <div id="thumbbox">
@@ -121,9 +128,7 @@ const Create = () => {
                       <Link className="removeimg" to="/" />
                     </div>
                     <div id="boxchoice">
-                      <Link to="/" className="choicefile">
-                        <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Thumbnail
-                      </Link>
+                      <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
                       <p></p>
                     </div>
                     <label className="filename"></label>
@@ -132,21 +137,21 @@ const Create = () => {
               </div>
             </div>
             <div className="field clearfix">
-              <label htmlFor="clocation">Campaign Location *</label>
+              <label htmlFor="clocation">Campaign Place *</label>
               <span className="label-desc">
                 Choose the location where you are running the campaign.
               </span>
-              <div className="field align-left">
-                <input type="text" value="" id="clocation" placeholder="City" onChange={null} />
-              </div>
-              <div className="field align-right">
-                <div className="field-select">
-                  <select name="s">
-                    <option value="">United States</option>
-                    <option value="">France</option>
-                    <option value="">Germany</option>
+              <div className="field-select">
+                {!loading && places && (
+                  <select name="s" onChange={onChangePlace}>
+                    <option value="" selected disabled hidden>
+                      select
+                    </option>
+                    {places.map(place => (
+                      <option value={place.place_id}>{place.place_id}</option>
+                    ))}
                   </select>
-                </div>
+                )}
               </div>
             </div>
             <div className="field">
@@ -154,14 +159,7 @@ const Create = () => {
               <span className="label-desc">
                 You can run a campaign for any number of days, with a 60 day duration maximum.
               </span>
-              <input
-                type="number"
-                id="cduration"
-                value={deadline}
-                name="duration"
-                placeholder="60 days"
-                onChange={onChangeDuration}
-              />
+              <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
             </div>
             <div className="field">
               <label htmlFor="goal">Campaign Funding Goal *</label>

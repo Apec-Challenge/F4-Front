@@ -39,7 +39,7 @@ const List = () => {
                   {places.map(place => (
                     <div key={place.id} className="product">
                       <Link to={`/place/detail/${place.place_id}`}>
-                        <img src={require('src/images/placeholder/270x180.png')} alt="" />
+                        <img src={place.place_image} alt="" />
                       </Link>
                       <div className="product-info">
                         <h3 className="product-title">

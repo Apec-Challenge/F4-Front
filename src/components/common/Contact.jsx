@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useContact from 'src/hook/common/useContact';
 
 const Contact = () => {
@@ -15,7 +16,7 @@ const Contact = () => {
           <div className="breadcrumbs">
             <ul>
               <li>
-                <a href="index.html">Home</a>
+                <Link to="/">Home</Link>
                 <span>/</span>
               </li>
               <li>Contact Us</li>

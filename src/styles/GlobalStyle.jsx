@@ -1067,8 +1067,8 @@ ul.socials-top li:hover i {
 }
 .campaign-item a.overlay,
 .post a.overlay {
-  height: 240px;
-  width: 370px;
+  max-height: 240px;
+  max-width: 370px;
   position: relative;
   overflow: hidden;
   transition: all 0.35s ease-in-out;
@@ -3970,7 +3970,7 @@ form .create-account input[type='checkbox'] {
 }
 #uploadfile,
 .removeimg {
-  display: none;
+  display: block;
 }
 #thumbbox {
   position: relative;

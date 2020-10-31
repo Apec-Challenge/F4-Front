@@ -70,7 +70,7 @@ const List = () => {
                         <div className="staff-picks-author">
                           <div className="author-profile">
                             <Link className="author-avatar" to="/">
-                              <img src={require('src/images/placeholder/35x35.png')} alt="" />
+                              <img src={require('src/images/user.png')} alt="" />
                             </Link>
                             by{' '}
                             <Link className="author-name" to="/">
@@ -88,7 +88,7 @@ const List = () => {
                           </div>
                           <div className="process-info">
                             <div className="process-pledged">
-                              <span>${fund.funding_goal_amount}</span>pledged
+                              <span>${fund.funding_goal_amount}</span>funding goal
                             </div>
                             <div className="process-funded">
                               <span>
@@ -100,7 +100,7 @@ const List = () => {
                               funded
                             </div>
                             <div className="process-time">
-                              <span>{fund.backers}</span>backers
+                              <span>{fund.backed_list.length}</span>backers
                             </div>
                             <div className="process-time">
                               <span>{moment(fund.ended_at).diff(currentDate, 'days')}</span>
@@ -112,8 +112,8 @@ const List = () => {
                     </div>
                   ))}
                 </div>
-                <div className="col-lg-4 col-sm-6">
-                  {funds.map(fund => (
+                {funds.map(fund => (
+                  <div className="col-lg-4 col-sm-6 col-6">
                     <div key={fund.id} className="campaign-item">
                       <Link className="overlay" to={`/fund/detail/${fund.id}`}>
                         <img src={fund.thumbnail_image} alt="" />
@@ -126,7 +126,7 @@ const List = () => {
                         <div className="campaign-description">{fund.content}</div>
                         <div className="campaign-author">
                           <Link className="author-icon" to="/">
-                            <img src={require('src/images/placeholder/35x35.png')} alt="" />
+                            <img src={require('src/images/user.png')} alt="" />
                           </Link>
                           by{' '}
                           <Link className="author-name" to="/">
@@ -139,7 +139,7 @@ const List = () => {
                           </div>
                           <div className="process-info">
                             <div className="process-pledged">
-                              <span>${fund.funding_goal_amount}</span>pledged
+                              <span>${fund.funding_goal_amount}</span>funding goal
                             </div>
                             <div className="process-funded">
                               <span>
@@ -157,8 +157,8 @@ const List = () => {
                         </div>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="latest-button">

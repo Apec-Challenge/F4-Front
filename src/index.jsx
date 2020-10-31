@@ -6,6 +6,8 @@ import { GlobalStyle } from './styles/GlobalStyle';
 import App from './App';
 import store from './store';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

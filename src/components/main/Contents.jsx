@@ -14,7 +14,7 @@ const Contents = () => {
       {!fetchFund.loading &&
         fetchFund.funds.splice(0, 1).map(fund => (
           <div key={fund.id} className="sideshow">
-            <img src={require('src/images/placeholder/1920x680.png')} alt="" />
+            <img src={fund.thumbnail_image} alt="" />
             <div className="container">
               <div className="sideshow-content">
                 <h1 className="wow fadeInUp" data-wow-delay=".2s">
@@ -28,6 +28,9 @@ const Contents = () => {
                     <span />
                   </div>
                   <div className="process-info">
+                    <div className="process-pledged">
+                      <span>${fund.funding_goal_amount}</span>funding goal
+                    </div>
                     <div className="process-funded">
                       <span>
                         {' '}
@@ -38,11 +41,8 @@ const Contents = () => {
                       </span>
                       funded
                     </div>
-                    <div className="process-pledged">
-                      <span>${fund.funding_goal_amount}</span>pledged
-                    </div>
                     <div className="process-backers">
-                      <span>{fund.backers}</span>backers
+                      <span>{fund.backed_list.length}</span>backers
                     </div>
                     <div className="process-time">
                       <span>{moment(fund.ended_at).diff(currentDate, 'days')}</span>days ago
@@ -75,7 +75,7 @@ const Contents = () => {
                   {fetchPlace.places.slice(0, 4).map(place => (
                     <div key={place.id} className="product">
                       <Link to="/place/detail">
-                        <img src={require('src/images/placeholder/270x180.png')} alt="" />
+                        <img src={place.place_image} alt="" />
                       </Link>
                       <div className="product-info">
                         <h3 className="product-title">
@@ -111,7 +111,7 @@ const Contents = () => {
                   <div key={fund.id} className="col-lg-4 col-sm-6">
                     <div className="campaign-item">
                       <Link className="overlay" to="/fund/detail">
-                        <img src={require('src/images/placeholder/370x240.png')} alt="" />
+                        <img src={fund.thumbnail_image} alt="" />
                         <i className="fa fa-search" aria-hidden="true" />
                       </Link>
                       <div className="campaign-box">
@@ -121,7 +121,7 @@ const Contents = () => {
                         <div className="campaign-description">{fund.content}</div>
                         <div className="campaign-author">
                           <Link className="author-icon" to="/">
-                            <img src={require('src/images/placeholder/35x35.png')} alt="" />
+                            <img src={require('src/images/user.png')} alt="" />
                           </Link>
                           by{' '}
                           <Link className="author-name" to="/">
@@ -134,7 +134,7 @@ const Contents = () => {
                           </div>
                           <div className="process-info">
                             <div className="process-pledged">
-                              <span>${fund.funding_goal_amount}</span>pledged
+                              <span>${fund.funding_goal_amount}</span>funding goal
                             </div>
                             <div className="process-funded">
                               <span>
@@ -143,6 +143,7 @@ const Contents = () => {
                                   : 0}
                                 %
                               </span>
+                              funded
                             </div>
                             <div className="process-time">
                               <span>{moment(fund.ended_at).diff(currentDate, 'days')}</span>days ago
