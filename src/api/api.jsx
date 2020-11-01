@@ -19,28 +19,7 @@ export const updateFund = ({ id, title, content, fundingPrice, endedAt, place, u
 export const deleteFund = id => API.delete(`/api/funding/${id}/delete/`, { id });
 
 /* Place API */
-export const createPlace = ({
-  title,
-  img,
-  description,
-  location,
-  lng,
-  lat,
-  mask,
-  handSnitizer,
-  disposableGloves,
-}) =>
-  API.post(`/places/`, {
-    title,
-    img,
-    description,
-    location,
-    lng,
-    lat,
-    mask,
-    handSnitizer,
-    disposableGloves,
-  });
+export const createPlace = fd => API.post(`/api/place/`, fd);
 export const readPlace = place_id => API.get(`/api/place/${place_id}/`, { place_id });
 export const readPlaceList = () => API.get(`/api/place/`);
 export const updatePlace = ({

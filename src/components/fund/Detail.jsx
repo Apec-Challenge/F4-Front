@@ -5,7 +5,6 @@ import useReadDetailFund from 'src/hook/fund/useReadDetailFund';
 
 const Detail = ({ fund_id }) => {
   const { fund, error, loading } = useReadDetailFund({ fund_id });
-  console.log(fund);
   const currentDate = moment().toISOString();
   return (
     <div className="campaign-detail">

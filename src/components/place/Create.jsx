@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import axios from 'axios';
 import useCreate from 'src/hook/place/useCreate';
 
-const Create = () => {
+const Create = ({ history }) => {
   const {
+    onSubmit,
     onChangeField,
+    unloadCreate,
+    place_id,
     title,
     place_image,
     description,
@@ -12,12 +18,47 @@ const Create = () => {
     location,
     counts,
     PPE,
+    create,
+    createError,
   } = useCreate();
+  const dispatch = useDispatch();
+  const [place, setPlace] = useState([]);
+  const onChangePlaceID = placeID => onChangeField({ key: 'place_id', value: placeID });
   const onChangeTitle = e => onChangeField({ key: 'title', value: e.target.value });
   const onChangeDesc = e => onChangeField({ key: 'description', value: e.target.value });
-  const onChangeAddress = e => onChangeField({ key: 'address', value: e.target.value });
-  const onChangeImage = e => onChangeField({ key: 'place_image', value: e.target.value });
-  const onChangePPE = e => onChangeField({ key: 'PPE', value: e.target.value });
+  const onChangeAddress = e => {
+    const placeID = e.target.value.slice(-27);
+    const idx = e.target.value.indexOf(placeID);
+    const adrs = e.target.value.slice(0, idx - 1);
+    onChangeField({ key: 'address', value: adrs });
+    onChangePlaceID(placeID);
+  };
+  const onChangeLocation = locate => onChangeField({ key: 'location', value: locate });
+  const onChangeImage = e => onChangeField({ key: 'place_image', value: e.target.files[0] });
+  const onChangePPE = e =>
+    onChangeField({ key: 'PPE', value: { ...PPE, [e.target.name]: e.target.value } });
+  const onMapClick = (mapProps, map, e) => {
+    const locate = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+    onChangeLocation(locate);
+    axios
+      .get(
+        `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${locate.lat},${locate.lng}&language=En&radius=100&key=AIzaSyCxpmfP0AdumaoSQgrXgdO7bM_f2g63v1A`,
+        { headers: { 'Access-Control-Allow-Origin': 'https://maps.googleapis.com/' } }
+      )
+      .then(res => setPlace(res.data.results));
+  };
+  useEffect(() => {
+    if (create) {
+      const placeID = create.place_id;
+      history.push(`/place/detail/${placeID}`);
+    }
+    if (createError) console.log(createError);
+  }, [history, create, createError]);
+  useEffect(() => {
+    return () => {
+      dispatch(unloadCreate());
+    };
+  }, [create]);
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
@@ -36,7 +77,7 @@ const Create = () => {
       </div>
       <div className="campaign-form form-update">
         <div className="container">
-          <form action="#">
+          <form onSubmit={onSubmit} encType="multipart/form-data">
             <h4>Start a campaign</h4>
             <div className="field">
               <label htmlFor="title">Campaign Name *</label>
@@ -67,12 +108,23 @@ const Create = () => {
               <span className="label-desc">
                 Introduce yourself, your campaign and why it’s important to you.
               </span>
-              <textarea
-                rows="4"
-                id="capaignstory"
-                placeholder="Enter a few tagline"
-                onChange={onChangeAddress}
-              />
+              <div id="google-map">
+                <Map
+                  google={window.google}
+                  zoom={15}
+                  initialCenter={{ lat: 37.5, lng: 127 }}
+                  onClick={onMapClick}
+                >
+                  {location && <Marker position={{ lat: location.lat, lng: location.lng }} />}
+                </Map>
+              </div>
+              <select name="address" onChange={onChangeAddress} style={{ marginTop: '10px' }}>
+                {place.map(p => (
+                  <option key={p.place_id} value={`${p.vicinity} ${p.name} ${p.place_id}`}>
+                    {p.vicinity === p.name ? p.vicinity : `${p.vicinity} ${p.name}`}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="field">
               <label htmlFor="uploadfile">Campaign Image *</label>
@@ -112,17 +164,34 @@ const Create = () => {
             </div>
             <div className="field">
               <label htmlFor="PPE">Campaign PPE *</label>
-              <span className="label-desc">
-                You can run a campaign for any number of days, with a 60 day duration maximum.
-              </span>
-              <input
-                type="text"
-                id="PPE"
-                value=""
-                name="title"
-                placeholder="60 days"
-                onChange={onChangePPE}
-              />
+              <span className="label-desc">PPE</span>
+              <span style={{ marginTop: '10px' }}>Mask</span>
+              <select name="Mask" onChange={onChangePPE}>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              <span style={{ marginTop: '10px' }}>Hand Sanitizer</span>
+              <select name="hand_sanitizer" onChange={onChangePPE}>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              <span style={{ marginTop: '10px' }}>Disposable Gloves</span>
+              <select name="disposable_gloves" onChange={onChangePPE}>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
             </div>
             <button type="submit" value="Save & Launch" className="btn-primary">
               Save & Launch
@@ -134,4 +203,6 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyCxpmfP0AdumaoSQgrXgdO7bM_f2g63v1A',
+})(Create);

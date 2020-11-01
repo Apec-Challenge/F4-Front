@@ -37,9 +37,9 @@ export function* fundSaga() {
 const initialState = {
   funds: [],
   fund: [],
-  fundError: [],
+  fundError: null,
   create: null,
-  createError: [],
+  createError: null,
   title: '',
   thumbnail_image: null,
   content_image: null,
@@ -52,6 +52,14 @@ const initialState = {
 
 export default handleActions(
   {
+    [CREATE_FUND_SUCCESS]: (state, { payload: create }) => ({
+      ...state,
+      create,
+    }),
+    [CREATE_FUND_FAILURE]: (state, { payload: createError }) => ({
+      ...state,
+      createError,
+    }),
     [READ_FUNDLIST_SUCCESS]: (state, { payload: funds }) => ({
       ...state,
       funds,
@@ -67,14 +75,6 @@ export default handleActions(
     [READ_FUND_FAILURE]: (state, { payload: fundError }) => ({
       ...state,
       fundError,
-    }),
-    [CREATE_FUND_SUCCESS]: (state, { payload: create }) => ({
-      ...state,
-      create,
-    }),
-    [CREATE_FUND_FAILURE]: (state, { payload: createError }) => ({
-      ...state,
-      createError,
     }),
     [CHANGE_FUND]: (state, { payload: { key, value } }) => ({
       ...state,

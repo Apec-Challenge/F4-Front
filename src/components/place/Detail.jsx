@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useReadDetailPlace from 'src/hook/place/useReadDetailPlace';
-import fund from 'src/modules/fund';
 
 const Detail = ({ place_id }) => {
   const { place, error, loading } = useReadDetailPlace({ place_id });
@@ -146,7 +145,6 @@ const Detail = ({ place_id }) => {
           </div>
         </div>
       </div>
-      }
     </main>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 import useCreate from 'src/hook/fund/useCreate';
@@ -51,8 +51,8 @@ const Create = ({ history }) => {
   }, [endDate]);
   useEffect(() => {
     if (create) {
-      const placeID = create.place;
-      history.push(`/fund/deatil/${placeID}`);
+      const { id } = create;
+      history.push(`/fund/detail/${id}`);
     }
     if (createError) console.log(createError);
   }, [history, create, createError]);
