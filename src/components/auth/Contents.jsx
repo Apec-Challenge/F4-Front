@@ -13,7 +13,6 @@ const Contents = ({ isLogin, setIsLogin }) => {
   useEffect(() => {
     dispatch(initialize());
   }, [isLogin]);
-  console.log(isLogin);
   return (
     <>
       {isLogin === 'login' ? (
