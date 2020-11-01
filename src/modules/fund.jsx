@@ -13,27 +13,10 @@ const [READ_FUND, READ_FUND_SUCCESS, READ_FUND_FAILURE] = createRequestActionTyp
   'fund/READ_FUND'
 );
 const CHANGE_FUND = 'fund/CHANGE_FUND';
+const UNLOAD_CREATEFUND = 'fund/UNLOAD_CREATEFUND';
 
-export const createFund = createAction(
-  CREATE_FUND,
-  ({
-    title,
-    description,
-    thumbnail_image,
-    content_image,
-    funding_goal_amount,
-    place,
-    ended_at,
-  }) => ({
-    title,
-    description,
-    thumbnail_image,
-    content_image,
-    funding_goal_amount,
-    place,
-    ended_at,
-  })
-);
+export const unloadCreate = createAction(UNLOAD_CREATEFUND);
+export const createFund = createAction(CREATE_FUND, fd => fd);
 export const readFundList = createAction(READ_FUNDLIST);
 export const readFund = createAction(READ_FUND, id => id);
 export const changeField = createAction(CHANGE_FUND, ({ key, value }) => ({
@@ -55,7 +38,7 @@ const initialState = {
   funds: [],
   fund: [],
   fundError: [],
-  create: [],
+  create: null,
   createError: [],
   title: '',
   thumbnail_image: null,
@@ -96,6 +79,10 @@ export default handleActions(
     [CHANGE_FUND]: (state, { payload: { key, value } }) => ({
       ...state,
       [key]: value, // 특정 key 값을 업데이트
+    }),
+    [UNLOAD_CREATEFUND]: () => ({
+      create: initialState.create,
+      createError: initialState.creataError,
     }),
   },
   initialState

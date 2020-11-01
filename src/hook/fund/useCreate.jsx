@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeField, createFund } from 'src/modules/fund';
+import { changeField, createFund, unloadCreate } from 'src/modules/fund';
 
 const useCreate = () => {
   const {
@@ -12,6 +12,8 @@ const useCreate = () => {
     place,
     address,
     ended_at,
+    create,
+    createError,
   } = useSelector(({ fund }) => ({
     title: fund.title,
     thumbnail_image: fund.thumbnail_image,
@@ -21,41 +23,27 @@ const useCreate = () => {
     place: fund.place,
     address: fund.address,
     ended_at: fund.ended_at,
+    create: fund.create,
+    createError: fund.createError,
   }));
   const dispatch = useDispatch();
-  const [image, setImage] = useState();
-  const [thumb, setThumb] = useState();
-  const onImgChange = e => setImage(e.target.files[0]);
-  const onThumbChange = e => setThumb(e.target.files[0]);
   const onSubmit = e => {
     e.preventDefault();
-    // const fd = new FormData();
-    // fd.append('title', title);
-    // fd.append('description', description);
-    // fd.append('thumbnail_image', thumb);
-    // fd.append('content_image', image);
-    // fd.append('funding_goal_amount', funding_goal_amount);
-    // fd.append('place', place);
-    // fd.append('ended_at', ended_at);
-    // dispatch(createFund(fd));
-    dispatch(
-      createFund({
-        title,
-        description,
-        thumbnail_image,
-        content_image,
-        funding_goal_amount,
-        place,
-        ended_at,
-      })
-    );
+    const fd = new FormData();
+    fd.append('title', title);
+    fd.append('description', description);
+    fd.append('thumbnail_image', thumbnail_image);
+    fd.append('content_image', content_image);
+    fd.append('funding_goal_amount', funding_goal_amount);
+    fd.append('place', place);
+    fd.append('ended_at', ended_at.toISOString());
+    dispatch(createFund(fd));
   };
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [dispatch]);
   return {
     onSubmit,
-    onImgChange,
-    onThumbChange,
     onChangeField,
+    unloadCreate,
     title,
     description,
     thumbnail_image,
@@ -64,6 +52,8 @@ const useCreate = () => {
     place,
     address,
     ended_at,
+    create,
+    createError,
   };
 };
 

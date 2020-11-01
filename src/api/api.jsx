@@ -11,24 +11,7 @@ export const register = ({ email, password1, password2, nickname }) =>
   API.post(`/rest-auth/registration`, { email, password1, password2, nickname });
 
 /* Fund API */
-export const createFund = ({
-  title,
-  description,
-  thumbnail_image,
-  content_image,
-  place,
-  funding_goal_amount,
-  ended_at,
-}) =>
-  API.post(`/api/funding/`, {
-    title,
-    description,
-    thumbnail_image,
-    content_image,
-    place,
-    funding_goal_amount,
-    ended_at,
-  });
+export const createFund = fd => API.post(`/api/funding/`, fd);
 export const readFund = id => API.get(`/api/funding/${id}/`, { id });
 export const readFundList = () => API.get(`/api/funding/`);
 export const updateFund = ({ id, title, content, fundingPrice, endedAt, place, user }) =>

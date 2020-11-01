@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 import useCreate from 'src/hook/fund/useCreate';
 import useReadPlace from 'src/hook/place/useReadPlace';
 
-const Create = () => {
+const Create = ({ history }) => {
   const {
     onSubmit,
-    onImgChange,
-    onThumbChange,
     onChangeField,
+    unloadCreate,
     title,
     description,
     thumbnail_image,
@@ -19,29 +19,18 @@ const Create = () => {
     address,
     funding_goal_amount,
     ended_at,
+    create,
+    createError,
   } = useCreate();
+  const dispatch = useDispatch();
   const { places, error, loading } = useReadPlace();
   const [endDate, setEndDate] = useState();
   const [show, setShow] = useState({});
   const [active, setActive] = useState({});
   const onChangeTitle = e => onChangeField({ key: 'title', value: e.target.value });
   const onChangeDesc = e => onChangeField({ key: 'description', value: e.target.value });
-  const onChangeThumb = e => {
-    const reader = new FileReader();
-    const file = e.target.files[0];
-    reader.onload = () => {
-      onChangeField({ key: 'thumbnail_image', value: reader.result });
-    };
-    reader.readAsDataURL(file);
-  };
-  const onChangeImage = e => {
-    const reader = new FileReader();
-    const file = e.target.files[0];
-    reader.onload = () => {
-      onChangeField({ key: 'content_image', value: reader.result });
-    };
-    reader.readAsDataURL(file);
-  };
+  const onChangeThumb = e => onChangeField({ key: 'thumbnail_image', value: e.target.files[0] });
+  const onChangeImage = e => onChangeField({ key: 'content_image', value: e.target.files[0] });
   const onChangeGoal = e => onChangeField({ key: 'funding_goal_amount', value: e.target.value });
   const onChangePlace = placeID => onChangeField({ key: 'place', value: placeID });
   const onChangeAddress = adrs => onChangeField({ key: 'address', value: adrs });
@@ -56,10 +45,22 @@ const Create = () => {
   };
   const onClickClose = placeID => {
     setShow(Object.assign(show, { [placeID]: false }));
-  }
+  };
   useEffect(() => {
     onChangeDuration(endDate);
   }, [endDate]);
+  useEffect(() => {
+    if (create) {
+      const placeID = create.place;
+      history.push(`/fund/deatil/${placeID}`);
+    }
+    if (createError) console.log(createError);
+  }, [history, create, createError]);
+  useEffect(() => {
+    return () => {
+      dispatch(unloadCreate());
+    }
+  }, [create])
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
@@ -78,7 +79,7 @@ const Create = () => {
       </div>
       <div className="campaign-form form-update">
         <div className="container">
-          <form onSubmit={onSubmit}>
+          <form encType="multipart/form-data" onSubmit={onSubmit}>
             <h4>Start a campaign</h4>
             <div className="field">
               <label htmlFor="title">Campaign Title *</label>

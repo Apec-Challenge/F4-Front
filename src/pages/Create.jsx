@@ -4,13 +4,13 @@ import FundCreate from 'src/components/fund/Create';
 import PlaceCreate from 'src/components/place/Create';
 import Footer from 'src/components/common/Footer';
 
-const Create = ({ match }) => {
+const Create = ({ match, history }) => {
   const { menu } = match.params;
   return (
     <>
       <Header />
-      {menu === 'fund' && <FundCreate />}
-      {menu === 'place' && <PlaceCreate />}
+      {menu === 'fund' && <FundCreate history={history} />}
+      {menu === 'place' && <PlaceCreate history={history} />}
       <Footer />
     </>
   );

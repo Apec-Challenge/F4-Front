@@ -12,7 +12,7 @@ const Contents = () => {
     <main id="main" className="site-main">
       {fetchFund.loading && '로딩중...'}
       {!fetchFund.loading &&
-        fetchFund.funds.splice(0, 1).map(fund => (
+        fetchFund.funds.slice(0, 1).map(fund => (
           <div key={fund.id} className="sideshow">
             <img src={fund.thumbnail_image} alt="" />
             <div className="container">
@@ -74,12 +74,12 @@ const Contents = () => {
                 <div className="grid-product">
                   {fetchPlace.places.slice(0, 4).map(place => (
                     <div key={place.id} className="product">
-                      <Link to="/place/detail">
+                      <Link to={`/place/detail/${place.place_id}`}>
                         <img src={place.place_image} alt="" />
                       </Link>
                       <div className="product-info">
                         <h3 className="product-title">
-                          <Link to="/place/detail">{place.title}</Link>
+                          <Link to={`/place/detail/${place.place_id}`}>{place.title}</Link>
                         </h3>
                         <p className="product-price">{place.description}</p>
                         <p className="product-price">{place.business_hour}</p>
@@ -107,10 +107,10 @@ const Contents = () => {
             {fetchFund.loading && '로딩중...'}
             {fetchFund.funds && !fetchFund.loading && (
               <div className="row">
-                {fetchFund.funds.slice(0, 6).map(fund => (
+                {fetchFund.funds.slice(1, 8).map((fund, index) => (
                   <div key={fund.id} className="col-lg-4 col-sm-6">
                     <div className="campaign-item">
-                      <Link className="overlay" to="/fund/detail">
+                      <Link className="overlay" to={`/fund/detail/${index}`}>
                         <img src={fund.thumbnail_image} alt="" />
                         <i className="fa fa-search" aria-hidden="true" />
                       </Link>

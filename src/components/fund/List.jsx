@@ -57,7 +57,7 @@ const List = () => {
             <div className="campaign-content">
               <div className="row">
                 <div className="col-lg-12">
-                  {funds.splice(0, 1).map(fund => (
+                  {funds.slice(0, 1).map(fund => (
                     <div key={fund.id} className="campaign-big-item clearfix">
                       <Link to={`/fund/detail/${fund.id}`} className="campaign-big-image">
                         <img src={fund.thumbnail_image} alt="" />
@@ -112,7 +112,7 @@ const List = () => {
                     </div>
                   ))}
                 </div>
-                {funds.map(fund => (
+                {funds.slice(1).map(fund => (
                   <div className="col-lg-4 col-sm-6 col-6">
                     <div key={fund.id} className="campaign-item">
                       <Link className="overlay" to={`/fund/detail/${fund.id}`}>
