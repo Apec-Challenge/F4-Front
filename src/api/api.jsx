@@ -12,7 +12,7 @@ export const register = ({ email, password1, password2, nickname }) =>
 
 /* Fund API */
 export const createFund = fd => API.post(`/api/funding/`, fd);
-export const readFund = id => API.get(`/api/funding/${id}/`, { id });
+export const readFund = id => API.get(`/api/funding/?id=${id}`, { id });
 export const readFundList = () => API.get(`/api/funding/`);
 export const updateFund = ({ id, title, content, fundingPrice, endedAt, place, user }) =>
   API.put(`/api/funding/${id}/edit/`, { id, title, content, fundingPrice, endedAt, place, user });

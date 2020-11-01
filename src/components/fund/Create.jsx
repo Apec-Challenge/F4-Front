@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
@@ -59,8 +59,8 @@ const Create = ({ history }) => {
   useEffect(() => {
     return () => {
       dispatch(unloadCreate());
-    }
-  }, [create])
+    };
+  }, [create]);
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
@@ -175,11 +175,7 @@ const Create = ({ history }) => {
                 Choose the location where you are running the campaign.
               </span>
               <div id="google-map">
-                <Map
-                  google={window.google}
-                  zoom={15}
-                  initialCenter={{ lat: 37.5, lng: 127 }}
-                >
+                <Map google={window.google} zoom={15} initialCenter={{ lat: 37.5, lng: 127 }}>
                   {places.map(place => (
                     <Marker
                       name={place.place_id}
@@ -192,7 +188,8 @@ const Create = ({ history }) => {
                     <InfoWindow
                       visible={show[place.place_id]}
                       marker={active}
-                      onClose={() => onClickClose(place.place_id)}>
+                      onClose={() => onClickClose(place.place_id)}
+                    >
                       <div>
                         <h1>{place.address}</h1>
                       </div>
