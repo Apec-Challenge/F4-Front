@@ -2253,6 +2253,13 @@ form .align-right {
   height: 560px;
   margin-top: 80px;
 }
+#google-map {
+  max-height: 300px;
+  max-width: 600px;
+  height: 300px;
+  width: 600px;
+  position: relative;
+}
 /*------------------------------------------------------------------
 3.7. Login / #login
 -------------------------------------------------------------------*/

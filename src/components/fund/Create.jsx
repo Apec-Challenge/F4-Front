@@ -8,34 +8,55 @@ import useReadPlace from 'src/hook/place/useReadPlace';
 const Create = () => {
   const {
     onSubmit,
+    onImgChange,
+    onThumbChange,
     onChangeField,
     title,
     description,
     thumbnail_image,
     content_image,
     place,
+    address,
     funding_goal_amount,
     ended_at,
   } = useCreate();
   const { places, error, loading } = useReadPlace();
   const [endDate, setEndDate] = useState();
-  const [show, setShow] = useState(false);
-  const [active, setActive] = useState();
-  const [state, setState] = useState();
+  const [show, setShow] = useState({});
+  const [active, setActive] = useState({});
   const onChangeTitle = e => onChangeField({ key: 'title', value: e.target.value });
   const onChangeDesc = e => onChangeField({ key: 'description', value: e.target.value });
-  const onChangeThumb = e => onChangeField({ key: 'thumbnail_image', value: e.target.files[0] });
-  const onChangeImage = e => onChangeField({ key: 'content_image', value: e.target.files[0] });
+  const onChangeThumb = e => {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    reader.onload = () => {
+      onChangeField({ key: 'thumbnail_image', value: reader.result });
+    };
+    reader.readAsDataURL(file);
+  };
+  const onChangeImage = e => {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    reader.onload = () => {
+      onChangeField({ key: 'content_image', value: reader.result });
+    };
+    reader.readAsDataURL(file);
+  };
   const onChangeGoal = e => onChangeField({ key: 'funding_goal_amount', value: e.target.value });
-  const onChangePlace = e => onChangeField({ key: 'place', value: e.target.value });
+  const onChangePlace = placeID => onChangeField({ key: 'place', value: placeID });
+  const onChangeAddress = adrs => onChangeField({ key: 'address', value: adrs });
   const onChangeDuration = date => onChangeField({ key: 'ended_at', value: date });
   const onMarkerClick = (props, marker, e) => {
-    setShow(true);
+    const placeID = props.name;
+    const adrs = props.address;
+    setShow(Object.assign(show, { [placeID]: true }));
     setActive(marker);
-    setState(props);
-    console.log(props);
-    console.log(marker);
+    onChangePlace(placeID);
+    onChangeAddress(adrs);
   };
+  const onClickClose = placeID => {
+    setShow(Object.assign(show, { [placeID]: false }));
+  }
   useEffect(() => {
     onChangeDuration(endDate);
   }, [endDate]);
@@ -152,50 +173,33 @@ const Create = () => {
               <span className="label-desc">
                 Choose the location where you are running the campaign.
               </span>
-              <div style={{ height: '300px', width: '600px' }}>
+              <div id="google-map">
                 <Map
                   google={window.google}
-                  style={{ height: '300px', width: '600px' }}
                   zoom={15}
                   initialCenter={{ lat: 37.5, lng: 127 }}
                 >
-                  {/* {places.map(place => (
-                      <Marker
-                        key={place.place_id}
-                        position={{ lng: place.lng, lat: place.lat }}
-                        name={place.address}
-                        onClick={onMarkerClick}
-                      >
-                        <InfoWindow key={place.place_id} visible={true} marker={active}>
-                          <div>
-                            <h1>asdfasdf</h1>
-                          </div>
-                        </InfoWindow>
-                      </Marker>
-                    ))} */}
-                  <Marker position={{ lat: 37.5, lng: 127 }}>
-                    <InfoWindow>
+                  {places.map(place => (
+                    <Marker
+                      name={place.place_id}
+                      address={place.address}
+                      position={{ lat: place.lat, lng: place.lng }}
+                      onClick={onMarkerClick}
+                    />
+                  ))}
+                  {places.map(place => (
+                    <InfoWindow
+                      visible={show[place.place_id]}
+                      marker={active}
+                      onClose={() => onClickClose(place.place_id)}>
                       <div>
-                        <h1>adsf</h1>
+                        <h1>{place.address}</h1>
                       </div>
                     </InfoWindow>
-                  </Marker>
+                  ))}
                 </Map>
               </div>
-              <div className="field-select">
-                {!loading && places && (
-                  <select name="s" onChange={onChangePlace}>
-                    <option value="" selected disabled hidden>
-                      select
-                    </option>
-                    {places.map(place => (
-                      <option key={place.place_id} value={place.place_id}>
-                        {place.place_id}
-                      </option>
-                    ))}
-                  </select>
-                )}
-              </div>
+              <div>{address}</div>
             </div>
             <div className="field">
               <label htmlFor="cduration">Campaign Duration *</label>

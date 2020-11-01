@@ -63,6 +63,7 @@ const initialState = {
   description: '',
   funding_goal_amount: '',
   place: '',
+  address: '',
   ended_at: '',
 };
 
