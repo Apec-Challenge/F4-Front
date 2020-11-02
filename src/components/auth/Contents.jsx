@@ -59,7 +59,7 @@ const Contents = ({ isLogin, setIsLogin }) => {
                       Login
                     </button>
                     <p>
-                      Not a member yet?{' '}
+                      Not a member yet?
                       <Link onClick={() => setIsLogin('register')} style={{ cursor: 'pointer' }}>
                         Register now
                       </Link>
@@ -132,7 +132,7 @@ const Contents = ({ isLogin, setIsLogin }) => {
                       Register
                     </button>
                     <p>
-                      Not a member yet?{' '}
+                      Not a member yet?
                       <Link onClick={() => setIsLogin('login')} style={{ cursor: 'pointer' }}>
                         Login now
                       </Link>

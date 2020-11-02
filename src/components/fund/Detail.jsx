@@ -51,7 +51,7 @@ const Detail = ({ fund_id }) => {
                           <Link className="author-icon" to="/">
                             <img src={require('src/images/user.png')} alt="" />
                           </Link>
-                          by{' '}
+                          by
                           <Link className="author-name" to="/">
                             {f.user}
                           </Link>

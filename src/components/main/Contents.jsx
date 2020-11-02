@@ -33,7 +33,6 @@ const Contents = () => {
                     </div>
                     <div className="process-funded">
                       <span>
-                        {' '}
                         {fund.funding_amount === 0
                           ? (fund.funding_amount / fund.funding_goal_amount) * 100
                           : 0}
@@ -123,7 +122,7 @@ const Contents = () => {
                           <Link className="author-icon" to="/">
                             <img src={require('src/images/user.png')} alt="" />
                           </Link>
-                          by{' '}
+                          by
                           <Link className="author-name" to="/">
                             {fund.user}
                           </Link>

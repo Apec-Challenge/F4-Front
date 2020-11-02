@@ -66,15 +66,15 @@ const List = () => {
                         <h3>
                           <Link to={`/fund/detail/${fund.id}`}>{fund.title}</Link>
                         </h3>
-                        <div className="campaign-description">{fund.contents}</div>
+                        <div className="campaign-description">{fund.description}</div>
                         <div className="staff-picks-author">
                           <div className="author-profile">
                             <Link className="author-avatar" to="/">
                               <img src={require('src/images/user.png')} alt="" />
                             </Link>
-                            by{' '}
+                            by
                             <Link className="author-name" to="/">
-                              {fund.user}
+                              {fund.owner_username}
                             </Link>
                           </div>
                           <div className="author-address">
@@ -123,14 +123,14 @@ const List = () => {
                         <h3>
                           <Link to={`/fund/detail/${fund.id}`}>{fund.title}</Link>
                         </h3>
-                        <div className="campaign-description">{fund.content}</div>
+                        <div className="campaign-description">{fund.description}</div>
                         <div className="campaign-author">
                           <Link className="author-icon" to="/">
                             <img src={require('src/images/user.png')} alt="" />
                           </Link>
-                          by{' '}
+                          by
                           <Link className="author-name" to="/">
-                            {fund.user}
+                            {fund.owner_username}
                           </Link>
                         </div>
                         <div className="process">

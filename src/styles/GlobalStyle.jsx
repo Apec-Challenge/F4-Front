@@ -1,6 +1,10 @@
 // src/styles/global-styles.ts
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
+import React, { useState, useEffect } from 'react';
+import useReadFund from 'src/hook/fund/useReadFund';
+
+const a = 1;
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -922,7 +926,7 @@ ul.socials-top li:hover i {
   left: 0;
   bottom: 0;
   border-radius: 25px;
-  width: ${funded};
+  width: 40%;
   background-color: #00a6eb;
   display: block;
   -webkit-border-top-right-radius: 25px;
@@ -1137,10 +1141,16 @@ ul.socials-top li:hover i {
   display: inline-block;
 }
 .campaign-box .campaign-description {
-  line-height: 1.7;
   margin-bottom: 13px;
-  max-height: 47px;
+  word-break: break-word;
   overflow: hidden;
+  white-space: normal;
+  height: 4.5em;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 .campaign-box .author-icon {
   margin-right: 10px;
@@ -1708,8 +1718,8 @@ ul.menu-category li.active:after {
   overflow: hidden;
   word-break: break-word;
   white-space: normal;
-  height: 3.6em;
-  line-height: 1.2;
+  height: 4.5em;
+  line-height: 1.5;
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   display: -webkit-box;
@@ -3480,6 +3490,9 @@ form .create-account input[type='checkbox'] {
   font-weight: 500;
   margin-top: 16px;
   margin-bottom: 5px;
+}
+.author-name {
+  margin-left: 5px;
 }
 .story-info .story-desc {
   max-height: 80px;
