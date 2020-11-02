@@ -926,7 +926,11 @@ ul.socials-top li:hover i {
   left: 0;
   bottom: 0;
   border-radius: 25px;
+<<<<<<< HEAD
   width: 40%;
+=======
+  width: 46%;
+>>>>>>> fefe1957febd634eacc79645cb6b83a0c24a4a6e
   background-color: #00a6eb;
   display: block;
   -webkit-border-top-right-radius: 25px;
