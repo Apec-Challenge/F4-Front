@@ -78,7 +78,7 @@ const Detail = ({ fund_id }) => {
                             </span>
                           </div>
                           <div className="process-time">
-                            <span>{f.backed_list}</span>backers
+                            <span>{f.backed_list.length}</span>backers
                           </div>
                           <div className="process-time">
                             <span>{moment(f.ended_at).diff(currentDate, 'days')}</span>

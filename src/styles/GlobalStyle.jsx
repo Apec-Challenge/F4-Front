@@ -922,7 +922,7 @@ ul.socials-top li:hover i {
   left: 0;
   bottom: 0;
   border-radius: 25px;
-  width: 46%;
+  width: ${funded};
   background-color: #00a6eb;
   display: block;
   -webkit-border-top-right-radius: 25px;
@@ -1703,8 +1703,17 @@ ul.menu-category li.active:after {
   padding: 0 15px;
 }
 .product .product-price {
-  font-size: 18px;
+  font-size: 14px;
   color: #555555;
+  overflow: hidden;
+  word-break: break-word;
+  white-space: normal;
+  height: 3.6em;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 .product .product-title {
   font-size: 16px;
@@ -1725,6 +1734,7 @@ ul.menu-category li.active:after {
 .product-info {
   background-color: #f5f6f6;
   padding: 27px 25px;
+  height: 130px;
 }
 .post-title,
 .product-title {
@@ -3549,6 +3559,8 @@ form .create-account input[type='checkbox'] {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  height: 200px;
+  width: 270px;
 }
 .featured-places-item a.featured-places-image:after,
 .explore-item a.explore-overlay:after {

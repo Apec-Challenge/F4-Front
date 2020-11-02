@@ -45,8 +45,10 @@ const List = () => {
                         <h3 className="product-title">
                           <Link to={`/place/detail/${place.place_id}`}>{place.title}</Link>
                         </h3>
-                        <p className="product-price">{place.description}</p>
-                        <p className="product-price">{place.business_hour}</p>
+                        <div style={{ display: 'flex' }}>
+                          <span className="ion-location" style={{ marginRight: '10px' }} />
+                          <p className="product-price">{place.address}</p>
+                        </div>
                       </div>
                     </div>
                   ))}
