@@ -1,10 +1,6 @@
 // src/styles/global-styles.ts
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
-import React, { useState, useEffect } from 'react';
-import useReadFund from 'src/hook/fund/useReadFund';
-
-const a = 1;
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -179,7 +175,8 @@ h6 {
 img {
   border: none;
   max-width: 100%;
-  height: 100%;
+  max-height: 100%;
+  height: auto;
   width: 100%;
   object-fit: cover;
 }
@@ -926,11 +923,7 @@ ul.socials-top li:hover i {
   left: 0;
   bottom: 0;
   border-radius: 25px;
-<<<<<<< HEAD
   width: 40%;
-=======
-  width: 46%;
->>>>>>> fefe1957febd634eacc79645cb6b83a0c24a4a6e
   background-color: #00a6eb;
   display: block;
   -webkit-border-top-right-radius: 25px;

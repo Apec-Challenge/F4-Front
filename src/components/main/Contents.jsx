@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import useReadFund from 'src/hook/fund/useReadFund';
 import useReadPlace from 'src/hook/place/useReadPlace';
+import Raised from 'src/components/common/Raised';
 
 const Contents = () => {
   const fetchFund = useReadFund();
@@ -21,12 +22,10 @@ const Contents = () => {
                   {fund.title}
                 </h1>
                 <div className="sideshow-description wow fadeInUp" data-wow-delay=".1s">
-                  {fund.content}
+                  {fund.description}
                 </div>
                 <div className="process wow fadeInUp" data-scroll-nav="1">
-                  <div className="raised">
-                    <span />
-                  </div>
+                  <Raised funded={(fund.funding_amount / fund.funding_goal_amount) * 100} />
                   <div className="process-info">
                     <div className="process-pledged">
                       <span>${fund.funding_goal_amount}</span>funding goal
@@ -34,8 +33,8 @@ const Contents = () => {
                     <div className="process-funded">
                       <span>
                         {fund.funding_amount === 0
-                          ? (fund.funding_amount / fund.funding_goal_amount) * 100
-                          : 0}
+                          ? 0
+                          : (fund.funding_amount / fund.funding_goal_amount) * 100}
                         %
                       </span>
                       funded
@@ -49,7 +48,7 @@ const Contents = () => {
                   </div>
                 </div>
                 <div className="button wow fadeInUp" data-wow-delay="0.3s">
-                  <Link to="/" className="btn-secondary">
+                  <Link to={`/fund/detail/${fund.id}`} className="btn-secondary">
                     See Campaign
                   </Link>
                   <Link to="/" className="btn-primary">
@@ -72,7 +71,7 @@ const Contents = () => {
               <div className="col-lg-12 main-content">
                 <div className="grid-product">
                   {fetchPlace.places.slice(0, 4).map(place => (
-                    <div key={place.id} className="product">
+                    <div key={place.place_id} className="product">
                       <Link to={`/place/detail/${place.place_id}`}>
                         <img src={place.place_image} alt="" />
                       </Link>
@@ -117,20 +116,18 @@ const Contents = () => {
                         <h3>
                           <Link to="/">{fund.title}</Link>
                         </h3>
-                        <div className="campaign-description">{fund.content}</div>
+                        <div className="campaign-description">{fund.description}</div>
                         <div className="campaign-author">
                           <Link className="author-icon" to="/">
                             <img src={require('src/images/user.png')} alt="" />
                           </Link>
                           by
                           <Link className="author-name" to="/">
-                            {fund.user}
+                            {fund.owner_username}
                           </Link>
                         </div>
                         <div className="process">
-                          <div className="raised">
-                            <span />
-                          </div>
+                          <Raised funded={(fund.funding_amount / fund.funding_goal_amount) * 100} />
                           <div className="process-info">
                             <div className="process-pledged">
                               <span>${fund.funding_goal_amount}</span>funding goal
@@ -138,8 +135,8 @@ const Contents = () => {
                             <div className="process-funded">
                               <span>
                                 {fund.funding_amount === 0
-                                  ? (fund.funding_amount / fund.funding_goal_amount) * 100
-                                  : 0}
+                                  ? 0
+                                  : (fund.funding_amount / fund.funding_goal_amount) * 100}
                                 %
                               </span>
                               funded

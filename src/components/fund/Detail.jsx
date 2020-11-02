@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import useReadDetailFund from 'src/hook/fund/useReadDetailFund';
+import Raised from 'src/components/common/Raised';
 
 const Detail = ({ fund_id }) => {
   const { fund, error, loading } = useReadDetailFund({ fund_id });
@@ -62,9 +63,7 @@ const Detail = ({ fund_id }) => {
                         </div>
                       </div>
                       <div className="process">
-                        <div className="raised">
-                          <span />
-                        </div>
+                        <Raised funded={(f.funding_amount / f.funding_goal_amount) * 100} />
                         <div className="process-info">
                           <div className="process-pledged">
                             <span>${f.funding_goal_amount}</span>funding goal
@@ -72,8 +71,8 @@ const Detail = ({ fund_id }) => {
                           <div className="process-funded">
                             <span>
                               {f.funding_amount === 0
-                                ? (f.funding_amount / f.funding_goal_amount) * 100
-                                : 0}
+                                ? 0
+                                : (f.funding_amount / f.funding_goal_amount) * 100}
                               %
                             </span>
                           </div>

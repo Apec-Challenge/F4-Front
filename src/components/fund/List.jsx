@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import useReadFund from 'src/hook/fund/useReadFund';
+import Raised from 'src/components/common/Raised';
 
 const List = () => {
   const { funds, error, loading } = useReadFund();
@@ -83,9 +84,7 @@ const List = () => {
                           </div>
                         </div>
                         <div className="process">
-                          <div className="raised">
-                            <span />
-                          </div>
+                          <Raised funded={(fund.funding_amount / fund.funding_goal_amount) * 100} />
                           <div className="process-info">
                             <div className="process-pledged">
                               <span>${fund.funding_goal_amount}</span>funding goal
@@ -134,9 +133,7 @@ const List = () => {
                           </Link>
                         </div>
                         <div className="process">
-                          <div className="raised">
-                            <span />
-                          </div>
+                          <Raised funded={(fund.funding_amount / fund.funding_goal_amount) * 100} />
                           <div className="process-info">
                             <div className="process-pledged">
                               <span>${fund.funding_goal_amount}</span>funding goal
@@ -144,8 +141,8 @@ const List = () => {
                             <div className="process-funded">
                               <span>
                                 {fund.funding_amount === 0
-                                  ? (fund.funding_amount / fund.funding_goal_amount) * 100
-                                  : 0}
+                                  ? 0
+                                  : (fund.funding_amount / fund.funding_goal_amount) * 100}
                                 %
                               </span>
                               funded
