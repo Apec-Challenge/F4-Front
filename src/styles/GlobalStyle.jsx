@@ -922,7 +922,7 @@ ul.socials-top li:hover i {
   left: 0;
   bottom: 0;
   border-radius: 25px;
-  width: ${funded};
+  width: 46%;
   background-color: #00a6eb;
   display: block;
   -webkit-border-top-right-radius: 25px;
