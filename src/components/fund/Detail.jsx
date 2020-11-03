@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import useReadDetailFund from 'src/hook/fund/useReadDetailFund';
+import useCommentCreate from 'src/hook/fund/useCommentCreate';
 import Raised from 'src/components/common/Raised';
 
 const Detail = ({ fund_id }) => {
   const { fund, error, loading } = useReadDetailFund({ fund_id });
+  const { onSubmit, onChangeField, content } = useCommentCreate({ fund_id });
   const currentDate = moment().toISOString();
+  const [active, setActive] = useState({ desc: 'active', backer: 0, PPE: 0, cheer: 0 });
+  const onChangeComment = e => onChangeField({ key: 'comment_content', value: e.target.value });
+  const onTabClick = e => {
+    setActive({ desc: 0, backer: 0, PPE: 0, cheer: 0 });
+    const { title } = e.target;
+    setActive({ [title]: 'active' });
+  };
   return (
     <div className="campaign-detail">
       <main id="main" className="site-main">
@@ -36,7 +45,7 @@ const Detail = ({ fund_id }) => {
             {!loading && fund && (
               <div className="campaign">
                 {fund.map(f => (
-                  <div className="campaign-item clearfix">
+                  <div key={f.id} className="campaign-item clearfix">
                     <div className="campaign-image">
                       <div className="item">
                         <img src={f.thumbnail_image} alt="" />
@@ -54,12 +63,12 @@ const Detail = ({ fund_id }) => {
                           </Link>
                           by
                           <Link className="author-name" to="/">
-                            {f.user}
+                            {f.owner_username}
                           </Link>
                         </div>
                         <div className="author-address">
                           <span className="ion-location" />
-                          Melbourne, Victoria, AU
+                          {f.place}
                         </div>
                       </div>
                       <div className="process">
@@ -75,12 +84,13 @@ const Detail = ({ fund_id }) => {
                                 : (f.funding_amount / f.funding_goal_amount) * 100}
                               %
                             </span>
+                            funded
                           </div>
                           <div className="process-time">
                             <span>{f.backed_list.length}</span>backers
                           </div>
                           <div className="process-time">
-                            <span>{moment(f.ended_at).diff(currentDate, 'days')}</span>
+                            <span>{moment(f.ended_at).diff(currentDate, 'days')}</span>days ago
                           </div>
                         </div>
                       </div>
@@ -109,122 +119,104 @@ const Detail = ({ fund_id }) => {
               {!loading && fund && (
                 <div className="col-lg-12">
                   {fund.map(f => (
-                    <div className="campaign-tabs">
+                    <div key={f.id} className="campaign-tabs">
                       <ul className="tabs-controls">
-                        <li className="active" data-tab="campaign">
-                          <Link to="/">Description</Link>
+                        <li
+                          className={active.desc}
+                          title="desc"
+                          data-tab="campaign"
+                          onClick={onTabClick}
+                        >
+                          Description
                         </li>
-                        <li data-tab="backer">
-                          <Link to="/">Backer List</Link>
+                        <li
+                          className={active.backer}
+                          title="backer"
+                          data-tab="backer"
+                          onClick={onTabClick}
+                        >
+                          Backer List
                         </li>
-                        <li data-tab="faq">
-                          <Link to="/">FAQ</Link>
+                        <li className={active.PPE} title="PPE" data-tab="PPE" onClick={onTabClick}>
+                          PPE
                         </li>
-                        <li data-tab="comment">
-                          <Link to="/">Cheering Comment</Link>
+                        <li
+                          className={active.cheer}
+                          title="cheer"
+                          data-tab="cheering-comment"
+                          onClick={onTabClick}
+                        >
+                          Cheering Comment
                         </li>
                       </ul>
                       <div className="campaign-content">
-                        <div id="campaign" className="tabs active">
+                        <div id="campaign" className={`tabs ${active.desc}`}>
                           <img src={f.content_image} alt="" />
                           <p>{f.description}</p>
                         </div>
-                        <div id="backer" className="tabs">
+                        <div id="backer" className={`tabs ${active.backer}`}>
                           <table>
                             <tr>
                               <th>Name</th>
                               <th>Donate Amount</th>
                               <th>Date</th>
                             </tr>
-                            <tr>
-                              <td>Andrew</td>
-                              <td>$100</td>
-                              <td>June 25, 2017</td>
-                            </tr>
-                            <tr>
-                              <td>Andrew</td>
-                              <td>$60</td>
-                              <td>December 25, 2017</td>
-                            </tr>
-                            <tr>
-                              <td>Andrew</td>
-                              <td>$70</td>
-                              <td>November 25, 2017</td>
-                            </tr>
-                            <tr>
-                              <td>Andrew</td>
-                              <td>$90</td>
-                              <td>February 25, 2017</td>
-                            </tr>
-                            <tr>
-                              <td>Andrew</td>
-                              <td>$30</td>
-                              <td>January 25, 2017</td>
-                            </tr>
-                            <tr>
-                              <td>Andrew</td>
-                              <td>$80</td>
-                              <td>June 15, 2017</td>
-                            </tr>
+                            {f.backed_list.map(backer => (
+                              <tr key={backer.id}>
+                                <td>{backer}</td>
+                                <td>$100</td>
+                                <td>June 25, 2017</td>
+                              </tr>
+                            ))}
                           </table>
                         </div>
-                        <div id="faq" className="tabs">
-                          <h2>Frequently Asked Questions</h2>
-                          <p>
-                            Looks like there aren`t any frequently asked questions yet. Ask the
-                            project creator directly.
-                          </p>
-                          <Link to="/" className="btn-primary">
-                            Ask a question
-                          </Link>
+                        <div id="faq" className={`tabs ${active.PPE}`}>
+                          <h2>Personal Protective Equipment (PPE)</h2>
+                          <h4>Mask</h4>
+                          <p>a</p>
+                          <h4>Hand sanitizer</h4>
+                          <p>b</p>
+                          <h4>Disposable gloves</h4>
+                          <p>c</p>
                         </div>
-                        <div id="comment" className="tabs comment-area">
-                          <h3 className="comments-title">1 Comment</h3>
+                        <div id="comment" className={`tabs ${active.cheer} comment-area`}>
+                          <h3 className="comments-title">{f.comment_list.length} Comment</h3>
                           <ol className="comments-list">
-                            <li className="comment clearfix">
-                              <div className="comment-body">
-                                <div className="comment-avatar">
-                                  <img src={require('src/images/placeholder/70x70.png')} alt="" />
-                                </div>
-                                <div className="comment-info">
-                                  <header className="comment-meta" />
-                                  <cite className="comment-author">Jordan B. Goodale</cite>
-                                  <div className="comment-inline">
-                                    <span className="comment-date">2 days ago</span>
-                                    <Link to="/" className="comment-reply">
-                                      Reply
-                                    </Link>
+                            {f.comment_list.map(comment => (
+                              <li key={comment.id} className="comment clearfix">
+                                <div className="comment-body">
+                                  <div className="comment-avatar">
+                                    <img src={require('src/images/placeholder/70x70.png')} alt="" />
                                   </div>
-                                  <div className="comment-content">
-                                    <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                      Equidem e Cn. Sequitur disserendi ratio cognitioque naturae;
-                                      Nunc vides, quid faciat. Duo Reges: constructio interrete.
-                                      Memini vero, inquam; Quis Aristidem non mortuum diligit?
-                                    </p>
+                                  <div className="comment-info">
+                                    <header className="comment-meta" />
+                                    <cite className="comment-author">{comment.user}</cite>
+                                    <div className="comment-inline">
+                                      <span className="comment-date">
+                                        {moment(currentDate).diff(comment.created_at, 'days')} days
+                                        ago
+                                      </span>
+                                    </div>
+                                    <div className="comment-content">
+                                      <p>{comment.content}</p>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </li>
+                              </li>
+                            ))}
                           </ol>
                           <div id="respond" className="comment-respond">
                             <h3 id="reply-title" className="comment-reply-title">
                               Leave A Comment?
                             </h3>
-                            <form action="#" id="commentForm">
+                            <form id="commentForm" onSubmit={onSubmit}>
                               <div className="field-textarea">
-                                <textarea rows="8" placeholder="Your Comment" />
-                              </div>
-                              <div className="row">
-                                <div className="col-md-4 field">
-                                  <input type="text" value="" name="s" placeholder="Your Name" />
-                                </div>
-                                <div className="col-md-4 field">
-                                  <input type="text" value="" name="s" placeholder="Your Email" />
-                                </div>
-                                <div className="col-md-4 field">
-                                  <input type="text" value="" name="s" placeholder="Website" />
-                                </div>
+                                <textarea
+                                  rows="8"
+                                  placeholder="Your Comment"
+                                  onChange={onChangeComment}
+                                  value={content}
+                                />
                               </div>
                               <button type="submit" value="Send Messager" className="btn-primary">
                                 Post Comment

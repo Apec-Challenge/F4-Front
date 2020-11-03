@@ -15,7 +15,7 @@ const RaisedWrap = styled.div`
   .raised {
     width: 100%;
     height: 10px;
-    background: #fff;
+    background: #dedede;
     border-radius: 25px;
     position: relative;
     margin-bottom: 15px;

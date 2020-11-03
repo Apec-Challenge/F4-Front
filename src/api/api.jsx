@@ -17,6 +17,8 @@ export const readFundList = () => API.get(`/api/funding/`);
 export const updateFund = ({ id, title, content, fundingPrice, endedAt, place, user }) =>
   API.put(`/api/funding/${id}/edit/`, { id, title, content, fundingPrice, endedAt, place, user });
 export const deleteFund = id => API.delete(`/api/funding/${id}/delete/`, { id });
+export const createComment = ({ user, funding, content }) =>
+  API.post(`/api/funding-comment/`, { user, funding, content });
 
 /* Place API */
 export const createPlace = fd => API.post(`/api/place/`, fd);

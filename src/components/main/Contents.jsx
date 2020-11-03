@@ -108,10 +108,12 @@ const Contents = () => {
                 {fetchFund.funds.slice(1, 8).map((fund, index) => (
                   <div key={fund.id} className="col-lg-4 col-sm-6">
                     <div className="campaign-item">
-                      <Link className="overlay" to={`/fund/detail/${index}`}>
-                        <img src={fund.thumbnail_image} alt="" />
-                        <i className="fa fa-search" aria-hidden="true" />
-                      </Link>
+                      <div className="thumbnail">
+                        <Link className="overlay" to={`/fund/detail/${index}`}>
+                          <img src={fund.thumbnail_image} alt="" />
+                          <i className="fa fa-search" aria-hidden="true" />
+                        </Link>
+                      </div>
                       <div className="campaign-box">
                         <h3>
                           <Link to="/">{fund.title}</Link>

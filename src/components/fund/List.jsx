@@ -60,9 +60,11 @@ const List = () => {
                 <div className="col-lg-12">
                   {funds.slice(0, 1).map(fund => (
                     <div key={fund.id} className="campaign-big-item clearfix">
-                      <Link to={`/fund/detail/${fund.id}`} className="campaign-big-image">
-                        <img src={fund.thumbnail_image} alt="" />
-                      </Link>
+                      <div className="thumbnail">
+                        <Link to={`/fund/detail/${fund.id}`} className="campaign-big-image">
+                          <img src={fund.thumbnail_image} alt="" />
+                        </Link>
+                      </div>
                       <div className="campaign-big-box">
                         <h3>
                           <Link to={`/fund/detail/${fund.id}`}>{fund.title}</Link>
@@ -114,10 +116,12 @@ const List = () => {
                 {funds.slice(1).map(fund => (
                   <div className="col-lg-4 col-sm-6 col-6">
                     <div key={fund.id} className="campaign-item">
-                      <Link className="overlay" to={`/fund/detail/${fund.id}`}>
-                        <img src={fund.thumbnail_image} alt="" />
-                        <i className="fa fa-search" aria-hidden="true" />
-                      </Link>
+                      <div className="thumbnail">
+                        <Link className="overlay" to={`/fund/detail/${fund.id}`}>
+                          <img src={fund.thumbnail_image} alt="" />
+                          <i className="fa fa-search" aria-hidden="true" />
+                        </Link>
+                      </div>
                       <div className="campaign-box">
                         <h3>
                           <Link to={`/fund/detail/${fund.id}`}>{fund.title}</Link>
