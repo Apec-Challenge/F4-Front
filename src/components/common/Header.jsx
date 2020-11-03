@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from 'src/images/logo_color.png';
 
 const Header = () => {
+  const [login, setLogin] = useState(false);
   const onShow = () => {
     document.querySelector('.form-search').style.display = 'block';
     document.querySelector('#searchForm').style.display = 'block';
@@ -14,6 +15,15 @@ const Header = () => {
   const onChange = e => {
     console.log(e.target.value);
   };
+  const cookies = document.cookie;
+  useEffect(() => {
+    if (cookies) {
+      setLogin(true);
+    }
+    if (!cookies) {
+      setLogin(false);
+    }
+  }, [cookies]);
   return (
     <header id="header" className="site-header">
       <div className="container">
@@ -92,9 +102,13 @@ const Header = () => {
             </form>
           </div>
           <div className="login login-button">
-            <Link to="/auth" className="btn-primary">
-              Login
-            </Link>
+            {login ? (
+              <Link to="/auth" className="btn-primary">
+                Login
+              </Link>
+            ) : (
+              <div>회원님 환영</div>
+            )}
           </div>
         </div>
       </div>

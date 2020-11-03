@@ -4,6 +4,8 @@ import * as api from 'src/api/api';
 import createRequestSaga, { createRequestActionTypes } from 'src/api/createRequestSaga';
 
 const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionTypes('auth/LOGIN');
+const [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILURE] = createRequestActionTypes('auth/LOGOUT');
+const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] = createRequestActionTypes('auth/REGISTER');
 const CHANGE_AUTH = 'auth/CHANGE_AUTH';
 const INITIALIZE = 'auth/INITIALIZE';
 
@@ -12,7 +14,17 @@ export const changeField = createAction(CHANGE_AUTH, ({ key, value }) => ({
   key,
   value,
 }));
-export const login = createAction(LOGIN);
+export const login = createAction(LOGIN, ({ email, password }) => ({
+  email,
+  password,
+}));
+export const logout = createAction(LOGIN);
+export const register = createAction(REGISTER, ({ email, nickname, password1, password2 }) => ({
+  email,
+  nickname,
+  password1,
+  password2,
+}));
 
 const loginSaga = createRequestSaga(LOGIN, api.login);
 
@@ -36,6 +48,22 @@ export default handleActions(
       auth,
     }),
     [LOGIN_FAILURE]: (state, { payload: authError }) => ({
+      ...state,
+      authError,
+    }),
+    [LOGOUT_SUCCESS]: (state, { payload: auth }) => ({
+      ...state,
+      auth,
+    }),
+    [LOGOUT_FAILURE]: (state, { payload: authError }) => ({
+      ...state,
+      authError,
+    }),
+    [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
+      ...state,
+      auth,
+    }),
+    [REGISTER_FAILURE]: (state, { payload: authError }) => ({
       ...state,
       authError,
     }),

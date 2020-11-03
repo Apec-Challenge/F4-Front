@@ -1,18 +1,36 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useAuth from 'src/hook/auth/useAuth';
 
-const Contents = ({ isLogin, setIsLogin }) => {
-  const dispatch = useDispatch();
-  const { initialize, onChangeField, email, nickname, password1, password2 } = useAuth();
+const Contents = ({ history, isLogin, setIsLogin }) => {
+  const {
+    onLogin,
+    onLogout,
+    onRegister,
+    onInit,
+    onChangeField,
+    email,
+    nickname,
+    password1,
+    password2,
+    auth,
+    authError,
+  } = useAuth();
   const onChangeEmail = e => onChangeField({ key: 'email', value: e.target.value });
   const onChangeNick = e => onChangeField({ key: 'nickname', value: e.target.value });
   const onChangePw = e => onChangeField({ key: 'password1', value: e.target.value });
   const onChangePwConfirm = e => onChangeField({ key: 'password2', value: e.target.value });
   useEffect(() => {
-    dispatch(initialize());
+    onInit();
   }, [isLogin]);
+  useEffect(() => {
+    if (auth) {
+      history.push(`/`);
+    }
+    if (authError) {
+      console.log(authError);
+    }
+  }, [auth]);
   return (
     <>
       {isLogin === 'login' ? (
@@ -35,7 +53,7 @@ const Contents = ({ isLogin, setIsLogin }) => {
             <div className="main-content">
               <div className="form-login">
                 <h2>Login with your account</h2>
-                <form id="loginForm" className="clearfix">
+                <form id="loginForm" className="clearfix" onSubmit={onLogin}>
                   <div className="field">
                     <input
                       type="email"
@@ -90,7 +108,7 @@ const Contents = ({ isLogin, setIsLogin }) => {
             <div className="main-content">
               <div className="form-login form-register">
                 <h2>Register for Free</h2>
-                <form id="registerForm" className="clearfix">
+                <form id="registerForm" className="clearfix" onSubmit={onRegister}>
                   <div className="field">
                     <input
                       type="email"
