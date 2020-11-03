@@ -3,13 +3,30 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeField, initialize, login, logout, register } from 'src/modules/auth';
 
 const useAuth = () => {
-  const { email, nickname, password1, password2, auth, authError } = useSelector(({ auth }) => ({
+  const {
+    cookie,
+    email,
+    nickname,
+    password1,
+    password2,
+    authLogin,
+    authLogout,
+    authRegister,
+    authError,
+    loginLoading,
+    registerLoading,
+  } = useSelector(({ auth, loading }) => ({
+    cookie: auth.cookie,
     email: auth.email,
     nickname: auth.nickname,
     password1: auth.password1,
     password2: auth.password2,
-    auth: auth.auth,
+    authLogin: auth.authLogin,
+    authLogout: auth.authLogout,
+    authRegister: auth.authRegister,
     authError: auth.authError,
+    loginLoading: loading['auth/LOGIN'],
+    registerLoading: loading['auth/REGISTER'],
   }));
   const dispatch = useDispatch();
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [dispatch]);
@@ -32,12 +49,17 @@ const useAuth = () => {
     onRegister,
     onInit,
     onChangeField,
+    cookie,
     email,
     nickname,
     password1,
     password2,
-    auth,
+    authLogin,
+    authLogout,
+    authRegister,
     authError,
+    loginLoading,
+    registerLoading,
   };
 };
 

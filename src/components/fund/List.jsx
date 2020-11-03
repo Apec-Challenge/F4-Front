@@ -80,10 +80,10 @@ const List = () => {
                               {fund.owner_username}
                             </Link>
                           </div>
-                          <div className="author-address">
-                            <span className="ion-location" />
-                            {fund.place}
-                          </div>
+                        </div>
+                        <div className="author-address">
+                          <span className="ion-location" />
+                          {fund.place.address}
                         </div>
                         <div className="process">
                           <Raised funded={(fund.funding_amount / fund.funding_goal_amount) * 100} />

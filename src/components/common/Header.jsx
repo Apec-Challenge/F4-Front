@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from 'src/hook/auth/useAuth';
 import Logo from 'src/images/logo_color.png';
 
 const Header = () => {
+  const { onLogout, authLogin, authLogout, loginLoading } = useAuth();
   const [login, setLogin] = useState(false);
   const onShow = () => {
     document.querySelector('.form-search').style.display = 'block';
@@ -102,12 +104,15 @@ const Header = () => {
             </form>
           </div>
           <div className="login login-button">
+            {authLogin && !loginLoading && <div>{authLogin.nickname}</div>}
             {login ? (
+              <button className="btn-primary" onClick={onLogout}>
+                Log Out
+              </button>
+            ) : (
               <Link to="/auth" className="btn-primary">
                 Login
               </Link>
-            ) : (
-              <div>회원님 환영</div>
             )}
           </div>
         </div>

@@ -66,10 +66,10 @@ const Detail = ({ fund_id }) => {
                             {f.owner_username}
                           </Link>
                         </div>
-                        <div className="author-address">
-                          <span className="ion-location" />
-                          {f.place}
-                        </div>
+                      </div>
+                      <div className="author-address">
+                        <span className="ion-location" />
+                        {f.place.address}
                       </div>
                       <div className="process">
                         <Raised funded={(f.funding_amount / f.funding_goal_amount) * 100} />

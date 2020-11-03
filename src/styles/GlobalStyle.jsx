@@ -1414,7 +1414,7 @@ ul.menu-category li.active:after {
   height: 410px;
 }
 .campaign-item .thumbnail {
-  width: 370px;
+  width: 100%;
   height: 270px;
 }
 .campaign-big-item .process .process-info {

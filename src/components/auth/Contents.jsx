@@ -5,7 +5,6 @@ import useAuth from 'src/hook/auth/useAuth';
 const Contents = ({ history, isLogin, setIsLogin }) => {
   const {
     onLogin,
-    onLogout,
     onRegister,
     onInit,
     onChangeField,
@@ -13,7 +12,9 @@ const Contents = ({ history, isLogin, setIsLogin }) => {
     nickname,
     password1,
     password2,
-    auth,
+    authLogin,
+    authLogout,
+    authRegister,
     authError,
   } = useAuth();
   const onChangeEmail = e => onChangeField({ key: 'email', value: e.target.value });
@@ -24,13 +25,13 @@ const Contents = ({ history, isLogin, setIsLogin }) => {
     onInit();
   }, [isLogin]);
   useEffect(() => {
-    if (auth) {
+    if (authLogin) {
       history.push(`/`);
     }
     if (authError) {
       console.log(authError);
     }
-  }, [auth]);
+  }, [authLogin]);
   return (
     <>
       {isLogin === 'login' ? (

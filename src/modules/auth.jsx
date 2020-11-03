@@ -18,7 +18,7 @@ export const login = createAction(LOGIN, ({ email, password }) => ({
   email,
   password,
 }));
-export const logout = createAction(LOGIN);
+export const logout = createAction(LOGOUT);
 export const register = createAction(REGISTER, ({ email, nickname, password1, password2 }) => ({
   email,
   nickname,
@@ -33,7 +33,9 @@ export function* authSaga() {
 }
 
 const initialState = {
-  auth: null,
+  authLogin: null,
+  authLogout: null,
+  authRegister: null,
   authError: null,
   email: '',
   nickname: '',
@@ -43,25 +45,25 @@ const initialState = {
 
 export default handleActions(
   {
-    [LOGIN_SUCCESS]: (state, { payload: auth }) => ({
+    [LOGIN_SUCCESS]: (state, { payload: authLogin }) => ({
       ...state,
-      auth,
+      authLogin,
     }),
     [LOGIN_FAILURE]: (state, { payload: authError }) => ({
       ...state,
       authError,
     }),
-    [LOGOUT_SUCCESS]: (state, { payload: auth }) => ({
+    [LOGOUT_SUCCESS]: (state, { payload: authLogout }) => ({
       ...state,
-      auth,
+      authLogout,
     }),
     [LOGOUT_FAILURE]: (state, { payload: authError }) => ({
       ...state,
       authError,
     }),
-    [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
+    [REGISTER_SUCCESS]: (state, { payload: authRegister }) => ({
       ...state,
-      auth,
+      authRegister,
     }),
     [REGISTER_FAILURE]: (state, { payload: authError }) => ({
       ...state,
