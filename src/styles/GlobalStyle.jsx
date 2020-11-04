@@ -729,6 +729,9 @@ ul.socials-top li:hover i {
   display: flex!important;
   align-items: center;
 }
+.login-username {
+  cursor: pointer;
+}
 .login-logout button {
   margin-left: 20px;
 }

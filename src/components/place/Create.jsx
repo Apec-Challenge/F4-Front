@@ -43,7 +43,12 @@ const Create = ({ history }) => {
     axios
       .get(
         `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${locate.lat},${locate.lng}&language=En&radius=100&key=AIzaSyCxpmfP0AdumaoSQgrXgdO7bM_f2g63v1A`,
-        { headers: { 'Access-Control-Allow-Origin': 'https://maps.googleapis.com/' } }
+        {
+          headers: {
+            'Access-Control-Allow-Origin': 'https://maps.googleapis.com/',
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+        }
       )
       .then(res => setPlace(res.data.results));
   };
@@ -156,17 +161,17 @@ const Create = ({ history }) => {
                     <Link to="/" className="choicefile">
                       <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
                     </Link>
-                    <p></p>
+                    <p />
                   </div>
-                  <label className="filename"></label>
+                  <label className="filename" />
                 </div>
               </div>
             </div>
             <div className="field">
               <label htmlFor="PPE">Campaign PPE *</label>
               <span className="label-desc">PPE</span>
-              <span style={{ marginTop: '10px' }}>Mask</span>
-              <select name="Mask" onChange={onChangePPE}>
+              <span style={{ marginTop: '10px' }}>Person hygiene</span>
+              <select name="person_hygiene" onChange={onChangePPE}>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -183,8 +188,8 @@ const Create = ({ history }) => {
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
-              <span style={{ marginTop: '10px' }}>Disposable Gloves</span>
-              <select name="disposable_gloves" onChange={onChangePPE}>
+              <span style={{ marginTop: '10px' }}>Body temperature check</span>
+              <select name="body_temperature_check" onChange={onChangePPE}>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>

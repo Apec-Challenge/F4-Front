@@ -51,9 +51,9 @@ const initialState = {
   },
   counts: 0,
   PPE: {
-    Mask: 0,
+    person_hygiene: 0,
     hand_sanitizer: 0,
-    disposable_gloves: 0,
+    body_temperature_check: 0,
   },
 };
 

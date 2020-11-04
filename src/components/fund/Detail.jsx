@@ -172,12 +172,12 @@ const Detail = ({ fund_id }) => {
                         </div>
                         <div id="faq" className={`tabs ${active.PPE}`}>
                           <h2>Personal Protective Equipment (PPE)</h2>
-                          <h4>Mask</h4>
-                          <p>a</p>
+                          <h4>Person hygiene</h4>
+                          <p>{f.place.person_hygiene}</p>
                           <h4>Hand sanitizer</h4>
-                          <p>b</p>
-                          <h4>Disposable gloves</h4>
-                          <p>c</p>
+                          <p>{f.place.hand_sanitizer}</p>
+                          <h4>Body temperature check</h4>
+                          <p>{f.place.body_temperature_check}</p>
                         </div>
                         <div id="comment" className={`tabs ${active.cheer} comment-area`}>
                           <h3 className="comments-title">{f.comment_list.length} Comment</h3>
@@ -190,7 +190,7 @@ const Detail = ({ fund_id }) => {
                                   </div>
                                   <div className="comment-info">
                                     <header className="comment-meta" />
-                                    <cite className="comment-author">{comment.user}</cite>
+                                    <cite className="comment-author">{comment.username}</cite>
                                     <div className="comment-inline">
                                       <span className="comment-date">
                                         {moment(currentDate).diff(comment.created_at, 'days')} days

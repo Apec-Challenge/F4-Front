@@ -135,9 +135,9 @@ const Create = ({ history }) => {
                     </div>
                     <div id="boxchoice">
                       <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Thumbnail
-                      <p></p>
+                      <p />
                     </div>
-                    <label className="filename"></label>
+                    <label className="filename" />
                   </div>
                 </div>
                 <div className="file-upload">
@@ -162,9 +162,9 @@ const Create = ({ history }) => {
                     </div>
                     <div id="boxchoice">
                       <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
-                      <p></p>
+                      <p />
                     </div>
-                    <label className="filename"></label>
+                    <label className="filename" />
                   </div>
                 </div>
               </div>
@@ -176,22 +176,24 @@ const Create = ({ history }) => {
               </span>
               <div id="google-map">
                 <Map google={window.google} zoom={15} initialCenter={{ lat: 37.5, lng: 127 }}>
-                  {places.map(place => (
+                  {places.map(p => (
                     <Marker
-                      name={place.place_id}
-                      address={place.address}
-                      position={{ lat: place.lat, lng: place.lng }}
+                      key={p.place_id}
+                      name={p.place_id}
+                      address={p.address}
+                      position={{ lat: p.lat, lng: p.lng }}
                       onClick={onMarkerClick}
                     />
                   ))}
-                  {places.map(place => (
+                  {places.map(p => (
                     <InfoWindow
-                      visible={show[place.place_id]}
+                      key={p.place_id}
+                      visible={show[p.place_id]}
                       marker={active}
-                      onClose={() => onClickClose(place.place_id)}
+                      onClose={() => onClickClose(p.place_id)}
                     >
                       <div>
-                        <h1>{place.address}</h1>
+                        <h1>{p.address}</h1>
                       </div>
                     </InfoWindow>
                   ))}

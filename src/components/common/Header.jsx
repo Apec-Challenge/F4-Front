@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import useAuth from 'src/hook/auth/useAuth';
 import Logo from 'src/images/logo_color.png';
+import auth from 'src/modules/auth';
 
 const Header = ({ history }) => {
   const { onAuth, onLogout, authLogin, authLogout, loginLoading } = useAuth(history);
@@ -21,8 +22,8 @@ const Header = ({ history }) => {
     if (authLogin) {
       const { cookie } = document;
       setLogin(true);
-      localStorage.setItem('userInfo', JSON.stringify(authLogin));
-      localStorage.setItem('cookie', cookie);
+      sessionStorage.setItem('userInfo', JSON.stringify(authLogin));
+      sessionStorage.setItem('cookie', cookie);
     } else if (!authLogin) {
       setLogin(false);
     }
@@ -111,7 +112,26 @@ const Header = ({ history }) => {
             </form>
           </div>
           <div className="login login-button login-logout">
-            {authLogin && !loginLoading && <div>{authLogin.nickname}</div>}
+            {authLogin && !loginLoading && (
+              <nav className="main-menu">
+                <ul className="login-username">
+                  <li>
+                    <Link to="/mypage/profile">
+                      {authLogin.nickname}
+                      <i className="fa fa-caret-down" aria-hidden="true" />
+                    </Link>
+                    <ul className="sub-menu">
+                      <li>
+                        <Link to="/mypage/profile">mypage</Link>
+                      </li>
+                      <li>
+                        <Link to="/mypage/cache">cache add</Link>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            )}
             {login ? (
               <button className="btn-primary" type="button" onClick={onLogout}>
                 Logout

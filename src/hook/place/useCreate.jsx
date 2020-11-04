@@ -37,9 +37,9 @@ const useCreate = () => {
     fd.append('address', address);
     fd.append('lng', location.lng);
     fd.append('lat', location.lat);
-    fd.append('Mask', PPE.Mask);
+    fd.append('person_hygiene', PPE.person_hygiene);
     fd.append('hand_sanitizer', PPE.hand_sanitizer);
-    fd.append('disposable_gloves', PPE.disposable_gloves);
+    fd.append('body_temperature_check', PPE.body_temperature_check);
     dispatch(createPlace(fd));
   };
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [dispatch]);

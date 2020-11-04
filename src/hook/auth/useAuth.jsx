@@ -39,8 +39,8 @@ const useAuth = history => {
   const onLogout = e => {
     e.preventDefault();
     dispatch(logout());
-    localStorage.removeItem('cookie');
-    localStorage.removeItem('userInfo');
+    sessionStorage.removeItem('cookie');
+    sessionStorage.removeItem('userInfo');
     history.push(`/`);
   };
   const onRegister = e => {
