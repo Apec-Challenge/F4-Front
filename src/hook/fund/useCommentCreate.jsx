@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import auth from 'src/modules/auth';
 import { changeField, createComment, unloadCreate } from 'src/modules/fund';
 
 const useCommentCreate = ({ fund_id }) => {
-  const { fund, content, create, createError } = useSelector(({ fund }) => ({
-    fund: fund.fund,
+  const { auth, content, create, createError } = useSelector(({ fund, auth }) => ({
+    auth: auth.authLogin,
     content: fund.comment_content,
     create: fund.create,
     createError: fund.createError,
@@ -12,7 +13,7 @@ const useCommentCreate = ({ fund_id }) => {
   const dispatch = useDispatch();
   const onSubmit = e => {
     e.preventDefault();
-    dispatch(createComment({ user: 1, funding: fund_id, content }));
+    dispatch(createComment({ user: auth.pk, funding: fund_id, content }));
   };
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [dispatch]);
   useEffect(() => {
