@@ -718,11 +718,19 @@ ul.socials-top li:hover i {
   line-height: 80px;
 }
 .site-header .right-header {
+  display: flex;
   float: right;
 }
 .site-header .login .btn-primary {
   height: 38px;
   line-height: 38px;
+}
+.login-logout {
+  display: flex!important;
+  align-items: center;
+}
+.login-logout button {
+  margin-left: 20px;
 }
 .site-header .login,
 .site-header .search-icon,

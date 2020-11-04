@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import useAuth from 'src/hook/auth/useAuth';
 import Logo from 'src/images/logo_color.png';
 
-const Header = () => {
-  const { onLogout, authLogin, authLogout, loginLoading } = useAuth();
+const Header = ({ history }) => {
+  const { onAuth, onLogout, authLogin, authLogout, loginLoading } = useAuth(history);
   const [login, setLogin] = useState(false);
   const onShow = () => {
     document.querySelector('.form-search').style.display = 'block';
@@ -17,15 +17,22 @@ const Header = () => {
   const onChange = e => {
     console.log(e.target.value);
   };
-  const cookies = document.cookie;
   useEffect(() => {
-    if (cookies) {
+    if (authLogin) {
+      const { cookie } = document;
       setLogin(true);
-    }
-    if (!cookies) {
+      localStorage.setItem('userInfo', JSON.stringify(authLogin));
+      localStorage.setItem('cookie', cookie);
+    } else if (!authLogin) {
       setLogin(false);
     }
-  }, [cookies]);
+  }, [authLogin]);
+  useEffect(() => {
+    if (authLogout) {
+      setLogin(false);
+      onAuth();
+    }
+  });
   return (
     <header id="header" className="site-header">
       <div className="container">
@@ -103,11 +110,11 @@ const Header = () => {
               </button>
             </form>
           </div>
-          <div className="login login-button">
+          <div className="login login-button login-logout">
             {authLogin && !loginLoading && <div>{authLogin.nickname}</div>}
             {login ? (
-              <button className="btn-primary" onClick={onLogout}>
-                Log Out
+              <button className="btn-primary" type="button" onClick={onLogout}>
+                Logout
               </button>
             ) : (
               <Link to="/auth" className="btn-primary">
@@ -121,4 +128,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

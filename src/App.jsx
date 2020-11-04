@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
+import useAuth from 'src/hook/auth/useAuth';
 import { Main, Auth, AboutUs, Contacts, List, Create, Detail } from './pages';
 
 const App = () => {
+  const { onAuth } = useAuth();
+  const initUserInfo = async () => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    onAuth(userInfo);
+  };
+  useEffect(() => {
+    initUserInfo();
+  }, []);
   return (
     <>
       <Route exact path="/" component={Main} />

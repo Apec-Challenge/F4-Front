@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeField, initialize, login, logout, register } from 'src/modules/auth';
+import { changeField, initialize, setAuth, login, logout, register } from 'src/modules/auth';
 
-const useAuth = () => {
+const useAuth = history => {
   const {
     cookie,
     email,
@@ -31,6 +31,7 @@ const useAuth = () => {
   const dispatch = useDispatch();
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [dispatch]);
   const onInit = () => dispatch(initialize());
+  const onAuth = auth => dispatch(setAuth(auth));
   const onLogin = e => {
     e.preventDefault();
     dispatch(login({ email, password: password1 }));
@@ -38,6 +39,9 @@ const useAuth = () => {
   const onLogout = e => {
     e.preventDefault();
     dispatch(logout());
+    localStorage.removeItem('cookie');
+    localStorage.removeItem('userInfo');
+    history.push(`/`);
   };
   const onRegister = e => {
     e.preventDefault();
@@ -48,6 +52,7 @@ const useAuth = () => {
     onLogout,
     onRegister,
     onInit,
+    onAuth,
     onChangeField,
     cookie,
     email,
