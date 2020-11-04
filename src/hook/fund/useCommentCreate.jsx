@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import auth from 'src/modules/auth';
 import { changeField, createComment, unloadCreate } from 'src/modules/fund';

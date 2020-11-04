@@ -51,8 +51,8 @@ export const updatePlace = ({
 export const deletePlace = place_id => API.delete(`/api/${place_id}/place/`, { place_id });
 
 /* Review */
-export const createReview = () => API.post(`/review`);
-export const readReview = () => API.get(`/review`);
-export const readReviewList = () => API.get(`/review`);
-export const updateReview = () => API.put(`/review`);
-export const deleteReview = () => API.post(`/review`);
+export const createReview = ({ user, place, content, rating, user_likes }) =>
+  API.post(`/api/review/`, { user, place, content, rating, user_likes });
+export const readReview = place_id => API.get(`/api/review/?place=${place_id}`, { place_id });
+export const updateReview = ({ id, content }) => API.put(`/api/review/${id}/`, { id, content });
+export const deleteReview = id => API.put(`/api/review/delete/${id}/`, { id });
