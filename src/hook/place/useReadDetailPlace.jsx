@@ -9,12 +9,13 @@ const useReadDetailPlace = ({ place_id }) => {
     loading: loading['place/READ_PLACE'],
   }));
   const dispatch = useDispatch();
+  const onReadPlace = place_id => dispatch(readPlace(place_id));
   useEffect(() => {
     if (place_id) {
       dispatch(readPlace(place_id));
     }
   }, [place_id]);
-  return { place, error, loading };
+  return { onReadPlace, place, error, loading };
 };
 
 export default useReadDetailPlace;

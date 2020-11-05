@@ -70,7 +70,10 @@ const List = () => {
                           <Link to={`/fund/detail/${fund.id}`}>{fund.title}</Link>
                         </h3>
                         <div className="campaign-description">{fund.description}</div>
-                        <div className="staff-picks-author">
+                        <div
+                          className="staff-picks-author"
+                          style={{ display: 'flex', justifyContent: 'space-between' }}
+                        >
                           <div className="author-profile">
                             <Link className="author-avatar" to="/">
                               <img src={require('src/images/user.png')} alt="" />
@@ -80,8 +83,18 @@ const List = () => {
                               {fund.owner_username}
                             </Link>
                           </div>
+                          <div
+                            className="author-likes"
+                            style={{ marginLeft: '300px', display: 'flex', alignItems: 'center' }}
+                          >
+                            <img
+                              src={require('src/images/thumb-up.png')}
+                              alt=""
+                              style={{ marginRight: '10px', height: '15px', width: '15px' }}
+                            />
+                            {fund.total_likes}
+                          </div>
                         </div>
-                        <div className="author-likes">likes {fund.total_likes}</div>
                         <div className="author-address">
                           <span className="ion-location" />
                           {fund.place.address}
@@ -115,8 +128,8 @@ const List = () => {
                   ))}
                 </div>
                 {funds.slice(1).map(fund => (
-                  <div className="col-lg-4 col-sm-6 col-6">
-                    <div key={fund.id} className="campaign-item">
+                  <div key={fund.id} className="col-lg-4 col-sm-6 col-6">
+                    <div className="campaign-item">
                       <div className="thumbnail">
                         <Link className="overlay" to={`/fund/detail/${fund.id}`}>
                           <img src={fund.thumbnail_image} alt="" />
@@ -128,16 +141,28 @@ const List = () => {
                           <Link to={`/fund/detail/${fund.id}`}>{fund.title}</Link>
                         </h3>
                         <div className="campaign-description">{fund.description}</div>
-                        <div className="campaign-author">
-                          <Link className="author-icon" to="/">
-                            <img src={require('src/images/user.png')} alt="" />
-                          </Link>
-                          by
-                          <Link className="author-name" to="/">
-                            {fund.owner_username}
-                          </Link>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                          <div className="campaign-author">
+                            <Link className="author-icon" to="/">
+                              <img src={require('src/images/user.png')} alt="" />
+                            </Link>
+                            by
+                            <Link className="author-name" to="/">
+                              {fund.owner_username}
+                            </Link>
+                          </div>
+                          <div
+                            className="author-likes"
+                            style={{ display: 'flex', alignItems: 'center', marginBottom: '25px' }}
+                          >
+                            <img
+                              src={require('src/images/thumb-up.png')}
+                              alt=""
+                              style={{ marginRight: '10px', height: '15px', width: '15px' }}
+                            />
+                            {fund.total_likes}
+                          </div>
                         </div>
-                        <div className="author-likes">likes {fund.total_likes}</div>
                         <div className="process">
                           <Raised funded={(fund.funding_amount / fund.funding_goal_amount) * 100} />
                           <div className="process-info">
@@ -163,11 +188,6 @@ const List = () => {
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="latest-button">
-              <Link to="/" className="btn-primary">
-                Load more
-              </Link>
             </div>
           </div>
         )}

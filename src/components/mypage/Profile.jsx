@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import useAuth from 'src/hook/auth/useAuth';
 import useAddCash from 'src/hook/common/useAddCash';
 
 const Profile = ({ history }) => {
   const { authLogin, loginLoading } = useAuth(history);
-  const { onChangeField, onAddCash, coin, cash, cashError, loading } = useAddCash();
+  const { onChangeField, onAddCash, onUnload, coin, cash, cashError, loading } = useAddCash();
   const onChangeCoin = e => onChangeField({ key: 'coin', value: e.target.value });
+  useEffect(() => {
+    return () => {
+      onUnload();
+    };
+  }, [cash]);
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">

@@ -1,17 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import * as api from 'src/api/api';
 import useReadDetailPlace from 'src/hook/place/useReadDetailPlace';
 import useReview from 'src/hook/place/useReview';
+import useCash from 'src/hook/common/useAddCash';
 
 const Detail = ({ place_id }) => {
-  const { place, error, loading } = useReadDetailPlace({ place_id });
+  const { onReadPlace, place, error, loading } = useReadDetailPlace({ place_id });
   const { onSubmit, onChangeField, review, reviewLoading, content, rating } = useReview({
     place_id,
   });
+  const cash = useCash();
   const currentDate = moment().toISOString();
   const onChangeContent = e => onChangeField({ key: 'reviewContent', value: e.target.value });
   const onChangeRating = e => onChangeField({ key: 'rating', value: parseInt(e.target.value) });
+  const onLike = () => {
+    api.placeLike({ nickname: cash.auth.nickname, place_id });
+    onReadPlace(place_id);
+  };
   return (
     <main id="main" className="site-main">
       <div className="page-title background-cart">
@@ -40,12 +47,47 @@ const Detail = ({ place_id }) => {
               <div className="shop-details">
                 <div className="shop-details-content">
                   <article className="post">
-                    <div className="author-likes">likes {place.total_likes}</div>
-                    <h2>{place.title}</h2>
+                    <div
+                      className="author-likes"
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <h2>{place.title}</h2>
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <img
+                          src={require('src/images/thumb-up.png')}
+                          alt=""
+                          style={{ marginRight: '10px', height: '15px', width: '15px' }}
+                        />
+                        {place.total_likes}
+                      </div>
+                    </div>
                     <div className="shop-detail-img">
                       <img src={place.place_image} alt="" />
                     </div>
-                    <h3>Descriptions</h3>
+                    <div
+                      className="campaign-detail"
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <h3>Descriptions</h3>
+                      <div className="button">
+                        <button className="btn-secondary" type="button" onClick={onLike}>
+                          <i className="fa fa-heart" aria-hidden="true" />
+                          Like me
+                        </button>
+                      </div>
+                    </div>
                     <p>{place.description}</p>
                     {review && !reviewLoading && (
                       <div id="comment" className="reviews comment-area">
