@@ -35,12 +35,12 @@ const Detail = ({ place_id }) => {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col-lg-8 main-content">
+          <div className="col-lg-12 main-content">
             {!loading && place && (
               <div className="shop-details">
                 <div className="shop-details-content">
                   <article className="post">
-                    <span>Creative Furniture</span>
+                    <div className="author-likes">likes {place.total_likes}</div>
                     <h2>{place.title}</h2>
                     <div className="shop-detail-img">
                       <img src={place.place_image} alt="" />

@@ -4,10 +4,11 @@ import loading from './loading';
 import fund, { fundSaga } from './fund';
 import place, { placeSaga } from './place';
 import auth, { authSaga } from './auth';
+import cash, { cashSaga } from './cash';
 import contact from './contact';
 
 export function* rootSaga() {
-  yield all([fundSaga(), placeSaga(), authSaga()]);
+  yield all([fundSaga(), placeSaga(), authSaga(), cashSaga()]);
 }
 
 export default combineReducers({
@@ -16,4 +17,5 @@ export default combineReducers({
   place,
   auth,
   contact,
+  cash,
 });

@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import useReadDetailFund from 'src/hook/fund/useReadDetailFund';
 import useCommentCreate from 'src/hook/fund/useCommentCreate';
+import useCash from 'src/hook/common/useAddCash';
 import Raised from 'src/components/common/Raised';
 
 const Detail = ({ fund_id }) => {
   const { fund, error, loading } = useReadDetailFund({ fund_id });
   const { onSubmit, onChangeField, content } = useCommentCreate({ fund_id });
+  const cash = useCash();
   const currentDate = moment().toISOString();
   const [active, setActive] = useState({ desc: 'active', backer: 0, PPE: 0, cheer: 0 });
   const onChangeComment = e => onChangeField({ key: 'comment_content', value: e.target.value });
+  const onChangeCoin = e => cash.onChangeField({ key: 'coin', value: e.target.value });
   const onTabClick = e => {
     setActive({ desc: 0, backer: 0, PPE: 0, cheer: 0 });
     const { title } = e.target;
@@ -67,8 +70,9 @@ const Detail = ({ fund_id }) => {
                           </Link>
                         </div>
                       </div>
+                      <div className="author-likes">likes {f.total_likes}</div>
                       <div className="author-address">
-                        <span className="ion-location" />
+                        <span className="ion-location" style={{ marginRight: '10px' }} />
                         {f.place.address}
                       </div>
                       <div className="process">
@@ -95,10 +99,21 @@ const Detail = ({ fund_id }) => {
                         </div>
                       </div>
                       <div className="button">
-                        <form action="#" id="priceForm" className="campaign-price quantity">
-                          <input type="number" value="1" min="0" name="s" placeholder="" />
+                        <form
+                          id="priceForm"
+                          className="campaign-price quantity"
+                          onSubmit={cash.onFundCash}
+                        >
+                          <input
+                            type="number"
+                            value={cash.coin}
+                            min="0"
+                            name="coin"
+                            placeholder=""
+                            onChange={onChangeCoin}
+                          />
                           <button className="btn-primary" type="submit">
-                            Back this Campaign
+                            Fudning
                           </button>
                         </form>
                         <Link to="/" className="btn-secondary">

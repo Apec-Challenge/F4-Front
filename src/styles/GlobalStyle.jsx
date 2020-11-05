@@ -1803,7 +1803,7 @@ ul.menu-category li.active:after {
 .product-info {
   background-color: #f5f6f6;
   padding: 27px 25px;
-  height: 130px;
+  height: 160px;
 }
 .post-title,
 .product-title {
@@ -3900,7 +3900,7 @@ form .create-account input[type='checkbox'] {
   float: right;
 }
 .author {
-  margin-bottom: 57px;
+  margin-bottom: 30px;
 }
 .author .author-content {
   margin-left: 140px;

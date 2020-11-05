@@ -122,10 +122,7 @@ const Header = ({ history }) => {
                     </Link>
                     <ul className="sub-menu">
                       <li>
-                        <Link to="/mypage/profile">mypage</Link>
-                      </li>
-                      <li>
-                        <Link to="/mypage/cache">cache add</Link>
+                        <Link to="/mypage/profile">profile</Link>
                       </li>
                     </ul>
                   </li>

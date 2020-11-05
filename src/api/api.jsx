@@ -56,3 +56,9 @@ export const createReview = ({ user, place, content, rating, user_likes }) =>
 export const readReview = place_id => API.get(`/api/review/?place=${place_id}`, { place_id });
 export const updateReview = ({ id, content }) => API.put(`/api/review/${id}/`, { id, content });
 export const deleteReview = id => API.put(`/api/review/delete/${id}/`, { id });
+
+/* Cash */
+export const addCash = ({ money, Authorization }) =>
+  API.put(`/api/accounts/money-recharge/`, { money, Authorization });
+export const fundCash = ({ place, money, Authorization }) =>
+  API.post(`/api/accounts/money-recharge/`, { place, money, Authorization });

@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import useAuth from 'src/hook/auth/useAuth';
+import useAddCash from 'src/hook/common/useAddCash';
 
 const Profile = ({ history }) => {
   const { authLogin, loginLoading } = useAuth(history);
+  const { onChangeField, onAddCash, coin, cash, cashError, loading } = useAddCash();
+  const onChangeCoin = e => onChangeField({ key: 'coin', value: e.target.value });
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">
@@ -29,9 +32,6 @@ const Profile = ({ history }) => {
                   <li className="active">
                     <Link to="/mypage/profile">Profile</Link>
                   </li>
-                  <li>
-                    <Link to="/mypage/cache">Cache</Link>
-                  </li>
                 </ul>
               </nav>
             </div>
@@ -52,14 +52,31 @@ const Profile = ({ history }) => {
                         </div>
                         <div className="author-info">
                           <p>{authLogin.email}</p>
-                          <p>IdeaPress Member since July 2017</p>
+                          <p style={{ display: 'flex', alignItems: 'center' }}>
+                            <img
+                              style={{ height: '15px', width: '15px', marginRight: '10px' }}
+                              src={require('src/images/coin.png')}
+                              alt=""
+                            />
+                            300 coin
+                          </p>
                         </div>
                       </div>
                     )}
                   </div>
-                  <Link to="/" className="btn-primary">
-                    Edit Profiles
-                  </Link>
+                  <div className="field">
+                    <input
+                      style={{ background: 'white', width: '300px', marginRight: '20px' }}
+                      type="number"
+                      value={coin}
+                      name="coin"
+                      placeholder="coin"
+                      onChange={onChangeCoin}
+                    />
+                    <button type="button" className="btn-primary" onClick={onAddCash}>
+                      Add Cash
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
