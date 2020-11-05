@@ -80,3 +80,6 @@ export const fundLike = ({ nickname, id }) => API.get(`/funding_like/${nickname}
 export const reveiwLike = ({ nickname, id }) => API.get(`/review_like/${nickname}/${id}/`);
 export const placeLike = ({ nickname, place_id }) =>
   API.get(`/place_like/${nickname}/${place_id}/`);
+
+/* user */
+export const readUser = id => API.get(`/api/user/${id}/`);
