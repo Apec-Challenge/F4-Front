@@ -54,7 +54,17 @@ const List = () => {
                           <span className="ion-location" style={{ marginRight: '10px' }} />
                           <p className="product-price">{place.address}</p>
                         </div>
-                        <div className="author-likes">likes {place.total_likes}</div>
+                        <div
+                          className="author-likes"
+                          style={{ display: 'flex', alignItems: 'center' }}
+                        >
+                          <img
+                            src={require('src/images/thumb-up.png')}
+                            alt=""
+                            style={{ marginRight: '10px', height: '15px', width: '15px' }}
+                          />
+                          {place.total_likes}
+                        </div>
                       </div>
                     </div>
                   ))}

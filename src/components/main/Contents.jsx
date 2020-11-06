@@ -52,7 +52,7 @@ const Contents = () => {
                     See Campaign
                   </Link>
                   <Link to="/" className="btn-primary">
-                    Buy Now
+                    Funding
                   </Link>
                 </div>
               </div>

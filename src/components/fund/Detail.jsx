@@ -202,10 +202,9 @@ const Detail = ({ fund_id }) => {
                           <Slider
                             style={{ width: '50%' }}
                             defaultValue={f.place.person_hygiene}
-                            // getAriaValueText={valuetext}
                             aria-labelledby="discrete-slider"
                             valueLabelDisplay="auto"
-                            step={5}
+                            step={1}
                             marks
                             min={0}
                             max={5}
@@ -214,10 +213,9 @@ const Detail = ({ fund_id }) => {
                           <Slider
                             style={{ width: '50%' }}
                             defaultValue={f.place.hand_sanitizer}
-                            // getAriaValueText={valuetext}
                             aria-labelledby="discrete-slider"
                             valueLabelDisplay="auto"
-                            step={5}
+                            step={1}
                             marks
                             min={0}
                             max={5}
@@ -226,10 +224,9 @@ const Detail = ({ fund_id }) => {
                           <Slider
                             style={{ width: '50%' }}
                             defaultValue={f.place.body_temperature_check}
-                            // getAriaValueText={valuetext}
                             aria-labelledby="discrete-slider"
                             valueLabelDisplay="auto"
-                            step={5}
+                            step={1}
                             marks
                             min={0}
                             max={5}

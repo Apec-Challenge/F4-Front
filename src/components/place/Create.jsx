@@ -173,30 +173,27 @@ const Create = ({ history }) => {
               <span className="label-desc">PPE</span>
               <span style={{ marginTop: '10px' }}>Person hygiene</span>
               <select name="person_hygiene" onChange={onChangePPE}>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="0">1</option>
+                <option value="1">2</option>
+                <option value="2">3</option>
+                <option value="3">4</option>
+                <option value="4">5</option>
               </select>
               <span style={{ marginTop: '10px' }}>Hand Sanitizer</span>
               <select name="hand_sanitizer" onChange={onChangePPE}>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="0">1</option>
+                <option value="1">2</option>
+                <option value="2">3</option>
+                <option value="3">4</option>
+                <option value="4">5</option>
               </select>
               <span style={{ marginTop: '10px' }}>Body temperature check</span>
               <select name="body_temperature_check" onChange={onChangePPE}>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="0">1</option>
+                <option value="1">2</option>
+                <option value="2">3</option>
+                <option value="3">4</option>
+                <option value="4">5</option>
               </select>
             </div>
             <button type="submit" value="Save & Launch" className="btn-primary">
