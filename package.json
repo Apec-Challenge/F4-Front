@@ -25,7 +25,7 @@
     "styled-normalize": "^8.0.7"
   },
   "scripts": {
-    "start": "cross-env NODE_PATH=src react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -55,6 +55,7 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "4.0.0",
     "prettier": "2.1.2"
-  },
-  "proxy": "http://codstice.kr:180"
+	},
+	  "proxy": "http://codstice.kr:180"
+
 }
