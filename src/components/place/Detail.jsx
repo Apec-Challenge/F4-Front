@@ -23,7 +23,7 @@ const Detail = ({ place_id }) => {
     <main id="main" className="site-main">
       {!loading && place && (
         <div className="page-title background-cart">
-          <img src={place.place_image} alt="" style={{ height: '220px', width: '1920px' }} />
+          <img src={place.place_image} alt="" style={{ height: '220px', width: '100%' }} />
           <div className="container">
             <h1>{place.title}</h1>
             <div className="breadcrumbs">

@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import swal from 'sweetalert';
 import { changeField, createPlace, unloadCreate } from 'src/modules/place';
 
 const useCreate = () => {
@@ -41,6 +42,7 @@ const useCreate = () => {
     fd.append('hand_sanitizer', PPE.hand_sanitizer);
     fd.append('body_temperature_check', PPE.body_temperature_check);
     dispatch(createPlace(fd));
+    swal('Success', '', 'success');
   };
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [dispatch]);
   return {

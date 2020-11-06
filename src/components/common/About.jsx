@@ -7,8 +7,10 @@ const About = () => {
       <section className="top-site">
         <div className="container">
           <h1>
-							Travel makes one modest. You see what a tiny place you occupy in the world.
-							<small className="autherN">&nbsp;&nbsp;<i>Gustav Flaubert</i></small>
+            Travel makes one modest. You see what a tiny place you occupy in the world.
+            <small className="autherN">
+              &nbsp;&nbsp;<i>Gustav Flaubert</i>
+            </small>
           </h1>
         </div>
       </section>
@@ -24,8 +26,9 @@ const About = () => {
           <h2 className="title">We are make a future happy travel.</h2>
           <div className="description">
             <p>
-							COVID-19 will soon pass us like a summer cold. We give happy memories to all of you who have worked hard to create a world without COVID-19.
-						</p>
+              COVID-19 will soon pass us like a summer cold. We give happy memories to all of you
+              who have worked hard to create a world without COVID-19.
+            </p>
           </div>
           <div className="statics-content">
             <div className="row">
@@ -33,9 +36,7 @@ const About = () => {
                 <div className="statics-item">
                   <h3>3,623 places</h3>
                   <div className="statics-item-desc">
-                    <p>
-											Many places prepared for raising money
-										</p>
+                    <p>Many places prepared for raising money</p>
                   </div>
                 </div>
               </div>

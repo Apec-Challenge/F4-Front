@@ -26,8 +26,8 @@ const Detail = ({ fund_id }) => {
     onReadFund(fund_id);
   };
   useEffect(() => {
-    if (fund) setLike(fund.map(f => f.total_likes));
-  }, [fund]);
+    if (cash.cash) cash.onUnload();
+  }, [cash.cash]);
   return (
     <div className="campaign-detail">
       <main id="main" className="site-main">
@@ -35,7 +35,7 @@ const Detail = ({ fund_id }) => {
           fund &&
           fund.map(f => (
             <div className="page-title background-campaign">
-              <img src={f.thumbnail_image} alt="" style={{ height: '220px', width: '1920px' }} />
+              <img src={f.thumbnail_image} alt="" style={{ height: '220px', width: '100%' }} />
               <div key={f.id} className="container">
                 <h1>{f.title}</h1>
                 <div className="breadcrumbs">

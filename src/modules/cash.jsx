@@ -10,16 +10,14 @@ const [FUND_CASH, FUND_CASH_SUCCESS, FUND_CASH_FAILURE] = createRequestActionTyp
 const UNLOAD_CASH = 'cash/UNLOAD_CASH';
 const CHANGE_CASH = 'cash/CHANGE_CASH';
 
-export const addCash = createAction(ADD_CASH, ({ money, authorization, xcsrf }) => ({
+export const addCash = createAction(ADD_CASH, ({ money, authorization }) => ({
   money,
   authorization,
-  xcsrf,
 }));
-export const fundCash = createAction(FUND_CASH, ({ place_id, money, authorization, xcsrf }) => ({
+export const fundCash = createAction(FUND_CASH, ({ place_id, money, authorization }) => ({
   place_id,
   money,
   authorization,
-  xcsrf,
 }));
 export const unloadCash = createAction(UNLOAD_CASH);
 export const changeField = createAction(CHANGE_CASH, ({ key, value }) => ({
@@ -36,7 +34,7 @@ export function* cashSaga() {
 }
 
 const initialState = {
-  cash: [],
+  cash: null,
   cashError: null,
   coin: '',
 };
@@ -51,11 +49,11 @@ export default handleActions(
       ...state,
       cashError,
     }),
-    [ADD_CASH_SUCCESS]: (state, { payload: cash }) => ({
+    [FUND_CASH_SUCCESS]: (state, { payload: cash }) => ({
       ...state,
-      cash,
+      cash: 'success',
     }),
-    [ADD_CASH_FAILURE]: (state, { payload: cashError }) => ({
+    [FUND_CASH_FAILURE]: (state, { payload: cashError }) => ({
       ...state,
       cashError,
     }),

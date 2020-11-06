@@ -23,6 +23,7 @@ const Create = ({ history }) => {
   } = useCreate();
   const dispatch = useDispatch();
   const [place, setPlace] = useState([]);
+  const [image, setImage] = useState();
   const onChangePlaceID = placeID => onChangeField({ key: 'place_id', value: placeID });
   const onChangeTitle = e => onChangeField({ key: 'title', value: e.target.value });
   const onChangeDesc = e => onChangeField({ key: 'description', value: e.target.value });
@@ -34,7 +35,10 @@ const Create = ({ history }) => {
     onChangePlaceID(placeID);
   };
   const onChangeLocation = locate => onChangeField({ key: 'location', value: locate });
-  const onChangeImage = e => onChangeField({ key: 'place_image', value: e.target.files[0] });
+  const onChangeImage = e => {
+    onChangeField({ key: 'place_image', value: e.target.files[0] });
+    setImage(e.target.files[0].name);
+  };
   const onChangePPE = e =>
     onChangeField({ key: 'PPE', value: { ...PPE, [e.target.name]: e.target.value } });
   const onMapClick = (mapProps, map, e) => {
@@ -70,7 +74,7 @@ const Create = ({ history }) => {
         <img
           src={require('src/images/place-banner.jpg')}
           alt=""
-          style={{ height: '220px', width: '1920px' }}
+          style={{ height: '220px', width: '100%' }}
         />
         <div className="container">
           <h1>Add a place</h1>
@@ -140,32 +144,24 @@ const Create = ({ history }) => {
                 resolution.
               </span>
               <div className="file-upload">
-                <div className="upload-bg">
+                <div className="upload-bg" style={{ overflow: 'hidden' }}>
                   <div id="myfileupload">
                     <input
                       type="file"
-                      id="uploadfile"
+                      id="uploadfile1"
                       name="ImageUpload"
                       onChange={onChangeImage}
+                      style={{ display: 'none' }}
                     />
                   </div>
-                  <div id="thumbbox">
-                    <img
-                      src="images/assets/logo.png"
-                      height="100"
-                      width="100"
-                      alt="Thumb"
-                      id="thumbimage"
-                    />
-                    <Link className="removeimg" to="/" />
-                  </div>
-                  <div id="boxchoice">
-                    <Link to="/" className="choicefile">
-                      <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
-                    </Link>
-                    <p />
-                  </div>
-                  <label className="filename" />
+                  {image ? (
+                    <label className="filename">{image}</label>
+                  ) : (
+                    <label id="boxchoice" htmlFor="uploadfile1">
+                      <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Thumbnail
+                      <p />
+                    </label>
+                  )}
                 </div>
               </div>
             </div>

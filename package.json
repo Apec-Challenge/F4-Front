@@ -22,7 +22,8 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
     "styled-components": "^5.2.0",
-    "styled-normalize": "^8.0.7"
+    "styled-normalize": "^8.0.7",
+    "sweetalert": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -55,7 +56,6 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "4.0.0",
     "prettier": "2.1.2"
-	},
-	  "proxy": "http://codstice.kr:180"
-
+  },
+  "proxy": "http://codstice.kr:180"
 }

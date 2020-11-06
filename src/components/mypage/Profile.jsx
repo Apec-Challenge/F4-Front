@@ -20,7 +20,7 @@ const Profile = ({ history }) => {
         <img
           src="https://images.unsplash.com/photo-1521619636272-f90fa9a48037?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2775&q=80"
           alt=""
-          style={{ height: '220px', width: '1920px' }}
+          style={{ height: '220px', width: '100%' }}
         />
         <div className="container">
           <h1>Profile</h1>

@@ -75,17 +75,17 @@ const Create = ({ history }) => {
         <img
 					src="https://images.unsplash.com/photo-1504542982118-59308b40fe0c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
           alt=""
-          style={{ height: '220px', width: '1920px' }}
+          style={{ height: '220px', width: '100%' }}
         />
         <div className="container">
-          <h1>Start a campaign</h1>
+          <h1>Start a funding</h1>
           <div className="breadcrumbs">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">Funding</Link>
                 <span>/</span>
               </li>
-              <li>Start a campaign</li>
+              <li>Start a funding</li>
             </ul>
           </div>
         </div>
