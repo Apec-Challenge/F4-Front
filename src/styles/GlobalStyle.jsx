@@ -4079,8 +4079,8 @@ form .create-account input[type='checkbox'] {
     repeat scroll 0 0 transparent;
   height: 24px;
   position: absolute;
-  right: 5px;
-  top: 5px;
+  left: 120px;
+  top: 0px;
   width: 24px;
 }
 .choicefile1,

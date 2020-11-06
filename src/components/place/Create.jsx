@@ -158,12 +158,21 @@ const Create = ({ history }) => {
                     />
                   </div>
                   {image ? (
-                    <label className="filename">{image}</label>
+                    <div id="thumbbox">
+                      <label className="filename">{image}</label>
+                      <div
+                        className="removeimg"
+                        onClick={() => setImage(null)}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    </div>
                   ) : (
-                    <label id="boxchoice" htmlFor="uploadfile1">
-                      <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Thumbnail
-                      <p />
-                    </label>
+                    <div id="boxchoice">
+                      <label className="choicefile" htmlFor="uploadfile1">
+                        <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
+                        <p />
+                      </label>
+                    </div>
                   )}
                 </div>
               </div>

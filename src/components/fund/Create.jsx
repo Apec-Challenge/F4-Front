@@ -138,12 +138,21 @@ const Create = ({ history }) => {
                       />
                     </div>
                     {thumbnail ? (
-                      <label className="filename">{thumbnail}</label>
+                      <div id="thumbbox">
+                        <label className="filename">{thumbnail}</label>
+                        <div
+                          className="removeimg"
+                          onClick={() => setThumbnail(null)}
+                          style={{ cursor: 'pointer', left: '145px' }}
+                        />
+                      </div>
                     ) : (
-                      <label id="boxchoice" htmlFor="uploadfile1">
-                        <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Thumbnail
-                        <p />
-                      </label>
+                      <div id="boxchoice">
+                        <label className="choicefile" htmlFor="uploadfile1">
+                          <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Thumbnail
+                          <p />
+                        </label>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -159,12 +168,21 @@ const Create = ({ history }) => {
                       />
                     </div>
                     {image ? (
-                      <label className="filename">{image}</label>
+                      <div id="thumbbox">
+                        <label className="filename">{image}</label>
+                        <div
+                          className="removeimg"
+                          onClick={() => setImage(null)}
+                          style={{ cursor: 'pointer', left: '145px' }}
+                        />
+                      </div>
                     ) : (
-                      <label id="boxchoice" htmlFor="uploadfile2">
-                        <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
-                        <p />
-                      </label>
+                      <div id="boxchoice">
+                        <label className="choicefile" htmlFor="uploadfile2">
+                          <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
+                          <p />
+                        </label>
+                      </div>
                     )}
                   </div>
                 </div>
