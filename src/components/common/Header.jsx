@@ -84,27 +84,6 @@ const Header = ({ history }) => {
               </li>
             </ul>
           </nav>
-          <div className="search-icon">
-            <div
-              className="fa fa-search"
-              aria-hidden="true"
-              onClick={onShow}
-              style={{ cursor: 'pointer' }}
-            />
-            <div className="form-search" onClick={onHide} />
-            <form id="searchForm">
-              <input
-                type="text"
-                value=""
-                name="search"
-                placeholder="Search..."
-                onChange={onChange}
-              />
-              <button type="submit" value="">
-                <i className="fa fa-search" aria-hidden="true" />
-              </button>
-            </form>
-          </div>
           <div className="login login-button login-logout">
             {authLogin && !loginLoading && (
               <nav className="main-menu">

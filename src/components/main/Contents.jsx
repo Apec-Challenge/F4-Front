@@ -11,7 +11,7 @@ const Contents = () => {
   const currentDate = moment().toISOString();
   return (
     <main id="main" className="site-main">
-      {fetchFund.loading && '로딩중...'}
+      {fetchFund.loading && 'Loading...'}
       {!fetchFund.loading &&
         fetchFund.funds.slice(0, 1).map(fund => (
           <div key={fund.id} className="sideshow">
@@ -63,9 +63,9 @@ const Contents = () => {
         <div className="container">
           <h2 className="title">Latest Places</h2>
           <div className="description">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
+						It's safe. It's clean. Check out the various places registered here.
           </div>
-          {fetchPlace.loading && '로딩중...'}
+          {fetchPlace.loading && 'Loading...'}
           {!fetchPlace.loading && fetchPlace.places && (
             <div className="row">
               <div className="col-lg-12 main-content">
@@ -97,12 +97,12 @@ const Contents = () => {
       </div>
       <div className="latest campaign">
         <div className="container">
-          <h2 className="title">Latest Fundings</h2>
+          <h2 className="title">Latest Funding Campaigns</h2>
           <div className="description">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
+						Check out the newly registered funding campaign.
           </div>
           <div className="campaign-content">
-            {fetchFund.loading && '로딩중...'}
+            {fetchFund.loading && 'Loading...'}
             {fetchFund.funds && !fetchFund.loading && (
               <div className="row">
                 {fetchFund.funds.slice(1, 7).map((fund, index) => (
@@ -170,7 +170,7 @@ const Contents = () => {
           </div>
           <div className="latest-button">
             <Link to="/fund/list" className="btn-primary">
-              View all Fundings
+              View all campaigns
             </Link>
           </div>
         </div>

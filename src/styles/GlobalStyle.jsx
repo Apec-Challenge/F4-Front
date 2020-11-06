@@ -314,6 +314,8 @@ textarea:focus {
 .description {
   text-align: center;
   margin-bottom: 45px;
+	font-size: 16pt;
+	font-weight: 100;
 }
 .campaign-tabs .tabs {
   display: none;

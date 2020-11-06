@@ -28,7 +28,7 @@ const About = () => {
           </div>
           <div className="statics-content">
             <div className="row">
-              <div className="col-lg-3 col-sm-6 col-6">
+              <div className="col-lg-4 col-sm-4 col-6">
                 <div className="statics-item">
                   <h3>3,623 places</h3>
                   <div className="statics-item-desc">
@@ -36,27 +36,19 @@ const About = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-sm-6 col-6">
+              <div className="col-lg-4 col-sm-4 col-6">
                 <div className="statics-item">
-                  <h3>1.5 Million </h3>
+                  <h3>1.5 Million SGD</h3>
                   <div className="statics-item-desc">
                     <p>지금까지 모금된 금액</p>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-sm-6 col-6">
+              <div className="col-lg-4 col-sm-4 col-6">
                 <div className="statics-item">
                   <h3>32 Countries</h3>
                   <div className="statics-item-desc">
                     <p>함께하는 다양한 국가들</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-sm-6 col-6">
-                <div className="statics-item">
-                  <h3>68% Funded</h3>
-                  <div className="statics-item-desc">
-                    <p>That exceed their goals are run by women</p>
                   </div>
                 </div>
               </div>
