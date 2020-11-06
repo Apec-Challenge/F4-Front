@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import swal from 'sweetalert';
 import { changeField, createFund, unloadCreate } from 'src/modules/fund';
 
 const useCreate = () => {
@@ -38,6 +39,7 @@ const useCreate = () => {
     fd.append('place', place);
     fd.append('ended_at', ended_at.toISOString());
     dispatch(createFund(fd));
+    swal('Success', '', 'success');
   };
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [dispatch]);
   return {

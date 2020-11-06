@@ -13,7 +13,7 @@ const List = () => {
         <img
           src={require('src/images/fund-banner.jpg')}
           alt=""
-          style={{ height: '220px', width: '1920px' }}
+          style={{ height: '220px', width: '100%' }}
         />
         <div className="container">
           <h1>Funding List</h1>

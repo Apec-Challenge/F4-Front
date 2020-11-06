@@ -10,7 +10,7 @@ const List = () => {
         <img
           src={require('src/images/place-banner.jpg')}
           alt=""
-          style={{ height: '220px', width: '1920px' }}
+          style={{ height: '220px', width: '100%' }}
         />
         <div className="container">
           <h1>Place List</h1>

@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import swal from 'sweetalert';
 import { changeField, addCash, fundCash, unloadCash } from 'src/modules/cash';
 
 const useAddCash = place_id => {
@@ -15,13 +16,15 @@ const useAddCash = place_id => {
   );
   const dispatch = useDispatch();
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [dispatch]);
-  const onAddCash = () =>
+  const onAddCash = () => {
     dispatch(
       addCash({
         money: JSON.parse(parseInt(coin)),
         authorization: auth.key,
       })
     );
+    swal('Success', '', 'success');
+  };
   const onUnload = () => dispatch(unloadCash());
   const onFundCash = e => {
     e.preventDefault();
@@ -32,6 +35,7 @@ const useAddCash = place_id => {
         authorization: auth.key,
       })
     );
+    swal('Success', '', 'success');
   };
   return {
     onChangeField,
