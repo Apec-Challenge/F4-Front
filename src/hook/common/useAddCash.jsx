@@ -27,7 +27,7 @@ const useAddCash = place_id => {
     e.preventDefault();
     dispatch(
       fundCash({
-        place: fund[0].place.place_id,
+        place_id: fund[0].place.place_id,
         money: parseInt(coin),
         authorization: auth.key,
       })

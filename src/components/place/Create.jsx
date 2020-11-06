@@ -67,6 +67,11 @@ const Create = ({ history }) => {
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
+        <img
+          src={require('src/images/place-banner.jpg')}
+          alt=""
+          style={{ height: '220px', width: '1920px' }}
+        />
         <div className="container">
           <h1>Start a campaign</h1>
           <div className="breadcrumbs">

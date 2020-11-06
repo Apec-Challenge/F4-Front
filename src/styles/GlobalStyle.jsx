@@ -1648,7 +1648,7 @@ ul.menu-category li.active:after {
   background-repeat: no-repeat;
 }
 .page-title.background-page {
-  background-image: url('src/images/placeholder/1920x220.png');
+  //background-image: url('/src/images/fund-banner.jpg');
 }
 .page-title.background-blog {
   background-image: url('src/images/placeholder/1920x220.png');
@@ -1657,7 +1657,7 @@ ul.menu-category li.active:after {
   background-image: url('src/images/placeholder/1920x220.png');
 }
 .page-title.background-cart {
-  background-image: url('src/images/placeholder/1920x220.png');
+  //background-image: url('src/images/placeholder/1920x220.png');
 }
 .page-title:before {
   content: '';

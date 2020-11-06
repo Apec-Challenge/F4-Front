@@ -27,10 +27,18 @@ const Create = ({ history }) => {
   const [endDate, setEndDate] = useState();
   const [show, setShow] = useState({});
   const [active, setActive] = useState({});
+  const [thumbnail, setThumbnail] = useState();
+  const [image, setImage] = useState();
   const onChangeTitle = e => onChangeField({ key: 'title', value: e.target.value });
   const onChangeDesc = e => onChangeField({ key: 'description', value: e.target.value });
-  const onChangeThumb = e => onChangeField({ key: 'thumbnail_image', value: e.target.files[0] });
-  const onChangeImage = e => onChangeField({ key: 'content_image', value: e.target.files[0] });
+  const onChangeThumb = e => {
+    onChangeField({ key: 'thumbnail_image', value: e.target.files[0] });
+    setThumbnail(e.target.files[0].name);
+  };
+  const onChangeImage = e => {
+    onChangeField({ key: 'content_image', value: e.target.files[0] });
+    setImage(e.target.files[0].name);
+  };
   const onChangeGoal = e => onChangeField({ key: 'funding_goal_amount', value: e.target.value });
   const onChangePlace = placeID => onChangeField({ key: 'place', value: placeID });
   const onChangeAddress = adrs => onChangeField({ key: 'address', value: adrs });
@@ -64,6 +72,11 @@ const Create = ({ history }) => {
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
+        <img
+          src={require('src/images/fund-banner.jpg')}
+          alt=""
+          style={{ height: '220px', width: '1920px' }}
+        />
         <div className="container">
           <h1>Start a campaign</h1>
           <div className="breadcrumbs">
@@ -114,57 +127,45 @@ const Create = ({ history }) => {
               </span>
               <div className="list-upload">
                 <div className="file-upload">
-                  <div className="upload-bg">
+                  <div className="upload-bg" style={{ overflow: 'hidden' }}>
                     <div id="myfileupload">
                       <input
                         type="file"
-                        id="uploadfile"
+                        id="uploadfile1"
                         name="ImageUpload"
                         onChange={onChangeThumb}
+                        style={{ display: 'none' }}
                       />
                     </div>
-                    <div id="thumbbox">
-                      <img
-                        src="images/assets/logo.png"
-                        height="100"
-                        width="100"
-                        alt="Thumb"
-                        id="thumbimage"
-                      />
-                      <Link className="removeimg" to="/" />
-                    </div>
-                    <div id="boxchoice">
-                      <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Thumbnail
-                      <p />
-                    </div>
-                    <label className="filename" />
+                    {thumbnail ? (
+                      <label className="filename">{thumbnail}</label>
+                    ) : (
+                      <label id="boxchoice" htmlFor="uploadfile1">
+                        <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Thumbnail
+                        <p />
+                      </label>
+                    )}
                   </div>
                 </div>
                 <div className="file-upload">
-                  <div className="upload-bg">
+                  <div className="upload-bg" style={{ overflow: 'hidden' }}>
                     <div id="myfileupload">
                       <input
                         type="file"
-                        id="uploadfile"
+                        id="uploadfile2"
                         name="ImageUpload"
                         onChange={onChangeImage}
+                        style={{ display: 'none' }}
                       />
                     </div>
-                    <div id="thumbbox">
-                      <img
-                        src="images/assets/logo.png"
-                        height="100"
-                        width="100"
-                        alt="Thumb"
-                        id="thumbimage"
-                      />
-                      <Link className="removeimg" to="/" />
-                    </div>
-                    <div id="boxchoice">
-                      <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
-                      <p />
-                    </div>
-                    <label className="filename" />
+                    {image ? (
+                      <label className="filename">{image}</label>
+                    ) : (
+                      <label id="boxchoice" htmlFor="uploadfile2">
+                        <i className="fa fa-cloud-upload" aria-hidden="true" /> Upload Image
+                        <p />
+                      </label>
+                    )}
                   </div>
                 </div>
               </div>

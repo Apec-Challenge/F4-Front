@@ -34,7 +34,7 @@ const Contents = () => {
                       <span>
                         {fund.funding_amount === 0
                           ? 0
-                          : (fund.funding_amount / fund.funding_goal_amount) * 100}
+                          : parseInt((fund.funding_amount / fund.funding_goal_amount) * 100)}
                         %
                       </span>
                       funded
@@ -63,7 +63,7 @@ const Contents = () => {
         <div className="container">
           <h2 className="title">Latest Places</h2>
           <div className="description">
-						It's safe. It's clean. Check out the various places registered here.
+            It's safe. It's clean. Check out the various places registered here.
           </div>
           {fetchPlace.loading && 'Loading...'}
           {!fetchPlace.loading && fetchPlace.places && (
@@ -98,9 +98,7 @@ const Contents = () => {
       <div className="latest campaign">
         <div className="container">
           <h2 className="title">Latest Funding Campaigns</h2>
-          <div className="description">
-						Check out the newly registered funding campaign.
-          </div>
+          <div className="description">Check out the newly registered funding campaign.</div>
           <div className="campaign-content">
             {fetchFund.loading && 'Loading...'}
             {fetchFund.funds && !fetchFund.loading && (
@@ -151,7 +149,9 @@ const Contents = () => {
                               <span>
                                 {fund.funding_amount === 0
                                   ? 0
-                                  : (fund.funding_amount / fund.funding_goal_amount) * 100}
+                                  : parseInt(
+                                      (fund.funding_amount / fund.funding_goal_amount) * 100
+                                    )}
                                 %
                               </span>
                               funded

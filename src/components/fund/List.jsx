@@ -10,6 +10,11 @@ const List = () => {
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">
+        <img
+          src={require('src/images/fund-banner.jpg')}
+          alt=""
+          style={{ height: '220px', width: '1920px' }}
+        />
         <div className="container">
           <h1>Funding List</h1>
           <div className="breadcrumbs">
@@ -23,7 +28,7 @@ const List = () => {
           </div>
         </div>
       </div>
-      <div className="campaigns-action clearfix">
+      {/* {      <div className="campaigns-action clearfix">
         <div className="container">
           <div className="sort">
             <span>Sort by:</span>
@@ -50,9 +55,9 @@ const List = () => {
             </form>
           </div>
         </div>
-      </div>
+      </div>} */}
       <div className="campaigns">
-        {loading && '로딩중..'}
+        {loading && 'loading..'}
         {!loading && funds && (
           <div className="container">
             <div className="campaign-content">
@@ -108,7 +113,7 @@ const List = () => {
                             <div className="process-funded">
                               <span>
                                 {fund.funding_amount === 0
-                                  ? (fund.funding_amount / fund.funding_goal_amount) * 100
+                                  ? parseInt((fund.funding_amount / fund.funding_goal_amount) * 100)
                                   : 0}
                                 %
                               </span>
@@ -173,7 +178,9 @@ const List = () => {
                               <span>
                                 {fund.funding_amount === 0
                                   ? 0
-                                  : (fund.funding_amount / fund.funding_goal_amount) * 100}
+                                  : parseInt(
+                                      (fund.funding_amount / fund.funding_goal_amount) * 100
+                                    )}
                                 %
                               </span>
                               funded

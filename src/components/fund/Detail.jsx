@@ -31,9 +31,11 @@ const Detail = ({ fund_id }) => {
   return (
     <div className="campaign-detail">
       <main id="main" className="site-main">
-        {!loading && fund && (
-          <div className="page-title background-campaign">
-            {fund.map(f => (
+        {!loading &&
+          fund &&
+          fund.map(f => (
+            <div className="page-title background-campaign">
+              <img src={f.thumbnail_image} alt="" style={{ height: '220px', width: '1920px' }} />
               <div key={f.id} className="container">
                 <h1>{f.title}</h1>
                 <div className="breadcrumbs">
@@ -49,9 +51,8 @@ const Detail = ({ fund_id }) => {
                   </ul>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
+            </div>
+          ))}
         <div className="campaign-content">
           <div className="container">
             {!loading && fund && (
@@ -107,7 +108,7 @@ const Detail = ({ fund_id }) => {
                             <span>
                               {f.funding_amount === 0
                                 ? 0
-                                : (f.funding_amount / f.funding_goal_amount) * 100}
+                                : parseInt((f.funding_amount / f.funding_goal_amount) * 100)}
                               %
                             </span>
                             funded

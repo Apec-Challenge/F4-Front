@@ -68,10 +68,10 @@ export const addCash = ({ money, authorization }) =>
       },
     }
   );
-export const fundCash = ({ place, money, authorization }) =>
+export const fundCash = ({ place_id, money, authorization }) =>
   API.post(
-    `/api/accounts/money-recharge/`,
-    { place, money },
+    `/api/accounts/fund-place/`,
+    { place_id, money },
     { headers: { Authorization: `Token ${authorization}` } }
   );
 
