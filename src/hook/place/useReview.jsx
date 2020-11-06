@@ -4,14 +4,13 @@ import auth from 'src/modules/auth';
 import { changeField, readReview, createReview, unloadCreate } from 'src/modules/place';
 
 const useReviewCreate = ({ place_id }) => {
-  const { auth, content, rating, review, create, createError, reviewLoading } = useSelector(
+  const { auth, content, rating, review, reviewError, reviewLoading } = useSelector(
     ({ place, auth, loading }) => ({
       auth: auth.authLogin,
       content: place.reviewContent,
       rating: place.rating,
       review: place.review,
-      create: place.create,
-      createError: place.createError,
+      reviewError: place.reviewError,
       reviewLoading: loading['place/READ_REVIEW'],
     })
   );
@@ -25,13 +24,13 @@ const useReviewCreate = ({ place_id }) => {
     dispatch(readReview(place_id));
   }, []);
   useEffect(() => {
-    if (create) {
+    if (review) {
       dispatch(unloadCreate());
     }
-    if (createError) {
-      console.log(createError);
+    if (reviewError) {
+      console.log(reviewError);
     }
-  }, [create]);
+  }, [review]);
   return {
     onSubmit,
     onChangeField,

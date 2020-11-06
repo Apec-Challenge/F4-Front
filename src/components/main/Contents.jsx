@@ -105,7 +105,7 @@ const Contents = () => {
             {fetchFund.loading && '로딩중...'}
             {fetchFund.funds && !fetchFund.loading && (
               <div className="row">
-                {fetchFund.funds.slice(1, 8).map((fund, index) => (
+                {fetchFund.funds.slice(1, 7).map((fund, index) => (
                   <div key={fund.id} className="col-lg-4 col-sm-6">
                     <div className="campaign-item">
                       <div className="thumbnail">
@@ -119,14 +119,27 @@ const Contents = () => {
                           <Link to="/">{fund.title}</Link>
                         </h3>
                         <div className="campaign-description">{fund.description}</div>
-                        <div className="campaign-author">
-                          <Link className="author-icon" to="/">
-                            <img src={require('src/images/user.png')} alt="" />
-                          </Link>
-                          by
-                          <Link className="author-name" to="/">
-                            {fund.owner_username}
-                          </Link>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                          <div className="campaign-author">
+                            <Link className="author-icon" to="/">
+                              <img src={require('src/images/user.png')} alt="" />
+                            </Link>
+                            by
+                            <Link className="author-name" to="/">
+                              {fund.owner_username}
+                            </Link>
+                          </div>
+                          <div
+                            className="author-likes"
+                            style={{ display: 'flex', alignItems: 'center', marginBottom: '25px' }}
+                          >
+                            <img
+                              src={require('src/images/thumb-up.png')}
+                              alt=""
+                              style={{ marginRight: '10px', height: '15px', width: '15px' }}
+                            />
+                            {fund.total_likes}
+                          </div>
                         </div>
                         <div className="process">
                           <Raised funded={(fund.funding_amount / fund.funding_goal_amount) * 100} />

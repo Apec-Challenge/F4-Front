@@ -58,7 +58,28 @@ export const updateReview = ({ id, content }) => API.put(`/api/review/${id}/`, {
 export const deleteReview = id => API.put(`/api/review/delete/${id}/`, { id });
 
 /* Cash */
-export const addCash = ({ money, Authorization }) =>
-  API.put(`/api/accounts/money-recharge/`, { money, Authorization });
-export const fundCash = ({ place, money, Authorization }) =>
-  API.post(`/api/accounts/money-recharge/`, { place, money, Authorization });
+export const addCash = ({ money, authorization }) =>
+  API.put(
+    `/api/accounts/money-recharge/`,
+    { money },
+    {
+      headers: {
+        Authorization: `Token ${authorization}`,
+      },
+    }
+  );
+export const fundCash = ({ place, money, authorization }) =>
+  API.post(
+    `/api/accounts/money-recharge/`,
+    { place, money },
+    { headers: { Authorization: `Token ${authorization}` } }
+  );
+
+/* Like */
+export const fundLike = ({ nickname, id }) => API.get(`/funding_like/${nickname}/${id}/`);
+export const reveiwLike = ({ nickname, id }) => API.get(`/review_like/${nickname}/${id}/`);
+export const placeLike = ({ nickname, place_id }) =>
+  API.get(`/place_like/${nickname}/${place_id}/`);
+
+/* user */
+export const readUser = id => API.get(`/api/user/${id}/`);

@@ -78,6 +78,8 @@ const initialState = {
   },
   reviewContent: '',
   rating: '',
+  review: [],
+  reviewError: null,
 };
 
 export default handleActions(
@@ -106,15 +108,9 @@ export default handleActions(
       ...state,
       placeError,
     }),
-    [CREATE_REVIEW_SUCCESS]: (state, { payload: create }) => ({
+    [CREATE_REVIEW_SUCCESS]: (state, { payload: review }) => ({
       ...state,
-      create,
-      fund: [
-        {
-          ...state.fund[0],
-          comment_list: state.fund[0].comment_list.concat(create),
-        },
-      ],
+      review: state.review.concat(review),
     }),
     [CREATE_REVIEW_FAILURE]: (state, { payload: createError }) => ({
       ...state,
@@ -143,6 +139,7 @@ export default handleActions(
       address: initialState.address,
       counts: initialState.counts,
       PPE: initialState.PPE,
+      reviewContent: initialState.reviewContent,
     }),
   },
   initialState

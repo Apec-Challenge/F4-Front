@@ -9,13 +9,14 @@ const useReadDetailFund = ({ fund_id }) => {
     loading: loading['fund/READ_FUND'],
   }));
   const dispatch = useDispatch();
+  const onReadFund = id => dispatch(readFund(id));
   useEffect(() => {
     const id = parseInt(fund_id);
     if (fund_id) {
       dispatch(readFund(id));
     }
   }, [fund_id]);
-  return { fund, error, loading };
+  return { onReadFund, fund, error, loading };
 };
 
 export default useReadDetailFund;

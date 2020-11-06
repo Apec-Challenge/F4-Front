@@ -37,7 +37,7 @@ const List = () => {
               {!loading && places && (
                 <div className="grid-product">
                   {places.map(place => (
-                    <div key={place.id} className="product">
+                    <div key={place.place_id} className="product">
                       <Link to={`/place/detail/${place.place_id}`}>
                         <img src={place.place_image} alt="" />
                       </Link>
@@ -55,11 +55,6 @@ const List = () => {
                   ))}
                 </div>
               )}
-            </div>
-            <div className="latest-button">
-              <Link to="/" className="btn-primary">
-                Load more
-              </Link>
             </div>
           </div>
         </div>

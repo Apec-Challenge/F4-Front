@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import * as api from 'src/api/api';
 import useReadDetailFund from 'src/hook/fund/useReadDetailFund';
 import useCommentCreate from 'src/hook/fund/useCommentCreate';
 import useCash from 'src/hook/common/useAddCash';
 import Raised from 'src/components/common/Raised';
 
 const Detail = ({ fund_id }) => {
-  const { fund, error, loading } = useReadDetailFund({ fund_id });
+  const { onReadFund, fund, error, loading } = useReadDetailFund({ fund_id });
   const { onSubmit, onChangeField, content } = useCommentCreate({ fund_id });
   const cash = useCash();
   const currentDate = moment().toISOString();
   const [active, setActive] = useState({ desc: 'active', backer: 0, PPE: 0, cheer: 0 });
+  const [like, setLike] = useState();
   const onChangeComment = e => onChangeField({ key: 'comment_content', value: e.target.value });
   const onChangeCoin = e => cash.onChangeField({ key: 'coin', value: e.target.value });
   const onTabClick = e => {
@@ -19,6 +21,13 @@ const Detail = ({ fund_id }) => {
     const { title } = e.target;
     setActive({ [title]: 'active' });
   };
+  const onLike = () => {
+    api.fundLike({ nickname: cash.auth.nickname, id: fund_id });
+    onReadFund(fund_id);
+  };
+  useEffect(() => {
+    if (fund) setLike(fund.map(f => f.total_likes));
+  }, [fund]);
   return (
     <div className="campaign-detail">
       <main id="main" className="site-main">
@@ -59,7 +68,10 @@ const Detail = ({ fund_id }) => {
                       <div className="campaign-description">
                         <p>{f.description}</p>
                       </div>
-                      <div className="campaign-author clearfix">
+                      <div
+                        className="campaign-author clearfix"
+                        style={{ display: 'flex', justifyContent: 'space-between' }}
+                      >
                         <div className="author-profile">
                           <Link className="author-icon" to="/">
                             <img src={require('src/images/user.png')} alt="" />
@@ -69,8 +81,18 @@ const Detail = ({ fund_id }) => {
                             {f.owner_username}
                           </Link>
                         </div>
+                        <div
+                          className="author-likes"
+                          style={{ marginLeft: '300px', display: 'flex', alignItems: 'center' }}
+                        >
+                          <img
+                            src={require('src/images/thumb-up.png')}
+                            alt=""
+                            style={{ marginRight: '10px', height: '15px', width: '15px' }}
+                          />
+                          {f.total_likes}
+                        </div>
                       </div>
-                      <div className="author-likes">likes {f.total_likes}</div>
                       <div className="author-address">
                         <span className="ion-location" style={{ marginRight: '10px' }} />
                         {f.place.address}
@@ -116,10 +138,10 @@ const Detail = ({ fund_id }) => {
                             Funding
                           </button>
                         </form>
-                        <Link to="/" className="btn-secondary">
+                        <button className="btn-secondary" type="button" onClick={onLike}>
                           <i className="fa fa-heart" aria-hidden="true" />
-                          Remind me
-                        </Link>
+                          Like me
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -171,17 +193,21 @@ const Detail = ({ fund_id }) => {
                         </div>
                         <div id="backer" className={`tabs ${active.backer}`}>
                           <table>
-                            <tr>
-                              <th>Name</th>
-                              <th>Donate Amount</th>
-                              <th>Date</th>
-                            </tr>
-                            {f.backed_list.map(backer => (
-                              <tr key={backer.id}>
-                                <td>{backer}</td>
-                                <td>$100</td>
-                                <td>June 25, 2017</td>
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Donate Amount</th>
+                                <th>Date</th>
                               </tr>
+                            </thead>
+                            {f.backed_list.map((backer, index) => (
+                              <tbody key={index}>
+                                <tr>
+                                  <td>{backer}</td>
+                                  <td>$100</td>
+                                  <td>June 25, 2017</td>
+                                </tr>
+                              </tbody>
                             ))}
                           </table>
                         </div>

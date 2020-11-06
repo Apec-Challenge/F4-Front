@@ -7,17 +7,21 @@ const [ADD_CASH, ADD_CASH_SUCCESS, ADD_CASH_FAILURE] = createRequestActionTypes(
 const [FUND_CASH, FUND_CASH_SUCCESS, FUND_CASH_FAILURE] = createRequestActionTypes(
   'cash/FUND_CASH'
 );
+const UNLOAD_CASH = 'cash/UNLOAD_CASH';
 const CHANGE_CASH = 'cash/CHANGE_CASH';
 
-export const addCash = createAction(ADD_CASH, ({ money, Authorization }) => ({
+export const addCash = createAction(ADD_CASH, ({ money, authorization, xcsrf }) => ({
   money,
-  Authorization,
+  authorization,
+  xcsrf,
 }));
-export const fundCash = createAction(FUND_CASH, ({ place, money, Authorization }) => ({
+export const fundCash = createAction(FUND_CASH, ({ place, money, authorization, xcsrf }) => ({
   place,
   money,
-  Authorization,
+  authorization,
+  xcsrf,
 }));
+export const unloadCash = createAction(UNLOAD_CASH);
 export const changeField = createAction(CHANGE_CASH, ({ key, value }) => ({
   key,
   value,
@@ -58,6 +62,12 @@ export default handleActions(
     [CHANGE_CASH]: (state, { payload: { key, value } }) => ({
       ...state,
       [key]: value, // 특정 key 값을 업데이트
+    }),
+    [UNLOAD_CASH]: state => ({
+      ...state,
+      cash: initialState.cash,
+      cashError: initialState.cashError,
+      coin: initialState.coin,
     }),
   },
   initialState

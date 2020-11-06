@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import useAuth from 'src/hook/auth/useAuth';
 import useAddCash from 'src/hook/common/useAddCash';
+import useReadUser from 'src/hook/common/useReadUser';
 
 const Profile = ({ history }) => {
   const { authLogin, loginLoading } = useAuth(history);
-  const { onChangeField, onAddCash, coin, cash, cashError, loading } = useAddCash();
+  const { onChangeField, onAddCash, onUnload, coin, cash, cashError, loading } = useAddCash();
+  const { user, userError, userLoading } = useReadUser();
   const onChangeCoin = e => onChangeField({ key: 'coin', value: e.target.value });
+  useEffect(() => {
+    return () => {
+      onUnload();
+    };
+  }, [cash]);
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">
@@ -52,14 +59,16 @@ const Profile = ({ history }) => {
                         </div>
                         <div className="author-info">
                           <p>{authLogin.email}</p>
-                          <p style={{ display: 'flex', alignItems: 'center' }}>
-                            <img
-                              style={{ height: '15px', width: '15px', marginRight: '10px' }}
-                              src={require('src/images/coin.png')}
-                              alt=""
-                            />
-                            300 coin
-                          </p>
+                          {user && !userLoading && (
+                            <p style={{ display: 'flex', alignItems: 'center' }}>
+                              <img
+                                style={{ height: '15px', width: '15px', marginRight: '10px' }}
+                                src={require('src/images/coin.png')}
+                                alt=""
+                              />
+                              {user.coin} coin
+                            </p>
+                          )}
                         </div>
                       </div>
                     )}
