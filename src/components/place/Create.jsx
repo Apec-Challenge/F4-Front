@@ -77,14 +77,14 @@ const Create = ({ history }) => {
           style={{ height: '220px', width: '100%' }}
         />
         <div className="container">
-          <h1>Start a campaign</h1>
+          <h1>Add a place</h1>
           <div className="breadcrumbs">
             <ul>
               <li>
                 <Link to="/">Home</Link>
                 <span>/</span>
               </li>
-              <li>Start a campaign</li>
+              <li>Add a place</li>
             </ul>
           </div>
         </div>
@@ -92,10 +92,10 @@ const Create = ({ history }) => {
       <div className="campaign-form form-update">
         <div className="container">
           <form onSubmit={onSubmit} encType="multipart/form-data">
-            <h4>Start a campaign</h4>
+            <h4>Add a place</h4>
             <div className="field">
-              <label htmlFor="title">Campaign Name *</label>
-              <span className="label-desc">What is the title of your campaign?</span>
+              <label htmlFor="title">Place name *</label>
+              <span className="label-desc">What is the title of the place?</span>
               <input
                 type="text"
                 value={title}
@@ -106,9 +106,9 @@ const Create = ({ history }) => {
               />
             </div>
             <div className="field">
-              <label htmlFor="campaigndesc">Campaign Description *</label>
+              <label htmlFor="campaigndesc">Place Description *</label>
               <span className="label-desc">
-                Provide a short description that best describes your campaign to your audience.
+								Provide a short description that best describes the place.
               </span>
               <textarea
                 rows="4"
@@ -118,10 +118,7 @@ const Create = ({ history }) => {
               />
             </div>
             <div className="field">
-              <label htmlFor="capaignstory">Campaign Address *</label>
-              <span className="label-desc">
-                Introduce yourself, your campaign and why it’s important to you.
-              </span>
+              <label htmlFor="capaignstory">Place Address *</label>
               <div id="google-map">
                 <Map
                   google={window.google}
@@ -141,9 +138,9 @@ const Create = ({ history }) => {
               </select>
             </div>
             <div className="field">
-              <label htmlFor="uploadfile">Campaign Image *</label>
+              <label htmlFor="uploadfile">Place Image *</label>
               <span className="label-desc">
-                Upload a square image that represents your campaign. 570 x 350 recommended
+								Upload a square image that represents place. 570 x 350 recommended
                 resolution.
               </span>
               <div className="file-upload">
@@ -178,7 +175,7 @@ const Create = ({ history }) => {
               </div>
             </div>
             <div className="field">
-              <label htmlFor="PPE">Campaign PPE *</label>
+              <label htmlFor="PPE">Place PPE *</label>
               <span className="label-desc">PPE</span>
               <span style={{ marginTop: '10px' }}>Person hygiene</span>
               <select name="person_hygiene" onChange={onChangePPE}>

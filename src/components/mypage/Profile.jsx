@@ -18,7 +18,7 @@ const Profile = ({ history }) => {
     <main id="main" className="site-main">
       <div className="page-title background-page">
         <img
-          src={require('src/images/profile.jpg')}
+          src="https://images.unsplash.com/photo-1521619636272-f90fa9a48037?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2775&q=80"
           alt=""
           style={{ height: '220px', width: '100%' }}
         />

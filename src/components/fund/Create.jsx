@@ -73,7 +73,7 @@ const Create = ({ history }) => {
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
         <img
-          src={require('src/images/fund-banner.jpg')}
+					src="https://images.unsplash.com/photo-1504542982118-59308b40fe0c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
           alt=""
           style={{ height: '220px', width: '100%' }}
         />
