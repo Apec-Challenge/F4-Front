@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import Slider from '@material-ui/core/Slider';
 import * as api from 'src/api/api';
 import useReadDetailFund from 'src/hook/fund/useReadDetailFund';
 import useCommentCreate from 'src/hook/fund/useCommentCreate';
@@ -198,11 +199,41 @@ const Detail = ({ fund_id }) => {
                         <div id="faq" className={`tabs ${active.PPE}`}>
                           <h2>Personal Protective Equipment (PPE)</h2>
                           <h4>Person hygiene</h4>
-                          <p>{f.place.person_hygiene}</p>
+                          <Slider
+                            style={{ width: '50%' }}
+                            defaultValue={f.place.person_hygiene}
+                            // getAriaValueText={valuetext}
+                            aria-labelledby="discrete-slider"
+                            valueLabelDisplay="auto"
+                            step={5}
+                            marks
+                            min={0}
+                            max={5}
+                          />
                           <h4>Hand sanitizer</h4>
-                          <p>{f.place.hand_sanitizer}</p>
+                          <Slider
+                            style={{ width: '50%' }}
+                            defaultValue={f.place.hand_sanitizer}
+                            // getAriaValueText={valuetext}
+                            aria-labelledby="discrete-slider"
+                            valueLabelDisplay="auto"
+                            step={5}
+                            marks
+                            min={0}
+                            max={5}
+                          />
                           <h4>Body temperature check</h4>
-                          <p>{f.place.body_temperature_check}</p>
+                          <Slider
+                            style={{ width: '50%' }}
+                            defaultValue={f.place.body_temperature_check}
+                            // getAriaValueText={valuetext}
+                            aria-labelledby="discrete-slider"
+                            valueLabelDisplay="auto"
+                            step={5}
+                            marks
+                            min={0}
+                            max={5}
+                          />
                         </div>
                         <div id="comment" className={`tabs ${active.cheer} comment-area`}>
                           <h3 className="comments-title">{f.comment_list.length} Comment</h3>
