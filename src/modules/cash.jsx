@@ -15,8 +15,8 @@ export const addCash = createAction(ADD_CASH, ({ money, authorization, xcsrf }) 
   authorization,
   xcsrf,
 }));
-export const fundCash = createAction(FUND_CASH, ({ place, money, authorization, xcsrf }) => ({
-  place,
+export const fundCash = createAction(FUND_CASH, ({ place_id, money, authorization, xcsrf }) => ({
+  place_id,
   money,
   authorization,
   xcsrf,

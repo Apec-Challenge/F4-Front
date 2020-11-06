@@ -17,6 +17,11 @@ const Profile = ({ history }) => {
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">
+        <img
+          src={require('src/images/profile.jpg')}
+          alt=""
+          style={{ height: '220px', width: '1920px' }}
+        />
         <div className="container">
           <h1>Profile</h1>
           <div className="breadcrumbs">
@@ -66,7 +71,7 @@ const Profile = ({ history }) => {
                                 src={require('src/images/coin.png')}
                                 alt=""
                               />
-                              {user.coin} coin
+                              {user.money} coin
                             </p>
                           )}
                         </div>

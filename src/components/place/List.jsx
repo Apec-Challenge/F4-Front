@@ -7,6 +7,11 @@ const List = () => {
   return (
     <main id="main" className="site-main">
       <div className="page-title background-cart">
+        <img
+          src={require('src/images/place-banner.jpg')}
+          alt=""
+          style={{ height: '220px', width: '1920px' }}
+        />
         <div className="container">
           <h1>Place List</h1>
           <div className="breadcrumbs">
@@ -26,14 +31,14 @@ const List = () => {
             <div className="col-lg-12 main-content">
               <div className="shop-grid-fillter clearfix">
                 <p>Showing 1–12 of {!loading && places && places.length} results</p>
-                <div className="field-select">
+                {/* {                <div className="field-select">
                   <select name="s">
                     <option value="">Default sorting</option>
                     <option value="">Name</option>
                   </select>
-                </div>
+                </div>} */}
               </div>
-              {loading && '로딩중..'}
+              {loading && 'loading..'}
               {!loading && places && (
                 <div className="grid-product">
                   {places.map(place => (

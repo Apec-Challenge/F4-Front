@@ -11,7 +11,7 @@ const Contents = () => {
   const currentDate = moment().toISOString();
   return (
     <main id="main" className="site-main">
-      {fetchFund.loading && '로딩중...'}
+      {fetchFund.loading && 'loading...'}
       {!fetchFund.loading &&
         fetchFund.funds.slice(0, 1).map(fund => (
           <div key={fund.id} className="sideshow">
@@ -34,7 +34,7 @@ const Contents = () => {
                       <span>
                         {fund.funding_amount === 0
                           ? 0
-                          : (fund.funding_amount / fund.funding_goal_amount) * 100}
+                          : parseInt((fund.funding_amount / fund.funding_goal_amount) * 100)}
                         %
                       </span>
                       funded
@@ -65,7 +65,7 @@ const Contents = () => {
           <div className="description">
             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
           </div>
-          {fetchPlace.loading && '로딩중...'}
+          {fetchPlace.loading && 'loading...'}
           {!fetchPlace.loading && fetchPlace.places && (
             <div className="row">
               <div className="col-lg-12 main-content">
@@ -102,7 +102,7 @@ const Contents = () => {
             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
           </div>
           <div className="campaign-content">
-            {fetchFund.loading && '로딩중...'}
+            {fetchFund.loading && 'loading...'}
             {fetchFund.funds && !fetchFund.loading && (
               <div className="row">
                 {fetchFund.funds.slice(1, 7).map((fund, index) => (
@@ -151,7 +151,9 @@ const Contents = () => {
                               <span>
                                 {fund.funding_amount === 0
                                   ? 0
-                                  : (fund.funding_amount / fund.funding_goal_amount) * 100}
+                                  : parseInt(
+                                      (fund.funding_amount / fund.funding_goal_amount) * 100
+                                    )}
                                 %
                               </span>
                               funded

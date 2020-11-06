@@ -21,8 +21,9 @@ const Detail = ({ place_id }) => {
   };
   return (
     <main id="main" className="site-main">
-      <div className="page-title background-cart">
-        {!loading && place && (
+      {!loading && place && (
+        <div className="page-title background-cart">
+          <img src={place.place_image} alt="" style={{ height: '220px', width: '1920px' }} />
           <div className="container">
             <h1>{place.title}</h1>
             <div className="breadcrumbs">
@@ -38,8 +39,8 @@ const Detail = ({ place_id }) => {
               </ul>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
       <div className="container">
         <div className="row">
           <div className="col-lg-12 main-content">
