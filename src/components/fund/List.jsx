@@ -11,7 +11,7 @@ const List = () => {
     <main id="main" className="site-main">
       <div className="page-title background-page">
         <img
-          src={require('src/images/fund-banner.jpg')}
+          src="https://images.unsplash.com/photo-1504542982118-59308b40fe0c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
           alt=""
           style={{ height: '220px', width: '1920px' }}
         />
