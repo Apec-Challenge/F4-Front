@@ -24,7 +24,8 @@ const About = () => {
           <h2 className="title">We are make a future happy travel.</h2>
           <div className="description">
             <p>
-							COVID-19는 여름 감기처럼 곧 우리를 지나갈 겁니다. COVID-19 없는 세상을 만들기 위해 노력한 여러분들께 행복한 추억을 드립니다.</p>
+							COVID-19 will soon pass us like a summer cold. We give happy memories to all of you who have worked hard to create a world without COVID-19.
+						</p>
           </div>
           <div className="statics-content">
             <div className="row">
@@ -32,7 +33,9 @@ const About = () => {
                 <div className="statics-item">
                   <h3>3,623 places</h3>
                   <div className="statics-item-desc">
-                    <p>모금을 위해 준비된 많은 장소들</p>
+                    <p>
+											Many places prepared for raising money
+										</p>
                   </div>
                 </div>
               </div>
@@ -40,7 +43,7 @@ const About = () => {
                 <div className="statics-item">
                   <h3>1.5 Million SGD</h3>
                   <div className="statics-item-desc">
-                    <p>지금까지 모금된 금액</p>
+                    <p>Amount Funded So far</p>
                   </div>
                 </div>
               </div>
@@ -48,7 +51,7 @@ const About = () => {
                 <div className="statics-item">
                   <h3>32 Countries</h3>
                   <div className="statics-item-desc">
-                    <p>함께하는 다양한 국가들</p>
+                    <p>The various countries with us</p>
                   </div>
                 </div>
               </div>
