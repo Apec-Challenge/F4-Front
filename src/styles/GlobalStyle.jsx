@@ -897,7 +897,7 @@ ul.socials-top li:hover i {
 .site-main .sideshow {
   position: relative;
   height: 674px;
-  background-image: url('src/images/placeholder/1920x680.png');
+  //background-image: url('src/images/placeholder/1920x680.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -1651,10 +1651,10 @@ ul.menu-category li.active:after {
   //background-image: url('/src/images/fund-banner.jpg');
 }
 .page-title.background-blog {
-  background-image: url('src/images/placeholder/1920x220.png');
+  //background-image: url('src/images/placeholder/1920x220.png');
 }
 .page-title.background-campaign {
-  background-image: url('src/images/placeholder/1920x220.png');
+  //background-image: url('src/images/placeholder/1920x220.png');
 }
 .page-title.background-cart {
   //background-image: url('src/images/placeholder/1920x220.png');
@@ -2811,7 +2811,7 @@ form .create-account input[type='checkbox'] {
 3.10. Coming soon / #coming-soon
 -------------------------------------------------------------------*/
 .coming-soon #wrapper {
-  background-image: url('src/images/placeholder/1920x1080.png');
+  //background-image: url('src/images/placeholder/1920x1080.png');
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;

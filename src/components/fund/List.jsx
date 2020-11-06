@@ -5,7 +5,7 @@ import useReadFund from 'src/hook/fund/useReadFund';
 import Raised from 'src/components/common/Raised';
 
 const List = () => {
-  const { funds, error, loading } = useReadFund();
+  const { funds, loading } = useReadFund();
   const currentDate = moment().toISOString();
   return (
     <main id="main" className="site-main">
@@ -113,8 +113,10 @@ const List = () => {
                             <div className="process-funded">
                               <span>
                                 {fund.funding_amount === 0
-                                  ? parseInt((fund.funding_amount / fund.funding_goal_amount) * 100)
-                                  : 0}
+                                  ? 0
+                                  : parseInt(
+                                      (fund.funding_amount / fund.funding_goal_amount) * 100
+                                    )}
                                 %
                               </span>
                               funded

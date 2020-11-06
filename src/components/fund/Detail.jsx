@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import * as api from 'src/api/api';
@@ -8,14 +8,12 @@ import useCash from 'src/hook/common/useAddCash';
 import Raised from 'src/components/common/Raised';
 
 const Detail = ({ fund_id }) => {
-  const { onReadFund, fund, error, loading } = useReadDetailFund({ fund_id });
+  const { onReadFund, fund, loading } = useReadDetailFund({ fund_id });
   const { onSubmit, onChangeField, content } = useCommentCreate({ fund_id });
   const cash = useCash();
   const currentDate = moment().toISOString();
   const [active, setActive] = useState({ desc: 'active', backer: 0, PPE: 0, cheer: 0 });
-  const [like, setLike] = useState();
   const onChangeComment = e => onChangeField({ key: 'comment_content', value: e.target.value });
-  const onChangeCoin = e => cash.onChangeField({ key: 'coin', value: e.target.value });
   const onTabClick = e => {
     setActive({ desc: 0, backer: 0, PPE: 0, cheer: 0 });
     const { title } = e.target;
@@ -25,18 +23,15 @@ const Detail = ({ fund_id }) => {
     api.fundLike({ nickname: cash.auth.nickname, id: fund_id });
     onReadFund(fund_id);
   };
-  useEffect(() => {
-    if (cash.cash) cash.onUnload();
-  }, [cash.cash]);
   return (
     <div className="campaign-detail">
       <main id="main" className="site-main">
         {!loading &&
           fund &&
           fund.map(f => (
-            <div className="page-title background-campaign">
+            <div key={f.id} className="page-title background-campaign">
               <img src={f.thumbnail_image} alt="" style={{ height: '220px', width: '100%' }} />
-              <div key={f.id} className="container">
+              <div className="container">
                 <h1>{f.title}</h1>
                 <div className="breadcrumbs">
                   <ul>
@@ -127,14 +122,6 @@ const Detail = ({ fund_id }) => {
                           className="campaign-price quantity"
                           onSubmit={cash.onFundCash}
                         >
-                          <input
-                            type="number"
-                            value={cash.coin}
-                            min="0"
-                            name="coin"
-                            placeholder=""
-                            onChange={onChangeCoin}
-                          />
                           <button className="btn-primary" type="submit">
                             Funding
                           </button>
@@ -197,16 +184,12 @@ const Detail = ({ fund_id }) => {
                             <thead>
                               <tr>
                                 <th>Name</th>
-                                <th>Donate Amount</th>
-                                <th>Date</th>
                               </tr>
                             </thead>
                             {f.backed_list.map((backer, index) => (
                               <tbody key={index}>
                                 <tr>
                                   <td>{backer}</td>
-                                  <td>$100</td>
-                                  <td>June 25, 2017</td>
                                 </tr>
                               </tbody>
                             ))}
@@ -228,7 +211,11 @@ const Detail = ({ fund_id }) => {
                               <li key={comment.id} className="comment clearfix">
                                 <div className="comment-body">
                                   <div className="comment-avatar">
-                                    <img src={require('src/images/placeholder/70x70.png')} alt="" />
+                                    <img
+                                      src={require('src/images/user.png')}
+                                      alt=""
+                                      style={{ width: '70ox', height: '70px' }}
+                                    />
                                   </div>
                                   <div className="comment-info">
                                     <header className="comment-meta" />

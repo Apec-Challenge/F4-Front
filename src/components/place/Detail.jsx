@@ -7,14 +7,17 @@ import useReview from 'src/hook/place/useReview';
 import useCash from 'src/hook/common/useAddCash';
 
 const Detail = ({ place_id }) => {
-  const { onReadPlace, place, error, loading } = useReadDetailPlace({ place_id });
-  const { onSubmit, onChangeField, review, reviewLoading, content, rating } = useReview({
+  const { onReadPlace, place, loading } = useReadDetailPlace({ place_id });
+  const { onSubmit, onChangeField, review, reviewLoading, content } = useReview({
     place_id,
   });
   const cash = useCash();
   const currentDate = moment().toISOString();
   const onChangeContent = e => onChangeField({ key: 'reviewContent', value: e.target.value });
-  const onChangeRating = e => onChangeField({ key: 'rating', value: parseInt(e.target.value) });
+  const onChangeRating = e => {
+    console.log(e.target.checked);
+    onChangeField({ key: 'rating', value: parseInt(e.target.value) });
+  };
   const onLike = () => {
     api.placeLike({ nickname: cash.auth.nickname, place_id });
     onReadPlace(place_id);
@@ -98,7 +101,11 @@ const Detail = ({ place_id }) => {
                             <li key={r.id} className="comment clearfix">
                               <div className="comment-body">
                                 <div className="comment-avatar">
-                                  <img src={require('src/images/placeholder/70x70.png')} alt="" />
+                                  <img
+                                    src={require('src/images/user.png')}
+                                    alt=""
+                                    style={{ width: '70ox', height: '70px' }}
+                                  />
                                 </div>
                                 <div className="comment-info">
                                   <header className="comment-meta" />

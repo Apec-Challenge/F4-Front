@@ -6,14 +6,14 @@ import useReadUser from 'src/hook/common/useReadUser';
 
 const Profile = ({ history }) => {
   const { authLogin, loginLoading } = useAuth(history);
-  const { onChangeField, onAddCash, onUnload, coin, cash, cashError, loading } = useAddCash();
-  const { user, userError, userLoading } = useReadUser();
+  const { onChangeField, onAddCash, onUnload, coin, cash } = useAddCash();
+  const { user, userLoading } = useReadUser();
   const onChangeCoin = e => onChangeField({ key: 'coin', value: e.target.value });
   useEffect(() => {
     return () => {
       onUnload();
     };
-  }, [cash]);
+  }, [cash, onUnload]);
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">
@@ -52,8 +52,8 @@ const Profile = ({ history }) => {
                 <h3 className="account-title">My Profiles</h3>
                 <div className="account-main">
                   <div className="author clearfix">
-                    <Link className="author-avatar" to="/">
-                      <img src={require('src/images/placeholder/120x120.png')} alt="" />
+                    <Link className="author-avatar">
+                      <img src={require('src/images/user.png')} alt="" />
                     </Link>
                     {authLogin && !loginLoading && (
                       <div className="author-content">

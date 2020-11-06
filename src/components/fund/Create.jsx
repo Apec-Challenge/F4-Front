@@ -13,17 +13,13 @@ const Create = ({ history }) => {
     unloadCreate,
     title,
     description,
-    thumbnail_image,
-    content_image,
-    place,
     address,
     funding_goal_amount,
-    ended_at,
     create,
     createError,
   } = useCreate();
   const dispatch = useDispatch();
-  const { places, error, loading } = useReadPlace();
+  const { places, loading } = useReadPlace();
   const [endDate, setEndDate] = useState();
   const [show, setShow] = useState({});
   const [active, setActive] = useState({});
@@ -56,7 +52,7 @@ const Create = ({ history }) => {
   };
   useEffect(() => {
     onChangeDuration(endDate);
-  }, [endDate]);
+  }, [endDate, onChangeDuration]);
   useEffect(() => {
     if (create) {
       const { id } = create;
@@ -68,12 +64,12 @@ const Create = ({ history }) => {
     return () => {
       dispatch(unloadCreate());
     };
-  }, [create]);
+  }, [dispatch, create, unloadCreate]);
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
         <img
-					src="https://images.unsplash.com/photo-1504542982118-59308b40fe0c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+          src="https://images.unsplash.com/photo-1504542982118-59308b40fe0c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
           alt=""
           style={{ height: '220px', width: '100%' }}
         />
@@ -193,31 +189,33 @@ const Create = ({ history }) => {
               <span className="label-desc">
                 Choose the location where you are running the campaign.
               </span>
-              <div id="google-map">
-                <Map google={window.google} zoom={15} initialCenter={{ lat: 37.5, lng: 127 }}>
-                  {places.map(p => (
-                    <Marker
-                      key={p.place_id}
-                      name={p.place_id}
-                      address={p.address}
-                      position={{ lat: p.lat, lng: p.lng }}
-                      onClick={onMarkerClick}
-                    />
-                  ))}
-                  {places.map(p => (
-                    <InfoWindow
-                      key={p.place_id}
-                      visible={show[p.place_id]}
-                      marker={active}
-                      onClose={() => onClickClose(p.place_id)}
-                    >
-                      <div>
-                        <h1>{p.address}</h1>
-                      </div>
-                    </InfoWindow>
-                  ))}
-                </Map>
-              </div>
+              {places && !loading && (
+                <div id="google-map">
+                  <Map google={window.google} zoom={15} initialCenter={{ lat: 37.5, lng: 127 }}>
+                    {places.map(p => (
+                      <Marker
+                        key={p.place_id}
+                        name={p.place_id}
+                        address={p.address}
+                        position={{ lat: p.lat, lng: p.lng }}
+                        onClick={onMarkerClick}
+                      />
+                    ))}
+                    {places.map(p => (
+                      <InfoWindow
+                        key={p.place_id}
+                        visible={show[p.place_id]}
+                        marker={active}
+                        onClose={() => onClickClose(p.place_id)}
+                      >
+                        <div>
+                          <h1>{p.address}</h1>
+                        </div>
+                      </InfoWindow>
+                    ))}
+                  </Map>
+                </div>
+              )}
               <div>{address}</div>
             </div>
             <div className="field">

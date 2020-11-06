@@ -10,13 +10,8 @@ const Create = ({ history }) => {
     onSubmit,
     onChangeField,
     unloadCreate,
-    place_id,
     title,
-    place_image,
-    description,
-    address,
     location,
-    counts,
     PPE,
     create,
     createError,
@@ -67,7 +62,7 @@ const Create = ({ history }) => {
     return () => {
       dispatch(unloadCreate());
     };
-  }, [create]);
+  }, [dispatch, create, unloadCreate]);
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
@@ -108,7 +103,7 @@ const Create = ({ history }) => {
             <div className="field">
               <label htmlFor="campaigndesc">Place Description *</label>
               <span className="label-desc">
-								Provide a short description that best describes the place.
+                Provide a short description that best describes the place.
               </span>
               <textarea
                 rows="4"
@@ -140,8 +135,7 @@ const Create = ({ history }) => {
             <div className="field">
               <label htmlFor="uploadfile">Place Image *</label>
               <span className="label-desc">
-								Upload a square image that represents place. 570 x 350 recommended
-                resolution.
+                Upload a square image that represents place. 570 x 350 recommended resolution.
               </span>
               <div className="file-upload">
                 <div className="upload-bg" style={{ overflow: 'hidden' }}>

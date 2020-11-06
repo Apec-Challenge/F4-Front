@@ -11,7 +11,7 @@ const useReadPlace = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(readPlaceList());
-  }, []);
+  }, [dispatch]);
   return { places, error, loading };
 };
 

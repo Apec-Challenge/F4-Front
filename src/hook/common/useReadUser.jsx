@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { readUser } from 'src/modules/user';
 
@@ -12,7 +12,7 @@ const useReadUser = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (auth) dispatch(readUser(auth.pk));
-  }, [auth]);
+  }, [auth, dispatch]);
   return {
     user,
     userError,

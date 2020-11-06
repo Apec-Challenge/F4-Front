@@ -1,6 +1,5 @@
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import auth from 'src/modules/auth';
 import { changeField, readReview, createReview, unloadCreate } from 'src/modules/place';
 
 const useReviewCreate = ({ place_id }) => {
@@ -22,7 +21,7 @@ const useReviewCreate = ({ place_id }) => {
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [dispatch]);
   useEffect(() => {
     dispatch(readReview(place_id));
-  }, []);
+  }, [dispatch, place_id]);
   useEffect(() => {
     if (review) {
       dispatch(unloadCreate());
@@ -30,7 +29,7 @@ const useReviewCreate = ({ place_id }) => {
     if (reviewError) {
       console.log(reviewError);
     }
-  }, [review]);
+  }, [dispatch, review, reviewError]);
   return {
     onSubmit,
     onChangeField,

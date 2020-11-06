@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useReadPlace from 'src/hook/place/useReadPlace';
 
 const List = () => {
-  const { places, error, loading } = useReadPlace();
+  const { places, loading } = useReadPlace();
   return (
     <main id="main" className="site-main">
       <div className="page-title background-cart">

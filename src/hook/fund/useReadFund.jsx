@@ -11,7 +11,7 @@ const useReadFund = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(readFundList());
-  }, []);
+  }, [dispatch]);
   return { funds, error, loading };
 };
 

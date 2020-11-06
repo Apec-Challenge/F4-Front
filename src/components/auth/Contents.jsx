@@ -13,8 +13,6 @@ const Contents = ({ history, isLogin, setIsLogin }) => {
     password1,
     password2,
     authLogin,
-    authLogout,
-    authRegister,
     authError,
   } = useAuth();
   const onChangeEmail = e => onChangeField({ key: 'email', value: e.target.value });
@@ -23,7 +21,7 @@ const Contents = ({ history, isLogin, setIsLogin }) => {
   const onChangePwConfirm = e => onChangeField({ key: 'password2', value: e.target.value });
   useEffect(() => {
     onInit();
-  }, [isLogin]);
+  }, [isLogin, onInit]);
   useEffect(() => {
     if (authLogin) {
       history.push(`/`);
@@ -31,7 +29,7 @@ const Contents = ({ history, isLogin, setIsLogin }) => {
     if (authError) {
       console.log(authError);
     }
-  }, [authLogin]);
+  }, [authLogin, authError, history]);
   return (
     <>
       {isLogin === 'login' ? (

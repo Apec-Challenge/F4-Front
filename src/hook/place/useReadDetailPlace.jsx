@@ -14,7 +14,7 @@ const useReadDetailPlace = ({ place_id }) => {
     if (place_id) {
       dispatch(readPlace(place_id));
     }
-  }, [place_id]);
+  }, [place_id, dispatch]);
   return { onReadPlace, place, error, loading };
 };
 

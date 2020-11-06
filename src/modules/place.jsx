@@ -140,6 +140,7 @@ export default handleActions(
       counts: initialState.counts,
       PPE: initialState.PPE,
       reviewContent: initialState.reviewContent,
+      rating: initialState.rating,
     }),
   },
   initialState

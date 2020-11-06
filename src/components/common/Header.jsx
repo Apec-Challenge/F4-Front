@@ -2,22 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import useAuth from 'src/hook/auth/useAuth';
 import Logo from 'src/images/logo_color.png';
-import auth from 'src/modules/auth';
 
 const Header = ({ history }) => {
   const { onAuth, onLogout, authLogin, authLogout, loginLoading } = useAuth(history);
   const [login, setLogin] = useState(false);
-  const onShow = () => {
-    document.querySelector('.form-search').style.display = 'block';
-    document.querySelector('#searchForm').style.display = 'block';
-  };
-  const onHide = () => {
-    document.querySelector('.form-search').style.display = 'none';
-    document.querySelector('#searchForm').style.display = 'none';
-  };
-  const onChange = e => {
-    console.log(e.target.value);
-  };
   useEffect(() => {
     if (authLogin) {
       const { cookie } = document;
@@ -33,7 +21,7 @@ const Header = ({ history }) => {
       setLogin(false);
       onAuth();
     }
-  });
+  }, [onAuth, authLogout]);
   return (
     <header id="header" className="site-header">
       <div className="container">

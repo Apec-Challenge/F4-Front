@@ -31,7 +31,6 @@ const useAddCash = place_id => {
     dispatch(
       fundCash({
         place_id: fund[0].place.place_id,
-        money: parseInt(coin),
         authorization: auth.key,
       })
     );

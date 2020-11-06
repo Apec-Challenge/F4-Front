@@ -1,6 +1,5 @@
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import auth from 'src/modules/auth';
 import { changeField, createComment, unloadCreate } from 'src/modules/fund';
 
 const useCommentCreate = ({ fund_id }) => {
@@ -23,7 +22,7 @@ const useCommentCreate = ({ fund_id }) => {
     if (createError) {
       console.log(createError);
     }
-  }, [create]);
+  }, [dispatch, create, createError]);
   return {
     onSubmit,
     onChangeField,
