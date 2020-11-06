@@ -2113,7 +2113,7 @@ ul.menu-category li.active:after {
 3.5. About us / #about-us
 -------------------------------------------------------------------*/
 .top-site {
-  background-image: url('images/placeholder/1920x860.png');
+  background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3108&q=80');
   height: 860px;
   background-size: cover;
   background-position: center center;
@@ -5920,4 +5920,9 @@ form .create-account input[type='checkbox'] {
 .preview-btn {
   margin-top: 20px;
 }
+
+.autherN {
+	font-size: 18px;
+}
+
 `;

@@ -55,12 +55,6 @@ const Header = ({ history }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/contact">
-                  Contact
-                  <i className="fa fa-caret-down" aria-hidden="true" />
-                </Link>
-              </li>
-              <li>
                 <Link to="/fund/list">
                   Funding
                   <i className="fa fa-caret-down" aria-hidden="true" />

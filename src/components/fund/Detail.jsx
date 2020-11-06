@@ -113,7 +113,7 @@ const Detail = ({ fund_id }) => {
                             onChange={onChangeCoin}
                           />
                           <button className="btn-primary" type="submit">
-                            Fudning
+                            Funding
                           </button>
                         </form>
                         <Link to="/" className="btn-secondary">
