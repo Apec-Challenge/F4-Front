@@ -21,7 +21,7 @@ const Contents = ({ history, isLogin, setIsLogin }) => {
   const onChangePwConfirm = e => onChangeField({ key: 'password2', value: e.target.value });
   useEffect(() => {
     onInit();
-  }, [isLogin, onInit]);
+  }, [isLogin]);
   useEffect(() => {
     if (authLogin) {
       history.push(`/`);

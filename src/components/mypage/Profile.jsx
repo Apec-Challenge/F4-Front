@@ -13,7 +13,7 @@ const Profile = ({ history }) => {
     return () => {
       onUnload();
     };
-  }, [cash, onUnload]);
+  }, [cash]);
   return (
     <main id="main" className="site-main">
       <div className="page-title background-page">

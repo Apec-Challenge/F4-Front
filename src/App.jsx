@@ -11,7 +11,7 @@ const App = () => {
   };
   useEffect(() => {
     initUserInfo();
-  }, [initUserInfo]);
+  }, []);
   return (
     <>
       <Route exact path="/" component={Main} />

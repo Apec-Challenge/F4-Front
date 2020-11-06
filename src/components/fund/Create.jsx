@@ -52,7 +52,7 @@ const Create = ({ history }) => {
   };
   useEffect(() => {
     onChangeDuration(endDate);
-  }, [endDate, onChangeDuration]);
+  }, [endDate]);
   useEffect(() => {
     if (create) {
       const { id } = create;
@@ -64,7 +64,7 @@ const Create = ({ history }) => {
     return () => {
       dispatch(unloadCreate());
     };
-  }, [dispatch, create, unloadCreate]);
+  }, [dispatch, create]);
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">

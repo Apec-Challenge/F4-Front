@@ -21,7 +21,7 @@ const Header = ({ history }) => {
       setLogin(false);
       onAuth();
     }
-  }, [onAuth, authLogout]);
+  }, [authLogout]);
   return (
     <header id="header" className="site-header">
       <div className="container">

@@ -62,7 +62,7 @@ const Create = ({ history }) => {
     return () => {
       dispatch(unloadCreate());
     };
-  }, [dispatch, create, unloadCreate]);
+  }, [dispatch, create]);
   return (
     <main id="main" className="site-main">
       <div className="page-title background-campaign">
